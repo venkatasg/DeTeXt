@@ -11,7 +11,7 @@ import SwiftUI
 struct DeTeXtApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CanvasView()
         }
     }
 }
