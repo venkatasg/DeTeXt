@@ -15,6 +15,9 @@ struct CanvasView: View {
     @State private var canvas = PKCanvasView()
     @Environment(\.colorScheme) var colorScheme
 
+    var predictionOne = ""
+    var predictionTwo = "Draw above"
+    var predictionThree = ""
     
     var body: some View {
         NavigationView {
@@ -24,9 +27,9 @@ struct CanvasView: View {
                     .stroke(lineWidth: 5) .fill((colorScheme == .light ? Color.black : Color.white))
                 ).padding(16)
                 Spacer()
-                Text("Prediction 1").padding(8)
-                Text("Prediction 2").padding(8)
-                Text("Prediction 3").padding(8)
+                Text(self.predictionOne).padding(8)
+                Text(self.predictionTwo).padding(8)
+                Text(self.predictionThree).padding(8)
                 Spacer()
             }
 
@@ -52,24 +55,31 @@ struct CanvasView: View {
 struct PKCanvas: UIViewRepresentable {
     class Coordinator: NSObject, PKCanvasViewDelegate {
         var pkCanvas: PKCanvas
-        let mlmodel = deTeX()
+//        let compiledUrl = try! MLModel.compileModel(at: URL(fileURLWithPath: "deTeX.mlmodel"))
+//        let model = try! MLModel(contentsOf: compiledUrl)
+        
+        let model = deTeX()
         @Environment(\.colorScheme) var colorScheme
         private let trainedImageSize = CGSize(width: 300, height: 200)
+        let symbols = loadJson()
         
         init(_ pkCanvas: PKCanvas) {
             self.pkCanvas = pkCanvas
         }
         
         func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
-            ///YESS you need to call the detection here
-            var image = canvasView.drawing.image(from: canvasView.drawing.bounds, scale: 5.0)
-            if colorScheme == .light {
-                image = invertColors(image: image)
+            
+            // if canvasView is empty escape gracefully
+            if canvasView.drawing.bounds.isEmpty { }
+            else {
+                var image = canvasView.drawing.image(from: canvasView.drawing.bounds, scale: 5.0)
+                if self.colorScheme == .light {
+                    image = invertColors(image: image)
+                }
+                let processed_image = preprocessImage(image: image)
+                predictImage(image: processed_image)
             }
-            let processed_image = preprocessImage(image: image)
-            predictImage(image: processed_image)
-            print("Changed")
-            }
+        }
         
         // invert the colors when in light mode
         func invertColors(image: UIImage) -> UIImage {
@@ -94,13 +104,16 @@ struct PKCanvas: UIViewRepresentable {
         
         func predictImage(image: UIImage) {
             if let pixelBuffer = image.toCVPixelBuffer() {
-                guard let result = try? mlmodel.prediction(drawing: pixelBuffer) else {
+                guard let result = try? model.prediction(drawing: pixelBuffer) else {
                         print("error in image...")
                         return
                     }
-                print(result.classLabel)
                 let sortedClassProbs = result.classLabelProbs.sorted { $0.1 > $1.1 }
-                print(sortedClassProbs[0], sortedClassProbs[1], sortedClassProbs[2])
+                print(symbols!.first(where: {$0.id==sortedClassProbs[0].key})?.command ?? "None", sortedClassProbs[0].value,
+                      symbols!.first(where: {$0.id==sortedClassProbs[0].key})?.mathmode ?? "None",
+                      symbols!.first(where: {$0.id==sortedClassProbs[0].key})?.textmode ?? "None",
+                      symbols!.first(where: {$0.id==sortedClassProbs[0].key})?.package ?? "None",
+                      symbols!.first(where: {$0.id==sortedClassProbs[0].key})?.fontenc ?? "None")
             }
         }
     }
@@ -108,14 +121,15 @@ struct PKCanvas: UIViewRepresentable {
     @Binding var canvasView: PKCanvasView
     @Environment(\.colorScheme) var colorScheme
     
+    
 
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
 
     func makeUIView(context: Context) -> PKCanvasView {
-        self.canvasView.backgroundColor = (colorScheme == .light ? .white : .black)
-        self.canvasView.tool = PKInkingTool(.pen, color: (colorScheme == .light ? .black : .white), width: 10)
+        self.canvasView.backgroundColor = UIColor.systemBackground
+        self.canvasView.tool = PKInkingTool(.pen, color: (self.colorScheme == .light ? .black : .white), width: 10)
         self.canvasView.isScrollEnabled = false
         self.canvasView.becomeFirstResponder()
         self.canvasView.delegate = context.coordinator
@@ -132,8 +146,8 @@ struct PKCanvas: UIViewRepresentable {
     }
 
     func updateUIView(_ canvasView: PKCanvasView, context: Context) {
-        canvasView.backgroundColor = (colorScheme == .light ? .white : .black)
-        canvasView.tool = PKInkingTool(.pen, color: (colorScheme == .light ? .black : .white), width: 10)
+        self.canvasView.backgroundColor = UIColor.systemBackground
+//        self.canvasView.tool = PKInkingTool(.pen, color: (self.colorScheme == .light ? .black : .blue), width: 10)
     }
 }
 
