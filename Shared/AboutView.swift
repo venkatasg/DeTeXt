@@ -27,10 +27,9 @@ struct AboutView: View {
             .navigationBarItems(leading: Button(action: {
                 self.presentationMode.wrappedValue.dismiss()
                 }) {
-                HStack{
-                    Image(systemName: "chevron.down")
+//                    Image(systemName: "chevron.down")
                     Text("Back")
-                }.padding(8)
+                        .padding(8)
             })
         }
     }

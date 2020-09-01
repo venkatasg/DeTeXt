@@ -12,14 +12,14 @@ import CoreML
 struct CanvasView: View {
     
     @State var showAboutView = false
-    @State var clear = false
-    
+    @State private var canvas = PKCanvasView()
     @Environment(\.colorScheme) var colorScheme
+
     
     var body: some View {
         NavigationView {
             VStack{
-                PKCanvas(clear: $clear).aspectRatio(1, contentMode: .fit).cornerRadius(25).overlay(
+                PKCanvas(canvasView: $canvas).aspectRatio(1, contentMode: .fit).cornerRadius(25).overlay(
                     RoundedRectangle(cornerRadius: 25)
                     .stroke(lineWidth: 5) .fill((colorScheme == .light ? Color.black : Color.white))
                 ).padding(16)
@@ -30,19 +30,18 @@ struct CanvasView: View {
                 Spacer()
             }
 
-                .navigationBarItems(leading: Button(action: {clear.toggle() }) {
-                        Text("Clear").padding(8)
+                .navigationBarItems(leading: Button(action: { self.canvas.drawing = PKDrawing() }) {
+                        Text("Clear")
+//                            .font(.body)
+                            .padding(8)
                     },
-                trailing: HStack {
-                    Button(action: {detect()}) {
-                            Text("Detect").padding(8)
-                    }.font(.body)
+                trailing:
                     Button(action: {self.showAboutView.toggle()}) {
                         Text("About")
-                            .font(.body)
+//                            .font(.body)
                             .padding(8)
                     }
-                })
+                )
                 .navigationBarTitle("", displayMode: .inline)
         }.sheet(isPresented: $showAboutView) {
             AboutView()
@@ -51,57 +50,8 @@ struct CanvasView: View {
     
     func detect() {
         print("Detecting!")
-//        let image = PKCanvas.preprocessImage()
-//        PKCanvas.predictImage(image: image)
-    }
-}
-
-struct PKCanvas: UIViewRepresentable {
-    class Coordinator: NSObject, PKCanvasViewDelegate {
-        var pkCanvas: PKCanvas
-
-        init(_ pkCanvas: PKCanvas) {
-            self.pkCanvas = pkCanvas
-        }
-    }
-
-    @Binding var clear:Bool
-    @Environment(\.colorScheme) var colorScheme
-
-
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
-    }
-
-    func makeUIView(context: Context) -> PKCanvasView {
-        let canvas = PKCanvasView()
-        canvas.backgroundColor = (colorScheme == .light ? .white : .black)
-        canvas.tool = PKInkingTool(.pen, color: (colorScheme == .light ? .black : .white), width: 10)
-        canvas.isScrollEnabled = false
-        canvas.becomeFirstResponder()
-        canvas.delegate = context.coordinator
-        
-        if #available(iOS 14.0, *) {
-            // Both finger and pencil are always allowed on this canvas.
-            canvas.drawingPolicy = .anyInput
-        }
-        else {
-            canvas.allowsFingerDrawing = true
-        }
-        
-        return canvas
-    }
-
-    func updateUIView(_ canvasView: PKCanvasView, context: Context) {
-        // clears canvas
-        if clear != context.coordinator.pkCanvas.clear{
-            canvasView.drawing = PKDrawing()
-            }
-        canvasView.backgroundColor = (colorScheme == .light ? .white : .black)
-        canvasView.tool = PKInkingTool(.pen, color: (colorScheme == .light ? .black : .white), width: 10)
-        
-        // set clear back to false
-        clear = false
+//        let image = canvas.preprocessImage()
+//        canvas.predictImage(image: image)
     }
     
     // overlays image in a new canvas
@@ -129,6 +79,53 @@ struct PKCanvas: UIViewRepresentable {
 //            print(sortedClassProbs[0], sortedClassProbs[1], sortedClassProbs[2])
 //        }
 //    }
+}
+
+struct PKCanvas: UIViewRepresentable {
+    class Coordinator: NSObject, PKCanvasViewDelegate {
+        var pkCanvas: PKCanvas
+
+        init(_ pkCanvas: PKCanvas) {
+            self.pkCanvas = pkCanvas
+        }
+        
+        func canvasViewDidEndUsingTool(_ canvasView: PKCanvasView) {
+            ///YESS you need to call the detection here
+            
+            print("Changed")
+            }
+    }
+
+    @Binding var canvasView: PKCanvasView
+    @Environment(\.colorScheme) var colorScheme
+    private let trainedImageSize = CGSize(width: 300, height: 200)
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+
+    func makeUIView(context: Context) -> PKCanvasView {
+        self.canvasView.backgroundColor = (colorScheme == .light ? .white : .black)
+        self.canvasView.tool = PKInkingTool(.pen, color: (colorScheme == .light ? .black : .white), width: 10)
+        self.canvasView.isScrollEnabled = false
+        self.canvasView.becomeFirstResponder()
+        self.canvasView.delegate = context.coordinator
+        
+        if #available(iOS 14.0, *) {
+            // Both finger and pencil are always allowed on this canvas.
+            self.canvasView.drawingPolicy = .anyInput
+        }
+        else {
+            self.canvasView.allowsFingerDrawing = true
+        }
+        
+        return canvasView
+    }
+
+    func updateUIView(_ canvasView: PKCanvasView, context: Context) {
+        canvasView.backgroundColor = (colorScheme == .light ? .white : .black)
+        canvasView.tool = PKInkingTool(.pen, color: (colorScheme == .light ? .black : .white), width: 10)
+    }
 }
 
 struct CanvasView_Previews: PreviewProvider {
