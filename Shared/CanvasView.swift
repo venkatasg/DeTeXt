@@ -47,58 +47,67 @@ struct CanvasView: View {
             AboutView()
         }
     }
-    
-    func detect() {
-        print("Detecting!")
-//        let image = canvas.preprocessImage()
-//        canvas.predictImage(image: image)
-    }
-    
-    // overlays image in a new canvas
-//    func preprocessImage() -> UIImage {
-//        let image = canvas.drawing.image(from: canvas.drawing.bounds, scale: 5.0)
-//        var resizedImage = image.resize(newSize: trainedImageSize)!
-//        if let newImage = UIImage(color: .black, size: trainedImageSize) {
-//            if let overlayedImage = newImage.image(byDrawingImage: resizedImage, inRect: CGRect(x: trainedImageSize.width/2, y: trainedImageSize.height/2, width: trainedImageSize.width, height: trainedImageSize.height)){
-//                resizedImage = overlayedImage
-//            }
-//        }
-//        let finalImage = resizedImage.resize(newSize: trainedImageSize)!
-//        return finalImage
-//    }
-//
-//    // predict most likely classes
-//    func predictImage(image: UIImage) {
-//        if let pixelBuffer = image.toCVPixelBuffer() {
-//            guard let result = try? mlmodel.prediction(drawing: pixelBuffer) else {
-//                print("error in image...")
-//                return
-//                }
-//            print(result.classLabel)
-//            let sortedClassProbs = result.classLabelProbs.sorted { $0.1 > $1.1 }
-//            print(sortedClassProbs[0], sortedClassProbs[1], sortedClassProbs[2])
-//        }
-//    }
 }
 
 struct PKCanvas: UIViewRepresentable {
     class Coordinator: NSObject, PKCanvasViewDelegate {
         var pkCanvas: PKCanvas
-
+        let mlmodel = deTeX()
+        @Environment(\.colorScheme) var colorScheme
+        private let trainedImageSize = CGSize(width: 300, height: 200)
+        
         init(_ pkCanvas: PKCanvas) {
             self.pkCanvas = pkCanvas
         }
         
-        func canvasViewDidEndUsingTool(_ canvasView: PKCanvasView) {
+        func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
             ///YESS you need to call the detection here
-            
+            var image = canvasView.drawing.image(from: canvasView.drawing.bounds, scale: 5.0)
+            if colorScheme == .light {
+                image = invertColors(image: image)
+            }
+            let processed_image = preprocessImage(image: image)
+            predictImage(image: processed_image)
             print("Changed")
             }
+        
+        // invert the colors when in light mode
+        func invertColors(image: UIImage) -> UIImage {
+            let beginImage = CIImage(image: image)
+            let filter = CIFilter(name: "CIColorInvert")
+            filter?.setValue(beginImage, forKey: kCIInputImageKey)
+            let newImage = UIImage(ciImage: (filter?.outputImage!)!)
+            return newImage
+        }
+        
+        // overlays image in a new canvas
+        func preprocessImage(image: UIImage) -> UIImage {
+            var resizedImage = image.resize(newSize: trainedImageSize)!
+            if let newImage = UIImage(color: .black, size: trainedImageSize) {
+                if let overlayedImage = newImage.image(byDrawingImage: resizedImage, inRect: CGRect(x: trainedImageSize.width/2, y: trainedImageSize.height/2, width: trainedImageSize.width, height: trainedImageSize.height)){
+                    resizedImage = overlayedImage
+                }
+            }
+            let finalImage = resizedImage.resize(newSize: trainedImageSize)!
+            return finalImage
+        }
+        
+        func predictImage(image: UIImage) {
+            if let pixelBuffer = image.toCVPixelBuffer() {
+                guard let result = try? mlmodel.prediction(drawing: pixelBuffer) else {
+                        print("error in image...")
+                        return
+                    }
+                print(result.classLabel)
+                let sortedClassProbs = result.classLabelProbs.sorted { $0.1 > $1.1 }
+                print(sortedClassProbs[0], sortedClassProbs[1], sortedClassProbs[2])
+            }
+        }
     }
 
     @Binding var canvasView: PKCanvasView
     @Environment(\.colorScheme) var colorScheme
-    private let trainedImageSize = CGSize(width: 300, height: 200)
+    
 
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
