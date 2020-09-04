@@ -25,23 +25,34 @@ struct CanvasView: View {
                 PKCanvas(canvasView: $canvas)
                     .aspectRatio(1.5, contentMode: .fit)
                     .cornerRadius(15)
-                    .overlay(RoundedRectangle(cornerRadius: 25)
-                    .stroke(lineWidth: 0)
-                    .fill((colorScheme == .light ? Color.black : Color.white)))
-                    .padding(16)
-//                    .background(RoundedRectangle(cornerRadius: 10)
-//                    .fill(Color.neuBackground))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 15)
+                            .stroke(Color.blue, lineWidth: 2)
+                    )
+//                    .padding(16)
                     .shadow(color: .dropShadow, radius: 15, x: 10, y: 10)
-                    .shadow(color: .dropShadow, radius: 15, x: 10, y: -10)
-                    .shadow(color: .dropShadow, radius: 15, x: -10, y: 10)
-                    .shadow(color: .dropShadow, radius: 15, x: -10, y: -10)
+                    .shadow(color: .dropLight, radius: 15, x: -5, y: -5)
                     .foregroundColor(.primary)
-                Spacer()
-                Text(self.predictionOne).padding(8)
-                Text(self.predictionTwo).padding(8)
-                Text(self.predictionThree).padding(8)
-                Spacer()
+                ScrollView {
+                    VStack {
+                        ForEach(1..<10) {number in
+                                ButtonView()
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 10)
+                                        .fill((colorScheme == .light ? Color.neuBackground : Color.neuBackgroundDark))
+                                                )
+                                    .shadow(color: .dropShadow, radius: 15, x: 10, y: 10)
+                                    .shadow(color: .dropLight, radius: 15, x: -5, y: -5)
+                                    .foregroundColor(.primary)
+                                    .padding(.top, 16)
+                                    .frame(maxWidth: .infinity)
+                            }
+                    }.frame(maxWidth: .infinity)
+                }.frame(maxWidth: .infinity)
             }
+            .padding(.top, 16)
+            .padding(.leading, 8)
+            .padding(.trailing, 8)
                 .background((colorScheme == .light ? Color.neuBackground : Color.neuBackgroundDark))
                 .navigationBarItems(leading: Button(action: { self.canvas.drawing = PKDrawing() }) {
                         Text("Clear")
@@ -56,6 +67,22 @@ struct CanvasView: View {
                 .navigationBarTitle("", displayMode: .inline)
         }.sheet(isPresented: $showAboutView) {
             AboutView()
+        }
+    }
+}
+
+struct ButtonView: View {
+    var body: some View {
+        HStack {
+            Text("Character")
+                .padding(8)
+            VStack {
+                Text("Command").padding(8)
+                Text("Package").padding(8)
+                Text("Text/math").padding(8)
+            }
+            Text("Confidence")
+                .padding(8)
         }
     }
 }
@@ -78,10 +105,19 @@ struct PKCanvas: UIViewRepresentable {
             // if canvasView is empty escape gracefully
             if canvasView.drawing.bounds.isEmpty { }
             else {
-                var image = canvasView.drawing.image(from: canvasView.drawing.bounds, scale: 5.0)
-                if image.averageColor?.cgColor.components![0] == 0 {
-                    image = invertColors(image: image)
+                //create new drawing with default width of 10
+                var newDrawingStrokes = [PKStroke]()
+                for stroke in canvasView.drawing.strokes {
+                    var newPoints = [PKStrokePoint]()
+                    stroke.path.forEach { (point) in
+                        let newPoint = PKStrokePoint(location: point.location, timeOffset: point.timeOffset, size: CGSize(width: 10,height: 10), opacity: CGFloat(1), force: point.force, azimuth: point.azimuth, altitude: point.altitude)
+                        newPoints.append(newPoint)
+                    }
+                    let newPath = PKStrokePath(controlPoints: newPoints, creationDate: Date())
+                    newDrawingStrokes.append(PKStroke(ink: PKInk(.pen, color: UIColor.white), path: newPath))
                 }
+                let newDrawing = PKDrawing(strokes: newDrawingStrokes)
+                var image = newDrawing.image(from: newDrawing.bounds, scale: 5.0)
                 let processed_image = preprocessImage(image: image)
                 predictImage(image: processed_image)
             }

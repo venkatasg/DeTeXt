@@ -41,6 +41,7 @@
 		821EE84724FAB5510058877D /* imageHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = imageHelpers.swift; sourceTree = "<group>"; };
 		821EE84D24FAB5660058877D /* symbols.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = symbols.json; sourceTree = "<group>"; };
 		825C411324FEBDB100B02DF9 /* commandsJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = commandsJSON.swift; sourceTree = "<group>"; };
+		827BE1142501D9E800326426 /* Asana-Math.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Asana-Math.otf"; sourceTree = "<group>"; };
 		82B52B94250135D60086A380 /* neuromorphicExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = neuromorphicExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,6 +84,7 @@
 				825C411324FEBDB100B02DF9 /* commandsJSON.swift */,
 				821EE84124FAB5480058877D /* deTeX.mlmodel */,
 				821EE84D24FAB5660058877D /* symbols.json */,
+				827BE1142501D9E800326426 /* Asana-Math.otf */,
 				821EE82224FAB50E0058877D /* Assets.xcassets */,
 			);
 			path = Shared;

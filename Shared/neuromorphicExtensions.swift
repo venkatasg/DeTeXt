@@ -8,9 +8,9 @@ import SwiftUI
 
 extension Color {
     static let neuBackground = Color(hex: "f0f0f3")
-    static let dropShadow = Color(hex: "aeaec0").opacity(0.4)
-    static let dropLight = Color(hex: "ffffff")
-    static let neuBackgroundDark = Color(hex: "404040")
+    static let dropShadow = Color(hex: "000000").opacity(0.2)
+    static let dropLight = Color(hex: "ffffff").opacity(0.7)
+    static let neuBackgroundDark = Color(hex: "24292e")
 }
 
 extension Color {
