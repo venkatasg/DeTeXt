@@ -10,6 +10,7 @@ import Foundation
 struct Symbol : Decodable {
     var id: String
     var command: String
+    var css_class: String
     var mathmode: Bool?
     var textmode: Bool?
     var package: String?
@@ -22,10 +23,10 @@ func loadJson() -> [Symbol]? {
             let data = try Data(contentsOf: url)
             let decoder = JSONDecoder()
             let jsonData = try decoder.decode([Symbol].self, from: data)
-            print("done")
+//            print("done")
             return jsonData
         } catch {
-            print("error:\(error)")
+//            print("error:\(error)")
         }
     }
     return nil
