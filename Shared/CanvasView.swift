@@ -8,12 +8,44 @@
 import SwiftUI
 import PencilKit
 import CoreML
+import Combine
+
+struct LabelScore {
+    var command: String
+    var cssclass: String
+    var mathmode: Bool
+    var textmode: Bool
+    var package: String
+    var fontenc: String
+    var confidence: Int
+    
+    init(command: String, cssclass:String, mathmode: Bool = false, textmode: Bool = false, package: String = "", fontenc: String = "", confidence: Int) {
+        self.command = command
+        self.cssclass = cssclass
+        self.mathmode = mathmode
+        self.textmode = textmode
+        self.package = package
+        self.fontenc = fontenc
+        self.confidence = confidence
+    }
+}
+
+class LabelScores: ObservableObject {
+    @Published var scores: [LabelScore]
+    @Published var clear: Bool = true
+    
+    init() {
+        self.scores = Array(repeating: LabelScore(command: "", cssclass: "", confidence: 0), count: 5)
+        
+    }
+}
 
 struct CanvasView: View {
     
     @State var showAboutView = false
     @State private var canvas = PKCanvasView()
     @Environment(\.colorScheme) var colorScheme
+    @ObservedObject var labelScores: LabelScores = LabelScores()
 
     var predictionOne = ""
     var predictionTwo = "Draw above"
@@ -22,39 +54,57 @@ struct CanvasView: View {
     var body: some View {
         NavigationView {
             VStack{
-                PKCanvas(canvasView: $canvas)
+                PKCanvas(canvasView: $canvas, labelScores: labelScores)
                     .aspectRatio(1.5, contentMode: .fit)
                     .cornerRadius(15)
                     .overlay(
                         RoundedRectangle(cornerRadius: 15)
                             .stroke(Color.blue, lineWidth: 2)
                     )
-//                    .padding(16)
+                    .padding(16)
                     .shadow(color: .dropShadow, radius: 15, x: 10, y: 10)
                     .shadow(color: .dropLight, radius: 15, x: -5, y: -5)
                     .foregroundColor(.primary)
-                ScrollView {
-                    VStack {
-                        ForEach(1..<10) {number in
-                                ButtonView()
-                                    .background(
-                                        RoundedRectangle(cornerRadius: 10)
-                                        .fill((colorScheme == .light ? Color.neuBackground : Color.neuBackgroundDark))
-                                                )
-                                    .shadow(color: .dropShadow, radius: 15, x: 10, y: 10)
-                                    .shadow(color: .dropLight, radius: 15, x: -5, y: -5)
-                                    .foregroundColor(.primary)
-                                    .padding(.top, 16)
-                                    .frame(maxWidth: .infinity)
-                            }
+                Divider().frame(height: 1).background(Color.gray)
+                ZStack {
+                    if labelScores.clear {
+                        Text("Draw in the canvas above").font(.system(.title, design: .rounded))
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    }
+                    
+                    else {
+                    ScrollView {
+                        VStack {
+                            ForEach(0..<5) {number in
+                                ButtonView(labelScore: labelScores.scores[number])
+                                        .background(RoundedRectangle(cornerRadius: 10)
+                                                        .fill((colorScheme == .light ? Color.neuBackground : Color.neuBackgroundDark)))
+                                        .shadow(color: .dropShadow, radius: 5, x: 10, y: 10)
+                                        .shadow(color: .dropShadow, radius: 5, x: 5, y: 5)
+                                        .shadow(color: .dropShadow, radius: 5, x: -5, y: 5)
+                                        .foregroundColor(.primary)
+                                        .padding(.top, 8)
+                                        .padding(.bottom, 8)
+                                        .padding(.leading, 8)
+                                        .padding(.trailing, 8)
+                                        .frame(maxWidth: .infinity)
+                                }
+                        }.frame(maxWidth: .infinity)
                     }.frame(maxWidth: .infinity)
-                }.frame(maxWidth: .infinity)
+    //                .background(Color.white)
+                    }
+                }
+                .transition(.slide)
+                .animation(Animation.easeInOut(duration: 1).delay(0.5))
             }
-            .padding(.top, 16)
-            .padding(.leading, 8)
-            .padding(.trailing, 8)
+            .padding(.top, 8)
+//            .padding(.leading, 8)
+//            .padding(.trailing, 8)
                 .background((colorScheme == .light ? Color.neuBackground : Color.neuBackgroundDark))
-                .navigationBarItems(leading: Button(action: { self.canvas.drawing = PKDrawing() }) {
+                .navigationBarItems(leading: Button(action: {
+                                    self.canvas.drawing = PKDrawing()
+                                    self.labelScores.clear = true
+                }) {
                         Text("Clear")
                             .padding(8)
                     },
@@ -72,16 +122,23 @@ struct CanvasView: View {
 }
 
 struct ButtonView: View {
+    var labelScore:LabelScore
     var body: some View {
         HStack {
-            Text("Character")
+            Text("\(labelScore.command)")
+                .font(.system(size: 14, design: .monospaced))
                 .padding(8)
-            VStack {
-                Text("Command").padding(8)
-                Text("Package").padding(8)
-                Text("Text/math").padding(8)
-            }
-            Text("Confidence")
+//            VStack {
+//                Text("\(labelScore.command)").padding(8)
+//                Text("\(labelScore.package)").padding(8)
+//                if labelScore.mathmode {
+//                    Text("mathmode").padding(8)
+//                }
+//                else {}
+//                if labelScore.textmode { Text("textmode").padding(8) }
+//            }
+            Text("\(labelScore.confidence) %")
+                .font(.system(size: 20, design: .rounded))
                 .padding(8)
         }
     }
@@ -90,6 +147,8 @@ struct ButtonView: View {
 struct PKCanvas: UIViewRepresentable {
     class Coordinator: NSObject, PKCanvasViewDelegate {
         var pkCanvas: PKCanvas
+        @ObservedObject var labelScores: LabelScores
+//        @ObservedObject var labelScores: LabelScore
 //        let compiledUrl = try! MLModel.compileModel(at: URL(fileURLWithPath: "deTeX.mlmodel"))
 //        let model = try! MLModel(contentsOf: compiledUrl)
 //        @Environment(\.colorScheme) var colorScheme: ColorScheme
@@ -97,20 +156,22 @@ struct PKCanvas: UIViewRepresentable {
         private let trainedImageSize = CGSize(width: 300, height: 200)
         let symbols = loadJson()
         
-        init(_ pkCanvas: PKCanvas) {
+        init(_ pkCanvas: PKCanvas, labelScores: LabelScores) {
             self.pkCanvas = pkCanvas
+            self.labelScores = labelScores
         }
         
         func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
             // if canvasView is empty escape gracefully
             if canvasView.drawing.bounds.isEmpty { }
             else {
+                self.labelScores.clear = false
                 //create new drawing with default width of 10
                 var newDrawingStrokes = [PKStroke]()
                 for stroke in canvasView.drawing.strokes {
                     var newPoints = [PKStrokePoint]()
                     stroke.path.forEach { (point) in
-                        let newPoint = PKStrokePoint(location: point.location, timeOffset: point.timeOffset, size: CGSize(width: 10,height: 10), opacity: CGFloat(1), force: point.force, azimuth: point.azimuth, altitude: point.altitude)
+                        let newPoint = PKStrokePoint(location: point.location, timeOffset: point.timeOffset, size: CGSize(width: 5,height: 5), opacity: CGFloat(1), force: point.force, azimuth: point.azimuth, altitude: point.altitude)
                         newPoints.append(newPoint)
                     }
                     let newPath = PKStrokePath(controlPoints: newPoints, creationDate: Date())
@@ -118,6 +179,9 @@ struct PKCanvas: UIViewRepresentable {
                 }
                 let newDrawing = PKDrawing(strokes: newDrawingStrokes)
                 var image = newDrawing.image(from: newDrawing.bounds, scale: 5.0)
+                if image.averageColor?.cgColor.components![0] == 0 {
+                    image = invertColors(image: image)
+                }
                 let processed_image = preprocessImage(image: image)
                 predictImage(image: processed_image)
             }
@@ -151,23 +215,26 @@ struct PKCanvas: UIViewRepresentable {
                         return
                     }
                 let sortedClassProbs = result.classLabelProbs.sorted { $0.1 > $1.1 }
-                for i in 0 ..< 3 {
-                print(symbols!.first(where: {$0.id==sortedClassProbs[i].key})?.command ?? "None",
-                      sortedClassProbs[i].value,
-                      symbols!.first(where: {$0.id==sortedClassProbs[i].key})?.mathmode ?? "None",
-                      symbols!.first(where: {$0.id==sortedClassProbs[i].key})?.textmode ?? "None",
-                      symbols!.first(where: {$0.id==sortedClassProbs[i].key})?.package ?? "None",
-                      symbols!.first(where: {$0.id==sortedClassProbs[i].key})?.fontenc ?? "None")
+                for i in 0 ..< 5 {
+                    let mysymbol = symbols!.first(where: {$0.id==sortedClassProbs[i].key})
+                    labelScores.scores[i].command = mysymbol?.command ?? "None"
+                    labelScores.scores[i].mathmode = mysymbol?.mathmode ?? false
+                    labelScores.scores[i].textmode = mysymbol?.textmode ?? false
+                    labelScores.scores[i].cssclass = mysymbol?.css_class ?? "None"
+                    labelScores.scores[i].package = mysymbol?.package ?? ""
+                    labelScores.scores[i].fontenc = mysymbol?.fontenc ?? ""
+                    labelScores.scores[i].confidence = Int(sortedClassProbs[i].value*100)
                 }
             }
         }
     }
 
     @Binding var canvasView: PKCanvasView
+    @ObservedObject var labelScores: LabelScores
 //    @Environment(\.colorScheme) var colorScheme
 
     func makeCoordinator() -> Coordinator {
-        Coordinator(self)
+        Coordinator(self, labelScores: labelScores)
     }
 
     func makeUIView(context: Context) -> PKCanvasView {
@@ -197,7 +264,6 @@ struct CanvasView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             CanvasView()
-                .preferredColorScheme(.light)
                 .previewDevice("iPhone 11 Pro Max")
         }
     }
