@@ -24,13 +24,12 @@ struct AboutView: View {
                 Link("coremltools", destination: URL(string: "https://coremltools.readme.io")!)
                 Link("MobileNet_v2", destination: URL(string: "https://pytorch.org/docs/stable/torchvision/models.html#torchvision.models.mobilenet_v2")!)
             }
-            background((colorScheme == .light ? Color.neuBackground : Color.neuBackgroundDark))
+//            .background((colorScheme == .light ? Color.neuBackground : Color.neuBackgroundDark))
             .padding(16)
             .navigationBarTitle("About", displayMode: .inline)
             .navigationBarItems(leading: Button(action: {
                 self.presentationMode.wrappedValue.dismiss()
                 }) {
-//                    Image(systemName: "chevron.down")
                     Text("Back")
                         .padding(8)
             })
@@ -38,9 +37,10 @@ struct AboutView: View {
     }
 }
 
-//
-//struct About_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AboutView(showingAboutView: true)
-//    }
-//}
+
+struct About_Previews: PreviewProvider {
+    static var previews: some View {
+        AboutView()
+            .previewDevice("iPhone 11 Pro Max")
+    }
+}
