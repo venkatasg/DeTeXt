@@ -17,9 +17,13 @@ struct LabelScore {
     var textmode: Bool
     var package: String
     var fontenc: String
-    var confidence: Int
+    var formattedConf: String = ""
+    var confidence: Double {
+        willSet { }
+        didSet { self.formattedConf = String(format: "%.2f", self.confidence) }
+    }
     
-    init(command: String, cssclass:String, mathmode: Bool = false, textmode: Bool = false, package: String = "", fontenc: String = "", confidence: Int) {
+    init(command: String, cssclass:String, mathmode: Bool = false, textmode: Bool = false, package: String = "", fontenc: String = "", confidence: Double) {
         self.command = command
         self.cssclass = cssclass
         self.mathmode = mathmode
@@ -73,33 +77,30 @@ struct CanvasView: View {
                     }
                     
                     else {
-                    ScrollView {
-                        VStack {
-                            ForEach(0..<5) {number in
-                                ButtonView(labelScore: labelScores.scores[number])
-                                        .background(RoundedRectangle(cornerRadius: 10)
-                                                        .fill((colorScheme == .light ? Color.neuBackground : Color.neuBackgroundDark)))
-                                        .shadow(color: .dropShadow, radius: 5, x: 10, y: 10)
-                                        .shadow(color: .dropShadow, radius: 5, x: 5, y: 5)
-                                        .shadow(color: .dropShadow, radius: 5, x: -5, y: 5)
-                                        .foregroundColor(.primary)
-                                        .padding(.top, 8)
-                                        .padding(.bottom, 8)
-                                        .padding(.leading, 8)
-                                        .padding(.trailing, 8)
-                                        .frame(maxWidth: .infinity)
-                                }
+                        ScrollView {
+                            VStack {
+                                ForEach(0..<5) {number in
+                                    ButtonView(labelScore: labelScores.scores[number])
+                                            .background(RoundedRectangle(cornerRadius: 10)
+                                                            .fill((colorScheme == .light ? Color.neuBackground : Color.neuBackgroundDark)))
+                                            .shadow(color: .dropShadow, radius: 5, x: 10, y: 10)
+                                            .shadow(color: .dropShadow, radius: 5, x: 5, y: 5)
+                                            .shadow(color: .dropShadow, radius: 5, x: -5, y: 5)
+                                            .foregroundColor(.primary)
+                                            .padding(.top, 8)
+                                            .padding(.bottom, 8)
+                                            .padding(.leading, 8)
+                                            .padding(.trailing, 8)
+                                            .frame(maxWidth: .infinity)
+                                    }
+                            }.frame(maxWidth: .infinity)
                         }.frame(maxWidth: .infinity)
-                    }.frame(maxWidth: .infinity)
-    //                .background(Color.white)
                     }
                 }
-                .transition(.slide)
-                .animation(Animation.easeInOut(duration: 1).delay(0.5))
+                .transition(.scale)
+                .animation(Animation.easeInOut(duration: 0.2).delay(0.1))
             }
             .padding(.top, 8)
-//            .padding(.leading, 8)
-//            .padding(.trailing, 8)
                 .background((colorScheme == .light ? Color.neuBackground : Color.neuBackgroundDark))
                 .navigationBarItems(leading: Button(action: {
                                     self.canvas.drawing = PKDrawing()
@@ -128,16 +129,7 @@ struct ButtonView: View {
             Text("\(labelScore.command)")
                 .font(.system(size: 14, design: .monospaced))
                 .padding(8)
-//            VStack {
-//                Text("\(labelScore.command)").padding(8)
-//                Text("\(labelScore.package)").padding(8)
-//                if labelScore.mathmode {
-//                    Text("mathmode").padding(8)
-//                }
-//                else {}
-//                if labelScore.textmode { Text("textmode").padding(8) }
-//            }
-            Text("\(labelScore.confidence) %")
+            Text("\(labelScore.formattedConf) %")
                 .font(.system(size: 20, design: .rounded))
                 .padding(8)
         }
@@ -151,7 +143,6 @@ struct PKCanvas: UIViewRepresentable {
 //        @ObservedObject var labelScores: LabelScore
 //        let compiledUrl = try! MLModel.compileModel(at: URL(fileURLWithPath: "deTeX.mlmodel"))
 //        let model = try! MLModel(contentsOf: compiledUrl)
-//        @Environment(\.colorScheme) var colorScheme: ColorScheme
         let model = deTeX()
         private let trainedImageSize = CGSize(width: 300, height: 200)
         let symbols = loadJson()
@@ -166,12 +157,12 @@ struct PKCanvas: UIViewRepresentable {
             if canvasView.drawing.bounds.isEmpty { }
             else {
                 self.labelScores.clear = false
-                //create new drawing with default width of 10
+                //create new drawing with default width of 10 and white strokes
                 var newDrawingStrokes = [PKStroke]()
                 for stroke in canvasView.drawing.strokes {
                     var newPoints = [PKStrokePoint]()
                     stroke.path.forEach { (point) in
-                        let newPoint = PKStrokePoint(location: point.location, timeOffset: point.timeOffset, size: CGSize(width: 5,height: 5), opacity: CGFloat(1), force: point.force, azimuth: point.azimuth, altitude: point.altitude)
+                        let newPoint = PKStrokePoint(location: point.location, timeOffset: point.timeOffset, size: CGSize(width: 5,height: 5), opacity: CGFloat(2), force: point.force, azimuth: point.azimuth, altitude: point.altitude)
                         newPoints.append(newPoint)
                     }
                     let newPath = PKStrokePath(controlPoints: newPoints, creationDate: Date())
@@ -179,41 +170,25 @@ struct PKCanvas: UIViewRepresentable {
                 }
                 let newDrawing = PKDrawing(strokes: newDrawingStrokes)
                 var image = newDrawing.image(from: newDrawing.bounds, scale: 5.0)
+                //flip color from black to white in dark mode
                 if image.averageColor?.cgColor.components![0] == 0 {
                     image = invertColors(image: image)
                 }
-                let processed_image = preprocessImage(image: image)
+                // overlay image on a black background
+                let processed_image = overlayBlackBg(image: image)
                 predictImage(image: processed_image)
             }
         }
         
-        // invert the colors when in light mode
-        func invertColors(image: UIImage) -> UIImage {
-            let beginImage = CIImage(image: image)
-            let filter = CIFilter(name: "CIColorInvert")
-            filter?.setValue(beginImage, forKey: kCIInputImageKey)
-            let newImage = UIImage(ciImage: (filter?.outputImage!)!)
-            return newImage
-        }
-        
-        // overlays image in a new canvas
-        func preprocessImage(image: UIImage) -> UIImage {
-            var resizedImage = image.resize(newSize: trainedImageSize)!
-            if let newImage = UIImage(color: .black, size: trainedImageSize) {
-                if let overlayedImage = newImage.image(byDrawingImage: resizedImage, inRect: CGRect(x: trainedImageSize.width/2, y: trainedImageSize.height/2, width: trainedImageSize.width, height: trainedImageSize.height)){
-                    resizedImage = overlayedImage
-                }
-            }
-            let finalImage = resizedImage.resize(newSize: trainedImageSize)!
-            return finalImage
-        }
-        
+        // find the most likely class labels corresponding to the drawing
         func predictImage(image: UIImage) {
-            if let pixelBuffer = image.toCVPixelBuffer() {
+
+            if let resizedImage = image.resize(newSize: trainedImageSize), let pixelBuffer = resizedImage.toCVPixelBuffer() {
                 guard let result = try? model.prediction(drawing: pixelBuffer) else {
                         print("error in image...")
                         return
                     }
+
                 let sortedClassProbs = result.classLabelProbs.sorted { $0.1 > $1.1 }
                 for i in 0 ..< 5 {
                     let mysymbol = symbols!.first(where: {$0.id==sortedClassProbs[i].key})
@@ -223,7 +198,7 @@ struct PKCanvas: UIViewRepresentable {
                     labelScores.scores[i].cssclass = mysymbol?.css_class ?? "None"
                     labelScores.scores[i].package = mysymbol?.package ?? ""
                     labelScores.scores[i].fontenc = mysymbol?.fontenc ?? ""
-                    labelScores.scores[i].confidence = Int(sortedClassProbs[i].value*100)
+                    labelScores.scores[i].confidence = sortedClassProbs[i].value*100
                 }
             }
         }
@@ -238,8 +213,8 @@ struct PKCanvas: UIViewRepresentable {
     }
 
     func makeUIView(context: Context) -> PKCanvasView {
-//        self.canvasView.backgroundColor = UIColor.systemBackground
         self.canvasView.tool = PKInkingTool(.pen, width: 15)
+        self.canvasView.isOpaque = true
         self.canvasView.isScrollEnabled = false
         self.canvasView.becomeFirstResponder()
         self.canvasView.delegate = context.coordinator

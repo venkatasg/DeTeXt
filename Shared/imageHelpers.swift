@@ -20,7 +20,7 @@ extension UIImage {
 
     public convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
         let rect = CGRect(origin: .zero, size: size)
-        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, 1.0)
         color.setFill()
         UIRectFill(rect)
         let image = UIGraphicsGetImageFromCurrentImageContext()
@@ -33,7 +33,9 @@ extension UIImage {
     
     
     func image(byDrawingImage image: UIImage, inRect rect: CGRect) -> UIImage! {
-        UIGraphicsBeginImageContext(size)
+ 
+        let scaledImageSize:CGSize = CGSize(width: size.width * 0.8, height: size.height * 0.8)
+        UIGraphicsBeginImageContextWithOptions(scaledImageSize, false, 1.0)
 
         draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
         image.draw(in: rect)
@@ -43,11 +45,15 @@ extension UIImage {
     }
     
     func resize(newSize: CGSize) -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
-        self.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return newImage
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = 1
+        
+        let renderer = UIGraphicsImageRenderer(size: newSize, format: format)
+        let image = renderer.image { _ in
+            self.draw(in: CGRect.init(origin: CGPoint.zero, size: newSize))
+        }
+
+        return image.withRenderingMode(self.renderingMode)
     }
     
     
@@ -81,4 +87,38 @@ extension UIImage {
         
         return pixelBuffer
     }
+}
+
+//overlays black background over image
+func overlayBlackBg(image: UIImage) -> UIImage {
+    let newFrameWidth: CGFloat
+    let newFrameHeight: CGFloat
+    if image.size.width > image.size.height {
+        newFrameWidth = image.size.width * 1.2
+        newFrameHeight = (newFrameWidth / 1.5)
+    }
+    else {
+        newFrameHeight = image.size.height * 1.2
+        newFrameWidth = (newFrameHeight * 1.5)
+    }
+    
+    // Draw black background
+    let background = UIImage(color: .black, size: CGSize(width: newFrameWidth, height: newFrameHeight))!
+    // Find where to start drawing
+    let draw_position = CGPoint(x: newFrameWidth/2 - image.size.width/2, y: newFrameHeight/2 - image.size.height/2)
+    
+    let renderer = UIGraphicsImageRenderer(size: background.size)
+    return renderer.image { context in
+        background.draw(in: CGRect(origin: CGPoint.zero, size: background.size))
+        image.draw(in: CGRect(origin: draw_position, size: image.size))
+    }
+}
+
+// invert the colors when in light mode
+func invertColors(image: UIImage) -> UIImage {
+    let beginImage = CIImage(image: image)
+    let filter = CIFilter(name: "CIColorInvert")
+    filter?.setValue(beginImage, forKey: kCIInputImageKey)
+    let newImage = UIImage(ciImage: (filter?.outputImage!)!)
+    return newImage
 }

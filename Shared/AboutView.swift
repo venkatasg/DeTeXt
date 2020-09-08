@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct AboutView: View {
-//    @Binding var showingAboutView:Bool
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.colorScheme) var colorScheme
     
@@ -24,7 +23,6 @@ struct AboutView: View {
                 Link("coremltools", destination: URL(string: "https://coremltools.readme.io")!)
                 Link("MobileNet_v2", destination: URL(string: "https://pytorch.org/docs/stable/torchvision/models.html#torchvision.models.mobilenet_v2")!)
             }
-//            .background((colorScheme == .light ? Color.neuBackground : Color.neuBackgroundDark))
             .padding(16)
             .navigationBarTitle("About", displayMode: .inline)
             .navigationBarItems(leading: Button(action: {
