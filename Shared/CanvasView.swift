@@ -20,7 +20,7 @@ struct LabelScore {
     var formattedConf: String = ""
     var confidence: Double {
         willSet { }
-        didSet { self.formattedConf = String(format: "%.2f", self.confidence) }
+        didSet { self.formattedConf = String(format: "%.1f", self.confidence) }
     }
     
     init(command: String, cssclass:String, mathmode: Bool = false, textmode: Bool = false, package: String = "", fontenc: String = "", confidence: Double) {
@@ -46,6 +46,7 @@ class LabelScores: ObservableObject {
 
 struct CanvasView: View {
     
+    @State private var presentTip = true
     @State var showAboutView = false
     @State private var canvas = PKCanvasView()
     @Environment(\.colorScheme) var colorScheme
@@ -58,22 +59,36 @@ struct CanvasView: View {
     var body: some View {
         NavigationView {
             VStack{
-                PKCanvas(canvasView: $canvas, labelScores: labelScores)
-                    .aspectRatio(1.5, contentMode: .fit)
-                    .cornerRadius(15)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 15)
-                            .stroke(Color.blue, lineWidth: 2)
-                    )
-                    .padding(16)
-                    .shadow(color: .dropShadow, radius: 15, x: 10, y: 10)
-                    .shadow(color: .dropLight, radius: 15, x: -5, y: -5)
-                    .foregroundColor(.primary)
+                ZStack {
+                    PKCanvas(canvasView: $canvas, labelScores: labelScores)
+                        .aspectRatio(1.5, contentMode: .fit)
+                        .cornerRadius(15)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 15)
+                                .stroke(Color.blue, lineWidth: 2)
+                        )
+                        .padding(16)
+                        .shadow(color: .dropShadow, radius: 15, x: 10, y: 10)
+                        .shadow(color: .dropLight, radius: 15, x: -5, y: -5)
+                        .foregroundColor(.primary)
+                    if self.presentTip {
+                    Text("Draw here!").font(.system(.title, design: .rounded))
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .onAppear(perform: {
+                            Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { timer in
+                                withAnimation(.easeInOut(duration: 1)) {
+                                    self.presentTip.toggle()
+                                }
+                            }
+                        }
+                        )
+                    }
+                }
                 Divider().frame(height: 1).background(Color.gray)
                 ZStack {
                     if labelScores.clear {
-                        Text("Draw in the canvas above").font(.system(.title, design: .rounded))
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        Text("")
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
                     }
                     
                     else {
@@ -92,6 +107,7 @@ struct CanvasView: View {
                                             .padding(.leading, 8)
                                             .padding(.trailing, 8)
                                             .frame(maxWidth: .infinity)
+
                                     }
                             }.frame(maxWidth: .infinity)
                         }.frame(maxWidth: .infinity)
@@ -124,14 +140,44 @@ struct CanvasView: View {
 
 struct ButtonView: View {
     var labelScore:LabelScore
+    @Environment(\.colorScheme) var colorScheme
+    
     var body: some View {
         HStack {
-            Text("\(labelScore.command)")
-                .font(.system(size: 14, design: .monospaced))
-                .padding(8)
+            Image("\(labelScore.cssclass)")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width:20)
+                .padding(4)
+                .foregroundColor((colorScheme == .light ? Color.black : Color.white))
+            VStack(alignment: .leading) {
+                Text("\(labelScore.command)")
+                    .font(.system(size: 20, weight: .bold, design: .monospaced))
+                    .padding(4)
+                if labelScore.mathmode {
+                    Text(" mathmode")
+                        .font(.system(size: 14))
+                        .padding(4)
+                }
+                else if labelScore.textmode {
+                    Text(" textmode")
+                        .font(.system(size: 14))
+                        .padding(4)
+                }
+                else {}
+
+                if labelScore.package != "" {
+                    Text("\\usepackage{\(labelScore.package)}")
+                        .font(.system(size: 14, design: .monospaced))
+                        .padding(4)
+                }
+                else {}
+                
+            }
+            Divider()
             Text("\(labelScore.formattedConf) %")
-                .font(.system(size: 20, design: .rounded))
-                .padding(8)
+                .font(.system(size: 14, design: .rounded))
+                .padding(4)
         }
     }
 }

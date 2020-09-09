@@ -34,8 +34,6 @@
 		821EE82724FAB50E0058877D /* DeTeXt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeTeXt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		821EE82A24FAB50E0058877D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		821EE82F24FAB50E0058877D /* DeTeXt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeTeXt.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		821EE83124FAB50E0058877D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		821EE83224FAB50E0058877D /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		821EE84124FAB5480058877D /* deTeX.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = deTeX.mlmodel; sourceTree = "<group>"; };
 		821EE84424FAB54D0058877D /* AboutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		821EE84724FAB5510058877D /* imageHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = imageHelpers.swift; sourceTree = "<group>"; };
@@ -67,7 +65,6 @@
 			children = (
 				821EE81F24FAB50C0058877D /* Shared */,
 				821EE82924FAB50E0058877D /* iOS */,
-				821EE83024FAB50E0058877D /* macOS */,
 				821EE82824FAB50E0058877D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -103,15 +100,6 @@
 				821EE82A24FAB50E0058877D /* Info.plist */,
 			);
 			path = iOS;
-			sourceTree = "<group>";
-		};
-		821EE83024FAB50E0058877D /* macOS */ = {
-			isa = PBXGroup;
-			children = (
-				821EE83124FAB50E0058877D /* Info.plist */,
-				821EE83224FAB50E0058877D /* macOS.entitlements */,
-			);
-			path = macOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
