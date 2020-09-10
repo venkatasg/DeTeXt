@@ -11,8 +11,8 @@ struct Symbol : Decodable {
     var id: String
     var command: String
     var css_class: String
-    var mathmode: Bool?
-    var textmode: Bool?
+    var mathmode: Bool
+    var textmode: Bool
     var package: String?
     var fontenc: String?
 }
