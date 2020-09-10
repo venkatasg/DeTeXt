@@ -39,7 +39,7 @@ class LabelScores: ObservableObject {
     @Published var clear: Bool = true
     
     init() {
-        self.scores = Array(repeating: LabelScore(command: "", cssclass: "", confidence: 0), count: 5)
+        self.scores = Array(repeating: LabelScore(command: "", cssclass: "", confidence: 0), count: 100)
         
     }
 }
@@ -101,8 +101,8 @@ struct CanvasView: View {
                     
                     else {
                         ScrollView {
-                            VStack {
-                                ForEach(0..<5) {number in
+                            LazyVStack {
+                                ForEach(0..<100) {number in
                                     ButtonView(labelScore: labelScores.scores[number])
                                             .background(RoundedRectangle(cornerRadius: 10)
                                                             .fill((colorScheme == .light ? Color.white : Color.butBackgroundDark)))
@@ -244,7 +244,7 @@ struct PKCanvas: UIViewRepresentable {
                     }
 
                 let sortedClassProbs = result.classLabelProbs.sorted { $0.1 > $1.1 }
-                for i in 0 ..< 5 {
+                for i in 0 ..< 100 {
                     let mysymbol = symbols!.first(where: {$0.id==sortedClassProbs[i].key})
                     labelScores.scores[i].command = mysymbol?.command ?? "None"
                     labelScores.scores[i].mathmode = mysymbol?.mathmode ?? false
