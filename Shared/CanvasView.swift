@@ -67,9 +67,17 @@ struct CanvasView: View {
                             RoundedRectangle(cornerRadius: 15)
                                 .stroke(Color.blue, lineWidth: 2)
                         )
+                        .background(
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 15, style: .continuous)
+                                    .shadow(color: .white, radius: 15, x: -10, y: -10)
+                                    .shadow(color: .black, radius: 15, x: 10, y: 10)
+                                    .blendMode(.overlay)
+                                RoundedRectangle(cornerRadius: 15, style: .continuous)
+                                    .fill((colorScheme == .light ? Color.neuBackground : Color.neuBackgroundDark))
+                            }
+                        )
                         .padding(16)
-                        .shadow(color: .dropShadow, radius: 15, x: 10, y: 10)
-                        .shadow(color: .dropLight, radius: 15, x: -5, y: -5)
                         .foregroundColor(.primary)
                     if self.presentTip {
                     Text("Draw here!").font(.system(.title, design: .rounded))
@@ -97,10 +105,9 @@ struct CanvasView: View {
                                 ForEach(0..<5) {number in
                                     ButtonView(labelScore: labelScores.scores[number])
                                             .background(RoundedRectangle(cornerRadius: 10)
-                                                            .fill((colorScheme == .light ? Color.neuBackground : Color.neuBackgroundDark)))
-                                            .shadow(color: .dropShadow, radius: 5, x: 10, y: 10)
-                                            .shadow(color: .dropShadow, radius: 5, x: 5, y: 5)
-                                            .shadow(color: .dropShadow, radius: 5, x: -5, y: 5)
+                                                            .fill((colorScheme == .light ? Color.white : Color.butBackgroundDark)))
+//                                            .shadow(color: Color.black.opacity(0.2), radius: 10, x: 10, y: 10)
+//                                            .shadow(color: Color.white.opacity(0.7), radius: 10, x: -5, y: -5)
                                             .foregroundColor(.primary)
                                             .padding(.top, 8)
                                             .padding(.bottom, 8)
@@ -109,14 +116,15 @@ struct CanvasView: View {
                                             .frame(maxWidth: .infinity)
 
                                     }
-                            }.frame(maxWidth: .infinity)
-                        }.frame(maxWidth: .infinity)
+                            }
+                        }
                     }
                 }
                 .transition(.scale)
                 .animation(Animation.easeInOut(duration: 0.2).delay(0.1))
             }
             .padding(.top, 8)
+            .padding(.bottom, 8)
                 .background((colorScheme == .light ? Color.neuBackground : Color.neuBackgroundDark))
                 .navigationBarItems(leading: Button(action: {
                                     self.canvas.drawing = PKDrawing()
