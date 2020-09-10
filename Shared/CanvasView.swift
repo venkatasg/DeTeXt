@@ -39,7 +39,7 @@ class LabelScores: ObservableObject {
     @Published var clear: Bool = true
     
     init() {
-        self.scores = Array(repeating: LabelScore(command: "", cssclass: "", confidence: 0), count: 100)
+        self.scores = Array(repeating: LabelScore(command: "", cssclass: "", confidence: 0), count: 50)
         
     }
 }
@@ -58,7 +58,7 @@ struct CanvasView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
+            VStack (spacing:0) {
                 ZStack {
                     PKCanvas(canvasView: $canvas, labelScores: labelScores)
                         .aspectRatio(1.5, contentMode: .fit)
@@ -92,7 +92,7 @@ struct CanvasView: View {
                     }
                     else {
                         List {
-                            ForEach(0..<100) { number in
+                            ForEach(0..<50) { number in
                                 CommandDetailView(labelScore: labelScores.scores[number])
 
                             }
@@ -104,14 +104,14 @@ struct CanvasView: View {
                     }
                 }
             }
-                .padding(.bottom, 8)
-                .navigationBarItems(leading: Button(action: {
-                                                self.canvas.drawing = PKDrawing()
-                                                self.labelScores.clear = true})
-                                                { Text("Clear").padding(8)},
-                                    trailing: Button(action: {self.showAboutView.toggle()})
-                                                { Text("About").padding(8) })
-                .navigationBarTitle("", displayMode: .inline)
+//          .padding(.bottom, 8)
+            .navigationBarItems(leading: Button(action: {
+                                            self.canvas.drawing = PKDrawing()
+                                            self.labelScores.clear = true})
+                                            { Text("Clear").padding(8)},
+                                trailing: Button(action: {self.showAboutView.toggle()})
+                                            { Text("About").padding(8) })
+            .navigationBarTitle("", displayMode: .inline)
         }
         .sheet(isPresented: $showAboutView) { AboutView() }
     }
@@ -171,10 +171,7 @@ struct PKCanvas: UIViewRepresentable {
     class Coordinator: NSObject, PKCanvasViewDelegate {
         var pkCanvas: PKCanvas
         @ObservedObject var labelScores: LabelScores
-//        @ObservedObject var labelScores: LabelScore
-//        let compiledUrl = try! MLModel.compileModel(at: URL(fileURLWithPath: "deTeX.mlmodel"))
-//        let model = try! MLModel(contentsOf: compiledUrl)
-        let model = deTeX()
+        let model = deTeXq()
         private let trainedImageSize = CGSize(width: 300, height: 200)
         let symbols = loadJson()
         
@@ -221,15 +218,16 @@ struct PKCanvas: UIViewRepresentable {
                     }
 
                 let sortedClassProbs = result.classLabelProbs.sorted { $0.1 > $1.1 }
-                for i in 0 ..< 100 {
-                    let mysymbol = symbols!.first(where: {$0.id==sortedClassProbs[i].key})
-                    labelScores.scores[i].command = mysymbol?.command ?? "None"
-                    labelScores.scores[i].mathmode = mysymbol?.mathmode ?? false
-                    labelScores.scores[i].textmode = mysymbol?.textmode ?? false
-                    labelScores.scores[i].cssclass = mysymbol?.css_class ?? "None"
-                    labelScores.scores[i].package = mysymbol?.package ?? ""
-                    labelScores.scores[i].fontenc = mysymbol?.fontenc ?? ""
-                    labelScores.scores[i].confidence = sortedClassProbs[i].value*100
+                for i in 0 ..< 50 {
+                    if let mysymbol = symbols!.first(where: {$0.id==sortedClassProbs[i].key}) {
+                        labelScores.scores[i].command = mysymbol.command
+                        labelScores.scores[i].mathmode = mysymbol.mathmode
+                        labelScores.scores[i].textmode = mysymbol.textmode
+                        labelScores.scores[i].cssclass = mysymbol.css_class
+                        labelScores.scores[i].package = mysymbol.package ?? ""
+                        labelScores.scores[i].fontenc = mysymbol.fontenc ?? ""
+                        labelScores.scores[i].confidence = sortedClassProbs[i].value*100
+                    }
                 }
             }
         }
@@ -237,7 +235,6 @@ struct PKCanvas: UIViewRepresentable {
 
     @Binding var canvasView: PKCanvasView
     @ObservedObject var labelScores: LabelScores
-//    @Environment(\.colorScheme) var colorScheme
 
     func makeCoordinator() -> Coordinator {
         Coordinator(self, labelScores: labelScores)
