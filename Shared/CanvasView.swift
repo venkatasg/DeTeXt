@@ -58,7 +58,7 @@ struct CanvasView: View {
     
     var body: some View {
         NavigationView {
-            VStack{
+            VStack {
                 ZStack {
                     PKCanvas(canvasView: $canvas, labelScores: labelScores)
                         .aspectRatio(1.5, contentMode: .fit)
@@ -66,19 +66,9 @@ struct CanvasView: View {
                         .overlay(
                             RoundedRectangle(cornerRadius: 15)
                                 .stroke(Color.blue, lineWidth: 2)
-                        )
-                        .background(
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 15, style: .continuous)
-                                    .shadow(color: .white, radius: 15, x: -10, y: -10)
-                                    .shadow(color: .black, radius: 15, x: 10, y: 10)
-                                    .blendMode(.overlay)
-                                RoundedRectangle(cornerRadius: 15, style: .continuous)
-                                    .fill((colorScheme == .light ? Color.neuBackground : Color.neuBackgroundDark))
-                            }
-                        )
+                            )
                         .padding(16)
-                        .foregroundColor(.primary)
+
                     if self.presentTip {
                     Text("Draw here!").font(.system(.title, design: .rounded))
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -92,62 +82,44 @@ struct CanvasView: View {
                         )
                     }
                 }
-                Divider().frame(height: 1).background(Color.gray)
-                ZStack {
+                .padding(.top, 8)
+                .padding(.bottom, 8)
+                .background(Color("Background"))
+                Group {
                     if labelScores.clear {
-                        Text("")
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        Spacer()
+                            .frame(maxHeight:.infinity)
                     }
-                    
                     else {
-                        ScrollView {
-                            LazyVStack {
-                                ForEach(0..<100) {number in
-                                    ButtonView(labelScore: labelScores.scores[number])
-                                            .background(RoundedRectangle(cornerRadius: 10)
-                                                            .fill((colorScheme == .light ? Color.white : Color.butBackgroundDark)))
-//                                            .shadow(color: Color.black.opacity(0.2), radius: 10, x: 10, y: 10)
-//                                            .shadow(color: Color.white.opacity(0.7), radius: 10, x: -5, y: -5)
-                                            .foregroundColor(.primary)
-                                            .padding(.top, 8)
-                                            .padding(.bottom, 8)
-                                            .padding(.leading, 8)
-                                            .padding(.trailing, 8)
-                                            .frame(maxWidth: .infinity)
+                        List {
+                            ForEach(0..<100) { number in
+                                CommandDetailView(labelScore: labelScores.scores[number])
 
-                                    }
                             }
                         }
+                        .listStyle(InsetListStyle())
+//                        .scaledToFill()
+//                        .clipped()
+//                        .listRowInsets(EdgeInsets())
                     }
                 }
-                .transition(.scale)
-                .animation(Animation.easeInOut(duration: 0.2).delay(0.1))
             }
-            .padding(.top, 8)
-            .padding(.bottom, 8)
-                .background((colorScheme == .light ? Color.neuBackground : Color.neuBackgroundDark))
+                .padding(.bottom, 8)
                 .navigationBarItems(leading: Button(action: {
-                                    self.canvas.drawing = PKDrawing()
-                                    self.labelScores.clear = true
-                }) {
-                        Text("Clear")
-                            .padding(8)
-                    },
-                trailing:
-                    Button(action: {self.showAboutView.toggle()}) {
-                        Text("About")
-                            .padding(8)
-                    }
-                )
+                                                self.canvas.drawing = PKDrawing()
+                                                self.labelScores.clear = true})
+                                                { Text("Clear").padding(8)},
+                                    trailing: Button(action: {self.showAboutView.toggle()})
+                                                { Text("About").padding(8) })
                 .navigationBarTitle("", displayMode: .inline)
-        }.sheet(isPresented: $showAboutView) {
-            AboutView()
         }
+        .sheet(isPresented: $showAboutView) { AboutView() }
     }
 }
 
-struct ButtonView: View {
-    var labelScore:LabelScore
+struct CommandDetailView: View {
+    
+    var labelScore: LabelScore
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
@@ -155,37 +127,42 @@ struct ButtonView: View {
             Image("\(labelScore.cssclass)")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width:20)
-                .padding(4)
+                .frame(width:30)
+                .padding(.top,4)
+                .padding(.bottom,4)
+                .padding(.leading,4)
+                .padding(.trailing, 8)
                 .foregroundColor((colorScheme == .light ? Color.black : Color.white))
             VStack(alignment: .leading) {
                 Text("\(labelScore.command)")
                     .font(.system(size: 20, weight: .bold, design: .monospaced))
-                    .padding(4)
+                    .padding(.bottom, 4)
+                    .padding(.top, 4)
                 if labelScore.mathmode {
                     Text(" mathmode")
                         .font(.system(size: 14))
-                        .padding(4)
+                        .foregroundColor(Color.gray)
                 }
                 else if labelScore.textmode {
                     Text(" textmode")
                         .font(.system(size: 14))
-                        .padding(4)
+                        .foregroundColor(Color.gray)
                 }
                 else {}
 
                 if labelScore.package != "" {
                     Text("\\usepackage{\(labelScore.package)}")
                         .font(.system(size: 14, design: .monospaced))
-                        .padding(4)
+                        .foregroundColor(Color.gray)
+//                        .padding(.bottom, 4)
                 }
                 else {}
                 
             }
-            Divider()
+            Spacer()
             Text("\(labelScore.formattedConf) %")
-                .font(.system(size: 14, design: .rounded))
-                .padding(4)
+                .font(.system(size: 20, design: .rounded))
+//                .padding(4)
         }
     }
 }

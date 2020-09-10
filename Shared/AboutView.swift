@@ -33,15 +33,10 @@ struct AboutView: View {
                     Link("MobileNet_v2", destination: URL(string: "https://pytorch.org/docs/stable/torchvision/models.html#torchvision.models.mobilenet_v2")!)
                     }
                 }
+                .padding(16)
             }
-            .padding(16)
             .navigationBarTitle("About", displayMode: .inline)
-            .navigationBarItems(leading: Button(action: {
-                self.presentationMode.wrappedValue.dismiss()
-                }) {
-                    Text("Back")
-                        .padding(8)
-            })
+            .navigationBarItems(leading: Button(action: { self.presentationMode.wrappedValue.dismiss()})                                         { Text("Back").padding(8) })
         }
     }
 }
