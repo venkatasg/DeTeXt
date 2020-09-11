@@ -171,7 +171,17 @@ struct PKCanvas: UIViewRepresentable {
     class Coordinator: NSObject, PKCanvasViewDelegate {
         var pkCanvas: PKCanvas
         @ObservedObject var labelScores: LabelScores
-        let model = deTeXq()
+        
+        let model: deTeXq = {
+            do {
+                let config = MLModelConfiguration()
+                return try deTeXq(configuration: config)
+            }
+            catch {
+                print(error)
+                fatalError("Couldn't create model")
+            }
+        }()
         private let trainedImageSize = CGSize(width: 300, height: 200)
         let symbols = loadJson()
         
