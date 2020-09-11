@@ -44,6 +44,30 @@ class LabelScores: ObservableObject {
     }
 }
 
+struct MainView: View {
+    
+    @State private var selection:String = "draw"
+    
+    var body: some View {
+        TabView(selection: $selection) {
+            CanvasView()
+                .tabItem {
+                    Image(systemName: "scribble")
+                    Text("Draw")
+                }
+                .tag("draw")
+            SymbolsView()
+                .tabItem {
+                    Image(systemName: "magnifyingglass")
+                    Text("Search")
+                }
+                .tag("search")
+                .padding(0)
+        }
+        .padding(0)
+    }
+}
+
 struct CanvasView: View {
     
     @State private var presentTip = true
@@ -67,24 +91,25 @@ struct CanvasView: View {
                             RoundedRectangle(cornerRadius: 15)
                                 .stroke(Color.blue, lineWidth: 2)
                             )
-                        .padding(16)
+                        .padding(8)
 
-                    if self.presentTip {
-                    Text("Draw here!").font(.system(.title, design: .rounded))
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .onAppear(perform: {
-                            Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { timer in
-                                withAnimation(.easeInOut(duration: 1)) {
-                                    self.presentTip.toggle()
-                                }
-                            }
-                        }
-                        )
-                    }
+//                    if self.presentTip {
+//                    Text("Draw here!").font(.system(.title, design: .rounded))
+//                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+//                        .onAppear(perform: {
+//                            Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { timer in
+//                                withAnimation(.easeInOut(duration: 1)) {
+//                                    self.presentTip.toggle()
+//                                }
+//                            }
+//                        }
+//                        )
+//                    }
                 }
                 .padding(.top, 8)
                 .padding(.bottom, 8)
                 .background(Color("Background"))
+//                .border(Color.red, width: 2)
                 Group {
                     if labelScores.clear {
                         Spacer()
@@ -276,8 +301,10 @@ struct PKCanvas: UIViewRepresentable {
 struct CanvasView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            CanvasView()
-                .previewDevice("iPhone 11 Pro Max")
+            MainView()
+                .previewDevice("iPhone 11")
+                
+                
         }
     }
 }
