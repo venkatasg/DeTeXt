@@ -46,7 +46,7 @@ class LabelScores: ObservableObject {
 
 struct MainView: View {
     
-    @State private var selection:String = "draw"
+    @State private var selection: String = "draw"
     
     var body: some View {
         TabView(selection: $selection) {
@@ -208,7 +208,7 @@ struct PKCanvas: UIViewRepresentable {
             }
         }()
         private let trainedImageSize = CGSize(width: 300, height: 200)
-        let symbols = loadJson()
+        let symbols = Bundle.main.decode("symbols.json")
         
         init(_ pkCanvas: PKCanvas, labelScores: LabelScores) {
             self.pkCanvas = pkCanvas
@@ -254,7 +254,7 @@ struct PKCanvas: UIViewRepresentable {
 
                 let sortedClassProbs = result.classLabelProbs.sorted { $0.1 > $1.1 }
                 for i in 0 ..< 50 {
-                    if let mysymbol = symbols!.first(where: {$0.id==sortedClassProbs[i].key}) {
+                    if let mysymbol = symbols.first(where: {$0.id==sortedClassProbs[i].key}) {
                         labelScores.scores[i].command = mysymbol.command
                         labelScores.scores[i].mathmode = mysymbol.mathmode
                         labelScores.scores[i].textmode = mysymbol.textmode

@@ -19,8 +19,8 @@
 		821EE84924FAB5520058877D /* ImageHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821EE84724FAB5510058877D /* ImageHelpers.swift */; };
 		821EE84E24FAB5660058877D /* symbols.json in Resources */ = {isa = PBXBuildFile; fileRef = 821EE84D24FAB5660058877D /* symbols.json */; };
 		821EE84F24FAB5660058877D /* symbols.json in Resources */ = {isa = PBXBuildFile; fileRef = 821EE84D24FAB5660058877D /* symbols.json */; };
-		825C411424FEBDB100B02DF9 /* commandsJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825C411324FEBDB100B02DF9 /* commandsJSON.swift */; };
-		825C411524FEBDB100B02DF9 /* commandsJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825C411324FEBDB100B02DF9 /* commandsJSON.swift */; };
+		825C411424FEBDB100B02DF9 /* LoadSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825C411324FEBDB100B02DF9 /* LoadSymbols.swift */; };
+		825C411524FEBDB100B02DF9 /* LoadSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825C411324FEBDB100B02DF9 /* LoadSymbols.swift */; };
 		829568E5250BC95200508BB0 /* SymbolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829568E4250BC95200508BB0 /* SymbolsView.swift */; };
 		829568E6250BC95200508BB0 /* SymbolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829568E4250BC95200508BB0 /* SymbolsView.swift */; };
 		82AA17FF250A867700FFBE68 /* deTeXq.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 82AA17FE250A867600FFBE68 /* deTeXq.mlmodel */; };
@@ -36,7 +36,7 @@
 		821EE84424FAB54D0058877D /* AboutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		821EE84724FAB5510058877D /* ImageHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageHelpers.swift; sourceTree = "<group>"; };
 		821EE84D24FAB5660058877D /* symbols.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = symbols.json; sourceTree = "<group>"; };
-		825C411324FEBDB100B02DF9 /* commandsJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = commandsJSON.swift; sourceTree = "<group>"; };
+		825C411324FEBDB100B02DF9 /* LoadSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadSymbols.swift; sourceTree = "<group>"; };
 		829568E4250BC95200508BB0 /* SymbolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolsView.swift; sourceTree = "<group>"; };
 		82AA17FE250A867600FFBE68 /* deTeXq.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = deTeXq.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,7 +76,7 @@
 				829568E4250BC95200508BB0 /* SymbolsView.swift */,
 				821EE84424FAB54D0058877D /* AboutView.swift */,
 				821EE84724FAB5510058877D /* ImageHelpers.swift */,
-				825C411324FEBDB100B02DF9 /* commandsJSON.swift */,
+				825C411324FEBDB100B02DF9 /* LoadSymbols.swift */,
 				82AA17FE250A867600FFBE68 /* deTeXq.mlmodel */,
 				821EE84D24FAB5660058877D /* symbols.json */,
 				821EE82224FAB50E0058877D /* Assets.xcassets */,
@@ -203,7 +203,7 @@
 				82AA17FF250A867700FFBE68 /* deTeXq.mlmodel in Sources */,
 				821EE83524FAB50E0058877D /* CanvasView.swift in Sources */,
 				829568E5250BC95200508BB0 /* SymbolsView.swift in Sources */,
-				825C411424FEBDB100B02DF9 /* commandsJSON.swift in Sources */,
+				825C411424FEBDB100B02DF9 /* LoadSymbols.swift in Sources */,
 				821EE84524FAB54D0058877D /* AboutView.swift in Sources */,
 				821EE83324FAB50E0058877D /* DeTeXtApp.swift in Sources */,
 				821EE84824FAB5520058877D /* ImageHelpers.swift in Sources */,
@@ -215,7 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				821EE83624FAB50E0058877D /* CanvasView.swift in Sources */,
-				825C411524FEBDB100B02DF9 /* commandsJSON.swift in Sources */,
+				825C411524FEBDB100B02DF9 /* LoadSymbols.swift in Sources */,
 				829568E6250BC95200508BB0 /* SymbolsView.swift in Sources */,
 				821EE84624FAB54D0058877D /* AboutView.swift in Sources */,
 				821EE83424FAB50E0058877D /* DeTeXtApp.swift in Sources */,
