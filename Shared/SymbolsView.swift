@@ -171,8 +171,14 @@ struct RowDetailsView: View {
 struct SymbolsView_Previews: PreviewProvider {
     static let symbols = Symbols()
     static var previews: some View {
-        SymbolsView()
-            .environmentObject(symbols)
-            .previewDevice("iPhone 11 Pro Max")
+        Group {
+            SymbolsView()
+                .environmentObject(symbols)
+                .previewDevice("iPhone 11 Pro Max")
+            SymbolsView()
+                .preferredColorScheme(.dark)
+                .environmentObject(symbols)
+                .previewDevice("iPhone 11 Pro Max")
+        }
     }
 }

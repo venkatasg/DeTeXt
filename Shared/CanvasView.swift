@@ -198,6 +198,10 @@ struct CanvasView_Previews: PreviewProvider {
             MainView()
                 .environmentObject(symbols)
                 .previewDevice("iPhone 11")
+            MainView()
+                .preferredColorScheme(.dark)
+                .environmentObject(symbols)
+                .previewDevice("iPhone 11")
                 
                 
         }
