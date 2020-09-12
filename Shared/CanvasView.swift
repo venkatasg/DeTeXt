@@ -152,7 +152,7 @@ struct CommandDetailView: View {
             Image("\(labelScore.cssclass)")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width:30)
+                .frame(height:20)
                 .padding(.top,4)
                 .padding(.bottom,4)
                 .padding(.leading,4)
@@ -160,24 +160,24 @@ struct CommandDetailView: View {
                 .foregroundColor((colorScheme == .light ? Color.black : Color.white))
             VStack(alignment: .leading) {
                 Text("\(labelScore.command)")
-                    .font(.system(size: 20, weight: .bold, design: .monospaced))
+                    .font(.system(size: 16, weight: .bold, design: .monospaced))
                     .padding(.bottom, 4)
                     .padding(.top, 4)
                 if labelScore.mathmode {
                     Text(" mathmode")
-                        .font(.system(size: 14))
+                        .font(.system(size: 12))
                         .foregroundColor(Color.gray)
                 }
                 else if labelScore.textmode {
                     Text(" textmode")
-                        .font(.system(size: 14))
+                        .font(.system(size: 12))
                         .foregroundColor(Color.gray)
                 }
                 else {}
 
                 if labelScore.package != "" {
                     Text("\\usepackage{\(labelScore.package)}")
-                        .font(.system(size: 14, design: .monospaced))
+                        .font(.system(size: 12, design: .monospaced))
                         .foregroundColor(Color.gray)
 //                        .padding(.bottom, 4)
                 }

@@ -22,10 +22,8 @@ struct SymbolsView: View {
                     .padding(.top, 8)
                     .padding(.bottom, 8)
                 Divider()
-                List {
-                    ForEach(symbols, id:\.id) { symbol in
-                        RowView(symbol: symbol)
-                    }
+                List(symbols.filter({searchText.isEmpty ? true : ($0.command.lowercased().contains(searchText.lowercased()))})) { symbol in
+                    RowView(symbol: symbol)
                 }
                 .listStyle(InsetListStyle())
             }
@@ -38,8 +36,8 @@ struct SymbolsView: View {
 }
 
 struct SearchBar: View {
+    
     @Binding var text: String
- 
     @State private var isEditing = false
  
     var body: some View {
@@ -84,7 +82,7 @@ struct SearchBar: View {
                 }
                 .padding(.trailing, 10)
                 .transition(.move(edge: .trailing))
-                .animation(.default)
+                .animation(.easeInOut)
             }
         }
     }
@@ -94,52 +92,52 @@ struct RowView: View {
     
     let symbol: Symbol
     @Environment(\.colorScheme) var colorScheme
+    var confidence: Double?
     
     var body: some View {
-        
         HStack {
-            Image("\(symbol.css_class)")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width:30)
-                .padding(.top,4)
-                .padding(.bottom,4)
-                .padding(.leading,4)
-                .padding(.trailing, 8)
-                .foregroundColor((colorScheme == .light ? Color.black : Color.white))
             VStack(alignment: .leading) {
                 Text("\(symbol.command)")
-                    .font(.system(size: 20, weight: .bold, design: .monospaced))
+                    .font(.system(size: 16, weight: .bold, design: .monospaced))
                     .padding(.bottom, 4)
                     .padding(.top, 4)
                 if symbol.mathmode {
                     Text(" mathmode")
-                        .font(.system(size: 14))
+                        .font(.system(size: 12))
                         .foregroundColor(Color.gray)
                 }
                 else if symbol.textmode {
                     Text(" textmode")
-                        .font(.system(size: 14))
+                        .font(.system(size: 12))
                         .foregroundColor(Color.gray)
                 }
                 else {}
 
                 if let package = symbol.package {
                     Text("\\usepackage{\(package)}")
-                        .font(.system(size: 14, design: .monospaced))
+                        .font(.system(size: 12, design: .monospaced))
                         .foregroundColor(Color.gray)
                 }
                 
                 
                 if let fontenc = symbol.fontenc {
                     Text("fontenc: {\(fontenc)}")
-                        .font(.system(size: 14, design: .monospaced))
+                        .font(.system(size: 12, design: .monospaced))
                         .foregroundColor(Color.gray)
                 }
                 
             }
+            Spacer()
+            Image("\(symbol.css_class)")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width:25, height:25, alignment: .trailing)
+                .padding(.top,4)
+                .padding(.bottom,4)
+                .padding(.leading,4)
+                .padding(.trailing, 8)
+                .foregroundColor((colorScheme == .light ? Color.black : Color.white))
         }
-        
     }
 }
 

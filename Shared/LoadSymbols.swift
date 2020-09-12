@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Symbol : Codable {
+struct Symbol : Codable, Identifiable {
     let id: String
     let command: String
     let css_class: String
