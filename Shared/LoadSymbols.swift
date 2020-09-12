@@ -17,6 +17,15 @@ struct Symbol : Codable, Identifiable {
     let fontenc: String?
 }
 
+class Symbols: ObservableObject {
+    
+    let AllSymbols: [Symbol]
+    
+    init() {
+        self.AllSymbols = Bundle.main.decode("symbols.json")
+    }
+}
+
 extension Bundle {
     func decode(_ file: String) -> [Symbol] {
         guard let url = self.url(forResource: file, withExtension: nil) else {

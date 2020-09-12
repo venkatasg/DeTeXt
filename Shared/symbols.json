@@ -786,7 +786,7 @@
 {"command":"]","mathmode":true,"textmode":false,"id":"latex2e-OT1-]","css_class":"symbolfde883559ee5a6dc6e89b5c8caa836b6"},
 {"command":"|","mathmode":true,"textmode":false,"id":"latex2e-OT1-|","css_class":"symbol6c8c8dad76988f3eae37432cdd3d0b65"},
 {"command":"\\|","mathmode":true,"textmode":false,"id":"latex2e-OT1-_|","css_class":"symbolc8d0e296c06e1d652885113990919e97"},
-{"command":"/","mathmode":true,"textmode":false,"id":"latex2e-OT1-/","css_class":"symbol776e315927f705d9bd4398cf34e528d3"},
+{"command":"/","mathmode":true,"textmode":false,"id":"latex2e-OT1-","css_class":"symbol776e315927f705d9bd4398cf34e528d3"},
 {"command":"\\llbracket","package":"stmaryrd","mathmode":true,"textmode":false,"id":"stmaryrd-OT1-_llbracket","css_class":"symbol26b808fa1a3fce373be4a910a0035b70"},
 {"command":"\\rrbracket","package":"stmaryrd","mathmode":true,"textmode":false,"id":"stmaryrd-OT1-_rrbracket","css_class":"symbol080a6e6fdbae2067084a6083a4dc98fb"},
 {"command":"\\textlangle","package":"textcomp","mathmode":false,"textmode":true,"id":"textcomp-OT1-_textlangle","css_class":"symbolde9d98d4f68441364acaa4099f2f4b0f"},

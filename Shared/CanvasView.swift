@@ -10,53 +10,27 @@ import PencilKit
 import CoreML
 import Combine
 
-struct LabelScore {
-    var command: String
-    var cssclass: String
-    var mathmode: Bool
-    var textmode: Bool
-    var package: String
-    var fontenc: String
-    var formattedConf: String = ""
-    var confidence: Double {
-        willSet { }
-        didSet { self.formattedConf = String(format: "%.1f", self.confidence) }
-    }
-    
-    init(command: String, cssclass:String, mathmode: Bool = false, textmode: Bool = false, package: String = "", fontenc: String = "", confidence: Double) {
-        self.command = command
-        self.cssclass = cssclass
-        self.mathmode = mathmode
-        self.textmode = textmode
-        self.package = package
-        self.fontenc = fontenc
-        self.confidence = confidence
-    }
-}
-
 class LabelScores: ObservableObject {
-    @Published var scores: [LabelScore]
+    @Published var scores = [Dictionary<String, Double>.Element]()
     @Published var clear: Bool = true
-    
-    init() {
-        self.scores = Array(repeating: LabelScore(command: "", cssclass: "", confidence: 0), count: 50)
-        
-    }
 }
 
 struct MainView: View {
     
     @State private var selection: String = "draw"
+    @EnvironmentObject var symbols: Symbols
     
     var body: some View {
         TabView(selection: $selection) {
             CanvasView()
+                .environmentObject(symbols)
                 .tabItem {
                     Image(systemName: "scribble")
                     Text("Draw")
                 }
                 .tag("draw")
             SymbolsView()
+                .environmentObject(symbols)
                 .tabItem {
                     Image(systemName: "magnifyingglass")
                     Text("Search")
@@ -74,17 +48,15 @@ struct CanvasView: View {
     @State var showAboutView = false
     @State private var canvas = PKCanvasView()
     @Environment(\.colorScheme) var colorScheme
+    @EnvironmentObject var symbols: Symbols
     @ObservedObject var labelScores: LabelScores = LabelScores()
-
-    var predictionOne = ""
-    var predictionTwo = "Draw above"
-    var predictionThree = ""
     
     var body: some View {
         NavigationView {
             VStack (spacing:0) {
                 ZStack {
                     PKCanvas(canvasView: $canvas, labelScores: labelScores)
+                        .environmentObject(symbols)
                         .aspectRatio(1.5, contentMode: .fit)
                         .cornerRadius(15)
                         .overlay(
@@ -109,86 +81,30 @@ struct CanvasView: View {
                 .padding(.top, 8)
                 .padding(.bottom, 8)
                 .background(Color("Background"))
-//                .border(Color.red, width: 2)
-                Group {
-                    if labelScores.clear {
-                        Spacer()
-                            .frame(maxHeight:.infinity)
-                    }
-                    else {
-                        List {
-                            ForEach(0..<50) { number in
-                                CommandDetailView(labelScore: labelScores.scores[number])
-
-                            }
+                if labelScores.clear {
+                    Spacer()
+                        .frame(maxHeight:.infinity)
+                }
+                else {
+                    List {
+                        ForEach(labelScores.scores, id: \.key) { key, value in
+                            RowView(symbol: symbols.AllSymbols.first(where: {$0.id==key})!, confidence: (value*100) )
                         }
-                        .listStyle(InsetListStyle())
-//                        .scaledToFill()
-//                        .clipped()
-//                        .listRowInsets(EdgeInsets())
                     }
+                    .listStyle(InsetListStyle())
                 }
             }
-//          .padding(.bottom, 8)
             .navigationBarItems(leading: Button(action: {
                                             self.canvas.drawing = PKDrawing()
-                                            self.labelScores.clear = true})
+                                            labelScores.clear = true
+                                            labelScores.scores = [Dictionary<String, Double>.Element]()
+                                            })
                                             { Text("Clear").padding(8)},
                                 trailing: Button(action: {self.showAboutView.toggle()})
                                             { Text("About").padding(8) })
             .navigationBarTitle("", displayMode: .inline)
         }
         .sheet(isPresented: $showAboutView) { AboutView() }
-    }
-}
-
-struct CommandDetailView: View {
-    
-    var labelScore: LabelScore
-    @Environment(\.colorScheme) var colorScheme
-    
-    var body: some View {
-        HStack {
-            Image("\(labelScore.cssclass)")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(height:20)
-                .padding(.top,4)
-                .padding(.bottom,4)
-                .padding(.leading,4)
-                .padding(.trailing, 8)
-                .foregroundColor((colorScheme == .light ? Color.black : Color.white))
-            VStack(alignment: .leading) {
-                Text("\(labelScore.command)")
-                    .font(.system(size: 16, weight: .bold, design: .monospaced))
-                    .padding(.bottom, 4)
-                    .padding(.top, 4)
-                if labelScore.mathmode {
-                    Text(" mathmode")
-                        .font(.system(size: 12))
-                        .foregroundColor(Color.gray)
-                }
-                else if labelScore.textmode {
-                    Text(" textmode")
-                        .font(.system(size: 12))
-                        .foregroundColor(Color.gray)
-                }
-                else {}
-
-                if labelScore.package != "" {
-                    Text("\\usepackage{\(labelScore.package)}")
-                        .font(.system(size: 12, design: .monospaced))
-                        .foregroundColor(Color.gray)
-//                        .padding(.bottom, 4)
-                }
-                else {}
-                
-            }
-            Spacer()
-            Text("\(labelScore.formattedConf) %")
-                .font(.system(size: 20, design: .rounded))
-//                .padding(4)
-        }
     }
 }
 
@@ -208,18 +124,17 @@ struct PKCanvas: UIViewRepresentable {
             }
         }()
         private let trainedImageSize = CGSize(width: 300, height: 200)
-        let symbols = Bundle.main.decode("symbols.json")
         
         init(_ pkCanvas: PKCanvas, labelScores: LabelScores) {
             self.pkCanvas = pkCanvas
-            self.labelScores = labelScores
+            self.labelScores  = labelScores
         }
         
         func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
             // if canvasView is empty escape gracefully
             if canvasView.drawing.bounds.isEmpty { }
             else {
-                self.labelScores.clear = false
+                labelScores.clear = false
                 //create new drawing with default width of 10 and white strokes
                 var newDrawingStrokes = [PKStroke]()
                 for stroke in canvasView.drawing.strokes {
@@ -252,18 +167,7 @@ struct PKCanvas: UIViewRepresentable {
                         return
                     }
 
-                let sortedClassProbs = result.classLabelProbs.sorted { $0.1 > $1.1 }
-                for i in 0 ..< 50 {
-                    if let mysymbol = symbols.first(where: {$0.id==sortedClassProbs[i].key}) {
-                        labelScores.scores[i].command = mysymbol.command
-                        labelScores.scores[i].mathmode = mysymbol.mathmode
-                        labelScores.scores[i].textmode = mysymbol.textmode
-                        labelScores.scores[i].cssclass = mysymbol.css_class
-                        labelScores.scores[i].package = mysymbol.package ?? ""
-                        labelScores.scores[i].fontenc = mysymbol.fontenc ?? ""
-                        labelScores.scores[i].confidence = sortedClassProbs[i].value*100
-                    }
-                }
+                labelScores.scores = Array(result.classLabelProbs.sorted { $0.1 > $1.1 } [..<20])
             }
         }
     }
@@ -293,7 +197,6 @@ struct PKCanvas: UIViewRepresentable {
     }
 
     func updateUIView(_ canvasView: PKCanvasView, context: Context) {
-//        self.canvasView.backgroundColor = UIColor.systemBackground
         self.canvasView.tool = PKInkingTool(.pen, width: 15)
     }
 }

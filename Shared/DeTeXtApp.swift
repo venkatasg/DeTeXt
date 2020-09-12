@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct DeTeXtApp: App {
+    
+    @StateObject var symbols = Symbols()
+    
     var body: some Scene {
         WindowGroup {
             MainView()
+                .environmentObject(symbols)
         }
     }
 }

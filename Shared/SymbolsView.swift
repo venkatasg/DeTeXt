@@ -12,9 +12,8 @@ struct SymbolsView: View {
     @State var showAboutView = false
     @State var searchText = ""
     @Environment(\.colorScheme) var colorScheme
-    let symbols = Bundle.main.decode("symbols.json")
-//    @ObservedObject var symbols: [Symbol]
-    
+    @EnvironmentObject var symbols: Symbols
+        
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
@@ -22,7 +21,7 @@ struct SymbolsView: View {
                     .padding(.top, 8)
                     .padding(.bottom, 8)
                 Divider()
-                List(symbols.filter({searchText.isEmpty ? true : ($0.command.lowercased().contains(searchText.lowercased()))})) { symbol in
+                List(symbols.AllSymbols.filter({searchText.isEmpty ? true : ($0.command.lowercased().contains(searchText.lowercased()))})) { symbol in
                     RowView(symbol: symbol)
                 }
                 .listStyle(InsetListStyle())
