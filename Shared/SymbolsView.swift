@@ -42,7 +42,6 @@ struct SearchBar: View {
  
     var body: some View {
         HStack {
- 
             TextField("Search ...", text: $text)
                 .padding(7)
                 .padding(.horizontal, 25)
@@ -95,52 +94,79 @@ struct RowView: View {
     var confidence: Double?
     
     var body: some View {
-        HStack {
-            VStack(alignment: .leading) {
-                Text("\(symbol.command)")
-                    .font(.system(size: 16, weight: .bold, design: .monospaced))
-                    .padding(.bottom, 4)
-                    .padding(.top, 4)
-                if symbol.mathmode {
-                    Text(" mathmode")
-                        .font(.system(size: 12))
-                        .foregroundColor(Color.gray)
-                }
-                else if symbol.textmode {
-                    Text(" textmode")
-                        .font(.system(size: 12))
-                        .foregroundColor(Color.gray)
-                }
-                else {}
-
-                if let package = symbol.package {
-                    Text("\\usepackage{\(package)}")
-                        .font(.system(size: 12, design: .monospaced))
-                        .foregroundColor(Color.gray)
-                }
-                
-                
-                if let fontenc = symbol.fontenc {
-                    Text("fontenc: {\(fontenc)}")
-                        .font(.system(size: 12, design: .monospaced))
-                        .foregroundColor(Color.gray)
-                }
-                
+        if let conf = confidence {
+            HStack {
+                Image("\(symbol.css_class)")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width:25, height:25, alignment: .leading)
+                    .padding(.top,4)
+                    .padding(.bottom,4)
+                    .padding(.leading,4)
+                    .padding(.trailing, 8)
+                    .foregroundColor((colorScheme == .light ? Color.black : Color.white))
+                RowDetailsView(symbol: symbol)
+                Spacer()
+                Text(String(format: "%.1f", conf))
+                    .font(.system(size: 16, design: .rounded))
             }
-            Spacer()
-            Image("\(symbol.css_class)")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width:25, height:25, alignment: .trailing)
-                .padding(.top,4)
-                .padding(.bottom,4)
-                .padding(.leading,4)
-                .padding(.trailing, 8)
-                .foregroundColor((colorScheme == .light ? Color.black : Color.white))
+        }
+        
+        else {
+            HStack {
+                RowDetailsView(symbol: symbol)
+                Spacer()
+                Image("\(symbol.css_class)")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width:25, height:25, alignment: .trailing)
+                    .padding(.top,4)
+                    .padding(.bottom,4)
+                    .padding(.leading,4)
+                    .padding(.trailing, 8)
+                    .foregroundColor((colorScheme == .light ? Color.black : Color.white))
+            }
         }
     }
 }
 
+struct RowDetailsView: View {
+    let symbol: Symbol
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text("\(symbol.command)")
+                .font(.system(size: 16, weight: .bold, design: .monospaced))
+                .padding(.bottom, 4)
+                .padding(.top, 4)
+            if symbol.mathmode {
+                Text(" mathmode")
+                    .font(.system(size: 12))
+                    .foregroundColor(Color.gray)
+            }
+            else if symbol.textmode {
+                Text(" textmode")
+                    .font(.system(size: 12))
+                    .foregroundColor(Color.gray)
+            }
+            else {}
+
+            if let package = symbol.package {
+                Text("\\usepackage{\(package)}")
+                    .font(.system(size: 12, design: .monospaced))
+                    .foregroundColor(Color.gray)
+            }
+            
+            
+            if let fontenc = symbol.fontenc {
+                Text("fontenc: {\(fontenc)}")
+                    .font(.system(size: 12, design: .monospaced))
+                    .foregroundColor(Color.gray)
+            }
+            
+        }
+    }
+}
 
 struct SymbolsView_Previews: PreviewProvider {
     static var previews: some View {
