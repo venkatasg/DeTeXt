@@ -41,7 +41,7 @@ struct SearchBar: View {
  
     var body: some View {
         HStack {
-            TextField("Search ...", text: $text)
+            TextField("Search", text: $text)
                 .padding(7)
                 .padding(.horizontal, 25)
                 .background(Color(.systemGray6))
@@ -68,6 +68,7 @@ struct SearchBar: View {
                 .onTapGesture {
                     self.isEditing = true
                 }
+                .disableAutocorrection(true)
  
             if isEditing {
                 Button(action: {
@@ -77,10 +78,10 @@ struct SearchBar: View {
  
                 }) {
                     Text("Cancel")
-                }
-                .padding(.trailing, 10)
-                .transition(.move(edge: .trailing))
-                .animation(.easeInOut)
+                    }
+                    .padding(.trailing, 10)
+                    .transition(.move(edge: .trailing))
+                    .animation(.easeInOut)
             }
         }
     }
@@ -118,7 +119,7 @@ struct RowView: View {
                 Image("\(symbol.css_class)")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width:30, height:30, alignment: .trailing)
+                    .frame(width:25, height:25, alignment: .trailing)
                     .padding(.top,4)
                     .padding(.bottom,4)
                     .padding(.leading,4)
