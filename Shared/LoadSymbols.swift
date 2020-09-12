@@ -19,11 +19,8 @@ struct Symbol : Codable, Identifiable {
 
 class Symbols: ObservableObject {
     
-    let AllSymbols: [Symbol]
+    let AllSymbols: [Symbol] = Bundle.main.decode("symbols.json")
     
-    init() {
-        self.AllSymbols = Bundle.main.decode("symbols.json")
-    }
 }
 
 extension Bundle {
