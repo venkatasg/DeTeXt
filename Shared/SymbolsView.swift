@@ -106,8 +106,8 @@ struct RowView: View {
                     .foregroundColor((colorScheme == .light ? Color.black : Color.white))
                 RowDetailsView(symbol: symbol)
                 Spacer()
-                Text(String(format: "%.1f", conf))
-                    .font(.system(size: 16, design: .rounded))
+                Text(String(format: "%.1f", conf) + "%")
+                    .font(.system(.callout, design: .rounded))
             }
         }
         
@@ -118,7 +118,7 @@ struct RowView: View {
                 Image("\(symbol.css_class)")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width:25, height:25, alignment: .trailing)
+                    .frame(width:30, height:30, alignment: .trailing)
                     .padding(.top,4)
                     .padding(.bottom,4)
                     .padding(.leading,4)
@@ -135,31 +135,31 @@ struct RowDetailsView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text("\(symbol.command)")
-                .font(.system(size: 16, weight: .bold, design: .monospaced))
+                .font(.system(.headline, design: .monospaced))
                 .padding(.bottom, 4)
                 .padding(.top, 4)
             if symbol.mathmode {
                 Text(" mathmode")
-                    .font(.system(size: 12))
+                    .font(.footnote)
                     .foregroundColor(Color.gray)
             }
             else if symbol.textmode {
                 Text(" textmode")
-                    .font(.system(size: 12))
+                    .font(.footnote)
                     .foregroundColor(Color.gray)
             }
             else {}
 
             if let package = symbol.package {
                 Text("\\usepackage{\(package)}")
-                    .font(.system(size: 12, design: .monospaced))
+                    .font(.system(.footnote, design: .monospaced))
                     .foregroundColor(Color.gray)
             }
             
             
             if let fontenc = symbol.fontenc {
-                Text("fontenc: {\(fontenc)}")
-                    .font(.system(size: 12, design: .monospaced))
+                Text("fontenc:\(fontenc)")
+                    .font(.system(.footnote, design: .monospaced))
                     .foregroundColor(Color.gray)
             }
             

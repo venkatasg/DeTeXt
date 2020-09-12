@@ -36,15 +36,12 @@ struct MainView: View {
                     Text("Search")
                 }
                 .tag("search")
-                .padding(0)
         }
-        .padding(0)
     }
 }
 
 struct CanvasView: View {
     
-    @State private var presentTip = true
     @State var showAboutView = false
     @State private var canvas = PKCanvasView()
     @Environment(\.colorScheme) var colorScheme
@@ -64,25 +61,14 @@ struct CanvasView: View {
                                 .stroke(Color.blue, lineWidth: 2)
                             )
                         .padding(8)
-
-//                    if self.presentTip {
-//                    Text("Draw here!").font(.system(.title, design: .rounded))
-//                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-//                        .onAppear(perform: {
-//                            Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { timer in
-//                                withAnimation(.easeInOut(duration: 1)) {
-//                                    self.presentTip.toggle()
-//                                }
-//                            }
-//                        }
-//                        )
-//                    }
                 }
                 .padding(.top, 8)
                 .padding(.bottom, 8)
                 .background(Color("Background"))
+                ZStack {
                 if labelScores.clear {
-                    Spacer()
+                    Text("Draw in the canvas above")
+                        .font(.system(.title, design: .rounded))
                         .frame(maxHeight:.infinity)
                 }
                 else {
@@ -92,7 +78,11 @@ struct CanvasView: View {
                         }
                     }
                     .listStyle(InsetListStyle())
+                    .frame(maxHeight:.infinity)
                 }
+                }
+                .transition(.opacity)
+                .animation(.easeInOut(duration: 0.7))
             }
             .navigationBarItems(leading: Button(action: {
                                             self.canvas.drawing = PKDrawing()
