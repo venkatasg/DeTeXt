@@ -202,9 +202,11 @@ struct PKCanvas: UIViewRepresentable {
 }
 
 struct CanvasView_Previews: PreviewProvider {
+    static let symbols = Symbols()
     static var previews: some View {
         Group {
             MainView()
+                .environmentObject(symbols)
                 .previewDevice("iPhone 11")
                 
                 
