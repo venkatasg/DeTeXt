@@ -1,0 +1,1 @@
+You can contact me on Twitter [@_venkatasg](https://twitter.com/_venkatasg) to report bugs, or if you have feature requests for the app.

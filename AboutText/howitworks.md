@@ -1,0 +1,1 @@
+DeTeXt uses a [MobileNet_v2](https://pytorch.org/docs/stable/torchvision/models.html#torchvision.models.mobilenet_v2) PyTorch model trained on the [DeTeXify](http://detexify.kirelabs.org) training data, which was then translated to CoreML using [coremltools](https://coremltools.readme.io).
