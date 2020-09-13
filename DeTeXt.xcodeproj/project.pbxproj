@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		82014614250DC8A30029E76D /* AttributedStringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82014613250DC8A30029E76D /* AttributedStringView.swift */; };
 		821EE83324FAB50E0058877D /* DeTeXtApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821EE82024FAB50C0058877D /* DeTeXtApp.swift */; };
 		821EE83524FAB50E0058877D /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821EE82124FAB50C0058877D /* CanvasView.swift */; };
 		821EE83724FAB50E0058877D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 821EE82224FAB50E0058877D /* Assets.xcassets */; };
@@ -16,19 +17,7 @@
 		825C411424FEBDB100B02DF9 /* LoadSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825C411324FEBDB100B02DF9 /* LoadSymbols.swift */; };
 		829568E5250BC95200508BB0 /* SymbolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829568E4250BC95200508BB0 /* SymbolsView.swift */; };
 		82AA17FF250A867700FFBE68 /* deTeXq.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 82AA17FE250A867600FFBE68 /* deTeXq.mlmodel */; };
-		82F1DF09250D25CD007749F0 /* IndexRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F1DF08250D25CD007749F0 /* IndexRequestHandler.swift */; };
-		82F1DF0E250D25CD007749F0 /* DeTeXtSymbols.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 82F1DF06250D25CD007749F0 /* DeTeXtSymbols.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		82F1DF0B250D25CD007749F0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 821EE81B24FAB50C0058877D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 82F1DF05250D25CD007749F0;
-			remoteInfo = DeTeXtSymbols;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		82F1DF0D250D25CD007749F0 /* Embed App Extensions */ = {
@@ -37,7 +26,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				82F1DF0E250D25CD007749F0 /* DeTeXtSymbols.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -45,6 +33,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		82014613250DC8A30029E76D /* AttributedStringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedStringView.swift; sourceTree = "<group>"; };
 		821EE82024FAB50C0058877D /* DeTeXtApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeTeXtApp.swift; sourceTree = "<group>"; };
 		821EE82124FAB50C0058877D /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
 		821EE82224FAB50E0058877D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -56,9 +45,6 @@
 		825C411324FEBDB100B02DF9 /* LoadSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadSymbols.swift; sourceTree = "<group>"; };
 		829568E4250BC95200508BB0 /* SymbolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolsView.swift; sourceTree = "<group>"; };
 		82AA17FE250A867600FFBE68 /* deTeXq.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = deTeXq.mlmodel; sourceTree = "<group>"; };
-		82F1DF06250D25CD007749F0 /* DeTeXtSymbols.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DeTeXtSymbols.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		82F1DF08250D25CD007749F0 /* IndexRequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexRequestHandler.swift; sourceTree = "<group>"; };
-		82F1DF0A250D25CD007749F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,22 +55,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		82F1DF03250D25CD007749F0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		82014615250DCA450029E76D /* AboutText */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AboutText;
+			sourceTree = "<group>";
+		};
 		821EE81A24FAB50C0058877D = {
 			isa = PBXGroup;
 			children = (
 				821EE81F24FAB50C0058877D /* Shared */,
+				82014615250DCA450029E76D /* AboutText */,
 				821EE82924FAB50E0058877D /* iOS */,
-				82F1DF07250D25CD007749F0 /* DeTeXtSymbols */,
 				821EE82824FAB50E0058877D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -96,6 +82,7 @@
 				821EE82124FAB50C0058877D /* CanvasView.swift */,
 				829568E4250BC95200508BB0 /* SymbolsView.swift */,
 				821EE84424FAB54D0058877D /* AboutView.swift */,
+				82014613250DC8A30029E76D /* AttributedStringView.swift */,
 				821EE84724FAB5510058877D /* ImageHelpers.swift */,
 				825C411324FEBDB100B02DF9 /* LoadSymbols.swift */,
 				82AA17FE250A867600FFBE68 /* deTeXq.mlmodel */,
@@ -109,7 +96,6 @@
 			isa = PBXGroup;
 			children = (
 				821EE82724FAB50E0058877D /* DeTeXt.app */,
-				82F1DF06250D25CD007749F0 /* DeTeXtSymbols.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -120,15 +106,6 @@
 				821EE82A24FAB50E0058877D /* Info.plist */,
 			);
 			path = iOS;
-			sourceTree = "<group>";
-		};
-		82F1DF07250D25CD007749F0 /* DeTeXtSymbols */ = {
-			isa = PBXGroup;
-			children = (
-				82F1DF08250D25CD007749F0 /* IndexRequestHandler.swift */,
-				82F1DF0A250D25CD007749F0 /* Info.plist */,
-			);
-			path = DeTeXtSymbols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,29 +123,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				82F1DF0C250D25CD007749F0 /* PBXTargetDependency */,
 			);
 			name = iOS;
 			productName = iOS;
 			productReference = 821EE82724FAB50E0058877D /* DeTeXt.app */;
 			productType = "com.apple.product-type.application";
-		};
-		82F1DF05250D25CD007749F0 /* DeTeXtSymbols */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 82F1DF0F250D25CD007749F0 /* Build configuration list for PBXNativeTarget "DeTeXtSymbols" */;
-			buildPhases = (
-				82F1DF02250D25CD007749F0 /* Sources */,
-				82F1DF03250D25CD007749F0 /* Frameworks */,
-				82F1DF04250D25CD007749F0 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = DeTeXtSymbols;
-			productName = DeTeXtSymbols;
-			productReference = 82F1DF06250D25CD007749F0 /* DeTeXtSymbols.appex */;
-			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -180,9 +139,6 @@
 				LastUpgradeCheck = 1200;
 				TargetAttributes = {
 					821EE82624FAB50E0058877D = {
-						CreatedOnToolsVersion = 12.0;
-					};
-					82F1DF05250D25CD007749F0 = {
 						CreatedOnToolsVersion = 12.0;
 					};
 				};
@@ -201,7 +157,6 @@
 			projectRoot = "";
 			targets = (
 				821EE82624FAB50E0058877D /* iOS */,
-				82F1DF05250D25CD007749F0 /* DeTeXtSymbols */,
 			);
 		};
 /* End PBXProject section */
@@ -213,13 +168,6 @@
 			files = (
 				821EE83724FAB50E0058877D /* Assets.xcassets in Resources */,
 				821EE84E24FAB5660058877D /* symbols.json in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		82F1DF04250D25CD007749F0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,26 +185,11 @@
 				821EE84524FAB54D0058877D /* AboutView.swift in Sources */,
 				821EE83324FAB50E0058877D /* DeTeXtApp.swift in Sources */,
 				821EE84824FAB5520058877D /* ImageHelpers.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		82F1DF02250D25CD007749F0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				82F1DF09250D25CD007749F0 /* IndexRequestHandler.swift in Sources */,
+				82014614250DC8A30029E76D /* AttributedStringView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		82F1DF0C250D25CD007749F0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 82F1DF05250D25CD007749F0 /* DeTeXtSymbols */;
-			targetProxy = 82F1DF0B250D25CD007749F0 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		821EE83924FAB50E0058877D /* Debug */ = {
@@ -375,7 +308,6 @@
 		821EE83C24FAB50E0058877D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -398,7 +330,6 @@
 		821EE83D24FAB50E0058877D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -415,47 +346,6 @@
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		82F1DF10250D25CD007749F0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z97T34PPN3;
-				INFOPLIST_FILE = DeTeXtSymbols/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = Venkat.DeTeXt.DeTeXtSymbols;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		82F1DF11250D25CD007749F0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z97T34PPN3;
-				INFOPLIST_FILE = DeTeXtSymbols/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = Venkat.DeTeXt.DeTeXtSymbols;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -477,15 +367,6 @@
 			buildConfigurations = (
 				821EE83C24FAB50E0058877D /* Debug */,
 				821EE83D24FAB50E0058877D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		82F1DF0F250D25CD007749F0 /* Build configuration list for PBXNativeTarget "DeTeXtSymbols" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				82F1DF10250D25CD007749F0 /* Debug */,
-				82F1DF11250D25CD007749F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
