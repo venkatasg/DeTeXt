@@ -96,16 +96,16 @@ struct RowView: View {
     var body: some View {
         if let conf = confidence {
             HStack {
+                ZStack {
                 Image("\(symbol.css_class)")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width:25, height:25, alignment: .leading)
-                    .padding(.top,4)
-                    .padding(.bottom,4)
-                    .padding(.leading,4)
-                    .padding(.trailing, 8)
+                    .frame(width:25, alignment: .center)
                     .foregroundColor((colorScheme == .light ? Color.black : Color.white))
-                RowDetailsView(symbol: symbol)
+                }
+                .frame(width:25, height:25, alignment: .leading)
+                SymbolDetailsView(symbol: symbol)
+                    .padding(.leading, 4)
                 Spacer()
                 Text(String(format: "%.1f", conf) + "%")
                     .font(.system(.callout, design: .rounded))
@@ -114,19 +114,23 @@ struct RowView: View {
         
         else {
             HStack {
-                RowDetailsView(symbol: symbol)
+                SymbolDetailsView(symbol: symbol)
                 Spacer()
+                ZStack {
                 Image("\(symbol.css_class)")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width:25, height:25, alignment: .trailing)
+                    .frame(width:25, alignment: .center)
                     .foregroundColor((colorScheme == .light ? Color.black : Color.white))
+                }
+                .frame(width:25, height:25, alignment: .trailing)
+                
             }
         }
     }
 }
 
-struct RowDetailsView: View {
+struct SymbolDetailsView: View {
     let symbol: Symbol
     
     var body: some View {
