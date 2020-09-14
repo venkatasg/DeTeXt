@@ -93,6 +93,7 @@ extension UIImage {
 func overlayBlackBg(image: UIImage) -> UIImage {
     let newFrameWidth: CGFloat
     let newFrameHeight: CGFloat
+    
     if image.size.width > image.size.height {
         newFrameWidth = image.size.width * 1.2
         newFrameHeight = (newFrameWidth / 1.5)

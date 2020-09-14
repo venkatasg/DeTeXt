@@ -120,10 +120,6 @@ struct RowView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width:25, height:25, alignment: .trailing)
-                    .padding(.top,4)
-                    .padding(.bottom,4)
-                    .padding(.leading,4)
-                    .padding(.trailing, 8)
                     .foregroundColor((colorScheme == .light ? Color.black : Color.white))
             }
         }

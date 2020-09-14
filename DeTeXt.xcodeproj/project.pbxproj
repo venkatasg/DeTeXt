@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		82014614250DC8A30029E76D /* AttributedStringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82014613250DC8A30029E76D /* AttributedStringView.swift */; };
 		821EE83324FAB50E0058877D /* DeTeXtApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821EE82024FAB50C0058877D /* DeTeXtApp.swift */; };
 		821EE83524FAB50E0058877D /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821EE82124FAB50C0058877D /* CanvasView.swift */; };
 		821EE83724FAB50E0058877D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 821EE82224FAB50E0058877D /* Assets.xcassets */; };
@@ -33,7 +32,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		82014613250DC8A30029E76D /* AttributedStringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedStringView.swift; sourceTree = "<group>"; };
 		821EE82024FAB50C0058877D /* DeTeXtApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeTeXtApp.swift; sourceTree = "<group>"; };
 		821EE82124FAB50C0058877D /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
 		821EE82224FAB50E0058877D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -58,18 +56,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		82014615250DCA450029E76D /* AboutText */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = AboutText;
-			sourceTree = "<group>";
-		};
 		821EE81A24FAB50C0058877D = {
 			isa = PBXGroup;
 			children = (
 				821EE81F24FAB50C0058877D /* Shared */,
-				82014615250DCA450029E76D /* AboutText */,
 				821EE82924FAB50E0058877D /* iOS */,
 				821EE82824FAB50E0058877D /* Products */,
 			);
@@ -82,7 +72,6 @@
 				821EE82124FAB50C0058877D /* CanvasView.swift */,
 				829568E4250BC95200508BB0 /* SymbolsView.swift */,
 				821EE84424FAB54D0058877D /* AboutView.swift */,
-				82014613250DC8A30029E76D /* AttributedStringView.swift */,
 				821EE84724FAB5510058877D /* ImageHelpers.swift */,
 				825C411324FEBDB100B02DF9 /* LoadSymbols.swift */,
 				82AA17FE250A867600FFBE68 /* deTeXq.mlmodel */,
@@ -185,7 +174,6 @@
 				821EE84524FAB54D0058877D /* AboutView.swift in Sources */,
 				821EE83324FAB50E0058877D /* DeTeXtApp.swift in Sources */,
 				821EE84824FAB5520058877D /* ImageHelpers.swift in Sources */,
-				82014614250DC8A30029E76D /* AttributedStringView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
