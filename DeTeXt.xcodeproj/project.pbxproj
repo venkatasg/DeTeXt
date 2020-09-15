@@ -16,6 +16,7 @@
 		825C411424FEBDB100B02DF9 /* LoadSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825C411324FEBDB100B02DF9 /* LoadSymbols.swift */; };
 		829568E5250BC95200508BB0 /* SymbolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829568E4250BC95200508BB0 /* SymbolsView.swift */; };
 		82AA17FF250A867700FFBE68 /* deTeXq.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 82AA17FE250A867600FFBE68 /* deTeXq.mlmodel */; };
+		82B3D01F251060EA00F27316 /* PKCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B3D01E251060EA00F27316 /* PKCanvas.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,6 +44,7 @@
 		825C411324FEBDB100B02DF9 /* LoadSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadSymbols.swift; sourceTree = "<group>"; };
 		829568E4250BC95200508BB0 /* SymbolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolsView.swift; sourceTree = "<group>"; };
 		82AA17FE250A867600FFBE68 /* deTeXq.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = deTeXq.mlmodel; sourceTree = "<group>"; };
+		82B3D01E251060EA00F27316 /* PKCanvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKCanvas.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				821EE82124FAB50C0058877D /* CanvasView.swift */,
 				829568E4250BC95200508BB0 /* SymbolsView.swift */,
 				821EE84424FAB54D0058877D /* AboutView.swift */,
+				82B3D01E251060EA00F27316 /* PKCanvas.swift */,
 				821EE84724FAB5510058877D /* ImageHelpers.swift */,
 				825C411324FEBDB100B02DF9 /* LoadSymbols.swift */,
 				82AA17FE250A867600FFBE68 /* deTeXq.mlmodel */,
@@ -167,6 +170,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82B3D01F251060EA00F27316 /* PKCanvas.swift in Sources */,
 				82AA17FF250A867700FFBE68 /* deTeXq.mlmodel in Sources */,
 				821EE83524FAB50E0058877D /* CanvasView.swift in Sources */,
 				829568E5250BC95200508BB0 /* SymbolsView.swift in Sources */,

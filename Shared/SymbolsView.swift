@@ -159,7 +159,7 @@ struct SymbolDetailsView: View {
             
             
             if let fontenc = symbol.fontenc {
-                Text("fontenc:\(fontenc)")
+                Text("fontenc: \(fontenc)")
                     .font(.system(.footnote, design: .monospaced))
                     .foregroundColor(Color.gray)
             }
