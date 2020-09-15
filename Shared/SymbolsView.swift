@@ -81,7 +81,7 @@ struct SearchBar: View {
                     }
                     .padding(.trailing, 10)
                     .transition(.move(edge: .trailing))
-                    .animation(.easeInOut)
+                    .animation(.easeInOut(duration: 0.2))
             }
         }
     }

@@ -80,8 +80,8 @@ struct CanvasView: View {
                     .frame(maxHeight:.infinity)
                 }
                 }
-                .transition(.opacity)
-                .animation(.easeInOut(duration: 0.7))
+                .transition(.move(edge: .trailing))
+                .animation(.easeInOut)
             }
             .navigationBarItems(leading: Button(action: {
                                             self.canvas.drawing = PKDrawing()
