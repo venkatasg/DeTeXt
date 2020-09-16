@@ -28,7 +28,7 @@ struct AboutView: View {
                         Link("MobileNet_v2", destination: URL(string: "https://pytorch.org/docs/stable/torchvision/models.html#torchvision.models.mobilenet_v2")!)
                     }
                     Section(header: Text("Privacy Policy")) {
-                        Text("DeTeXt does not collect or store any of your personal data. Your drawings are not recorded or saved anywhere and stay on your device.")
+                        Text("DeTeXt does not collect or store any personal data or information.")
                     }
                     Section(header: Text("Thanks")) {
                         Text("Thanks to Daniel Kirsch and the team at Detexify for their cool open-source web app that inspired me to make DeTeXt, and for providing the training data and prompt responses to my questions. \n\nThanks to Will Bishop for helping me figure out a tricky problem I had with the PencilKit APIs. \n\nFinally a big thanks to all the folks on the NetNewsWire Slack for being supportive and inspiring me to build my own iOS app.")
