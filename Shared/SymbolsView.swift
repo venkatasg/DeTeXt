@@ -30,6 +30,7 @@ struct SymbolsView: View {
                                             { Text("About").padding(8) })
             .navigationBarTitle("", displayMode: .inline)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         .sheet(isPresented: $showAboutView) { AboutView() }
     }
 }
@@ -176,9 +177,8 @@ struct SymbolsView_Previews: PreviewProvider {
                 .environmentObject(symbols)
                 .previewDevice("iPhone 11 Pro Max")
             SymbolsView()
-                .preferredColorScheme(.dark)
                 .environmentObject(symbols)
-                .previewDevice("iPhone 11 Pro Max")
+                .previewDevice("iPad (7th generation)")
         }
     }
 }

@@ -57,13 +57,14 @@ struct CanvasView: View {
                         .cornerRadius(15)
                         .overlay(
                             RoundedRectangle(cornerRadius: 15)
-                                .stroke(Color.blue, lineWidth: 2)
+                                .stroke(Color.blue, lineWidth: 3)
                             )
-                        .padding(8)
+                        .padding(10)
                 }
-                .padding(.top, 8)
-                .padding(.bottom, 8)
-                .background(Color("Background"))
+                .padding(.top, 10)
+                .padding(.bottom, 10)
+
+                Divider()
                 ZStack {
                 if labelScores.clear {
                     Text("Draw in the canvas above")
@@ -93,6 +94,7 @@ struct CanvasView: View {
                                             { Text("About").padding(8) })
             .navigationBarTitle("", displayMode: .inline)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         .sheet(isPresented: $showAboutView) { AboutView() }
     }
 }
@@ -105,9 +107,8 @@ struct CanvasView_Previews: PreviewProvider {
                 .environmentObject(symbols)
                 .previewDevice("iPhone 11")
             MainView()
-                .preferredColorScheme(.dark)
                 .environmentObject(symbols)
-                .previewDevice("iPhone 11")
+                .previewDevice("iPad (7th generation)")
                 
                 
         }
