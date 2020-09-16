@@ -13,7 +13,7 @@ struct AboutView: View {
     var body: some View {
         NavigationView {
                 List {
-                    Text("Made, with ❤️, by Venkat. Inspired by Detexify, I wanted to make a native iOS app to detect LaTeX symbols that was fast, efficient, and light.")
+                    Text("Made, with ❤️, by Venkat. Inspired by Detexify, I wanted to make a native iOS app to translate LaTeX symbols to their corresponding commands that was fast, efficient, and light.")
                     Section(header: Text("Feedback")) {
                         Text("You can contact me on Twitter @_venkatasg to report any bugs or if you have any feature requests for the app. Feel free to file issues on GitHub as well!")
                         Link("My Twitter", destination: URL(string: "https://twitter.com/_venkatasg")!)
