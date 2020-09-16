@@ -30,20 +30,6 @@ extension UIImage {
         self.init(cgImage: cgImage)
     }
     
-    
-    
-    func image(byDrawingImage image: UIImage, inRect rect: CGRect) -> UIImage! {
- 
-        let scaledImageSize:CGSize = CGSize(width: size.width * 0.8, height: size.height * 0.8)
-        UIGraphicsBeginImageContextWithOptions(scaledImageSize, false, 1.0)
-
-        draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
-        image.draw(in: rect)
-        let result = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return result
-    }
-    
     func resize(newSize: CGSize) -> UIImage? {
         let format = UIGraphicsImageRendererFormat()
         format.scale = 1
