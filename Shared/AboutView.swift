@@ -27,7 +27,6 @@ struct AboutView: View {
                         Link("coremltools", destination: URL(string: "https://coremltools.readme.io")!)
                         Link("MobileNet_v2", destination: URL(string: "https://pytorch.org/docs/stable/torchvision/models.html#torchvision.models.mobilenet_v2")!)
                     }
-                    
                     Section(header: Text("Privacy Policy")) {
                         Text("DeTeXt does not collect or store any of your personal data. Your drawings are not recorded or saved anywhere and stay on your device.")
                     }
