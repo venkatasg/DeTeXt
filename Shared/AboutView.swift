@@ -31,7 +31,7 @@ struct AboutView: View {
                         Text("DeTeXt does not collect or store any of your personal data. Your drawings are not recorded or saved anywhere and stay on your device.")
                     }
                     Section(header: Text("Thanks")) {
-                        Text("Thanks to Daniel Kirsch and the team at Detexy for their cool open-source web app that inspired me to make DeTeXt, and for providing the training data and prompt responses to my questions. \n\nThanks to Will Bishop for helping me figure out a tricky problem I had with the PencilKit APIs. \n\nFinally a big thanks to all the folks on the NetNewsWire Slack for being supportive and inspiring me to build my own iOS app.")
+                        Text("Thanks to Daniel Kirsch and the team at Detexify for their cool open-source web app that inspired me to make DeTeXt, and for providing the training data and prompt responses to my questions. \n\nThanks to Will Bishop for helping me figure out a tricky problem I had with the PencilKit APIs. \n\nFinally a big thanks to all the folks on the NetNewsWire Slack for being supportive and inspiring me to build my own iOS app.")
                     }
                     
                 }
