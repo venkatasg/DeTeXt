@@ -13,6 +13,7 @@
 		821EE84524FAB54D0058877D /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821EE84424FAB54D0058877D /* AboutView.swift */; };
 		821EE84824FAB5520058877D /* ImageHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821EE84724FAB5510058877D /* ImageHelpers.swift */; };
 		821EE84E24FAB5660058877D /* symbols.json in Resources */ = {isa = PBXBuildFile; fileRef = 821EE84D24FAB5660058877D /* symbols.json */; };
+		824A115125131B28003A7A8E /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 824A115025131B28003A7A8E /* Launch Screen.storyboard */; };
 		825C411424FEBDB100B02DF9 /* LoadSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825C411324FEBDB100B02DF9 /* LoadSymbols.swift */; };
 		829568E5250BC95200508BB0 /* SymbolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829568E4250BC95200508BB0 /* SymbolsView.swift */; };
 		82AA17FF250A867700FFBE68 /* deTeXq.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 82AA17FE250A867600FFBE68 /* deTeXq.mlmodel */; };
@@ -41,6 +42,7 @@
 		821EE84424FAB54D0058877D /* AboutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		821EE84724FAB5510058877D /* ImageHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageHelpers.swift; sourceTree = "<group>"; };
 		821EE84D24FAB5660058877D /* symbols.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = symbols.json; sourceTree = "<group>"; };
+		824A115025131B28003A7A8E /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		825C411324FEBDB100B02DF9 /* LoadSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadSymbols.swift; sourceTree = "<group>"; };
 		829568E4250BC95200508BB0 /* SymbolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolsView.swift; sourceTree = "<group>"; };
 		82AA17FE250A867600FFBE68 /* deTeXq.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = deTeXq.mlmodel; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 		821EE81A24FAB50C0058877D = {
 			isa = PBXGroup;
 			children = (
+				824A115025131B28003A7A8E /* Launch Screen.storyboard */,
 				821EE81F24FAB50C0058877D /* Shared */,
 				821EE82924FAB50E0058877D /* iOS */,
 				821EE82824FAB50E0058877D /* Products */,
@@ -158,6 +161,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				824A115125131B28003A7A8E /* Launch Screen.storyboard in Resources */,
 				821EE83724FAB50E0058877D /* Assets.xcassets in Resources */,
 				821EE84E24FAB5660058877D /* symbols.json in Resources */,
 			);
@@ -311,6 +315,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = Venkat.DeTeXt;
 				PRODUCT_NAME = DeTeXt;
 				SDKROOT = iphoneos;
@@ -333,6 +338,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = Venkat.DeTeXt;
 				PRODUCT_NAME = DeTeXt;
 				SDKROOT = iphoneos;
