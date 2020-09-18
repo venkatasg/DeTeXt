@@ -10,7 +10,7 @@ import PencilKit
 import CoreML
 
 struct PKCanvas: UIViewRepresentable {
-    class Coordinator: NSObject, PKCanvasViewDelegate {
+    class Coordinator: NSObject, PKCanvasViewDelegate, UIPencilInteractionDelegate {
         var pkCanvas: PKCanvas
         @ObservedObject var labelScores: LabelScores
         
@@ -31,6 +31,10 @@ struct PKCanvas: UIViewRepresentable {
             self.labelScores  = labelScores
         }
         
+        func pencilInteractionDidTap(_ interaction: UIPencilInteraction) {
+            labelScores.clear = true
+        }
+
         func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
             // if canvasView is empty escape gracefully
             if canvasView.drawing.bounds.isEmpty { }
@@ -61,13 +65,11 @@ struct PKCanvas: UIViewRepresentable {
         
         // find the most likely class labels corresponding to the drawing
         func predictImage(image: UIImage) {
-
             if let resizedImage = image.resize(newSize: trainedImageSize), let pixelBuffer = resizedImage.toCVPixelBuffer() {
                 guard let result = try? model.prediction(drawing: pixelBuffer) else {
                         print("error in image...")
                         return
                     }
-
                 labelScores.scores = Array(result.classLabelProbs.sorted { $0.1 > $1.1 } [..<20])
             }
         }
@@ -75,6 +77,7 @@ struct PKCanvas: UIViewRepresentable {
 
     @Binding var canvasView: PKCanvasView
     @ObservedObject var labelScores: LabelScores
+    let pencilInteraction = UIPencilInteraction()
 
     func makeCoordinator() -> Coordinator {
         Coordinator(self, labelScores: labelScores)
@@ -86,13 +89,10 @@ struct PKCanvas: UIViewRepresentable {
         self.canvasView.isScrollEnabled = false
         self.canvasView.becomeFirstResponder()
         self.canvasView.delegate = context.coordinator
+        self.canvasView.drawingPolicy = .anyInput
         
-        if #available(iOS 14.0, *) {
-            self.canvasView.drawingPolicy = .anyInput
-        }
-        else {
-            self.canvasView.allowsFingerDrawing = true
-        }
+        self.pencilInteraction.delegate = context.coordinator
+        self.canvasView.addInteraction(self.pencilInteraction)
         
         return canvasView
     }

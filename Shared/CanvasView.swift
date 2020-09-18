@@ -106,10 +106,6 @@ struct CanvasView_Previews: PreviewProvider {
             MainView()
                 .environmentObject(symbols)
                 .previewDevice("iPhone 11")
-            MainView()
-                .environmentObject(symbols)
-                .previewDevice("iPad (7th generation)")
-                
                 
         }
     }
