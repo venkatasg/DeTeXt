@@ -14,31 +14,6 @@ class LabelScores: ObservableObject {
     @Published var clear: Bool = true
 }
 
-struct MainView: View {
-    
-    @State private var selection: String = "draw"
-    @EnvironmentObject var symbols: Symbols
-    
-    var body: some View {
-        TabView(selection: $selection) {
-            CanvasView()
-                .environmentObject(symbols)
-                .tabItem {
-                    Image(systemName: "scribble")
-                    Text("Draw")
-                }
-                .tag("draw")
-            SymbolsView()
-                .environmentObject(symbols)
-                .tabItem {
-                    Image(systemName: "magnifyingglass")
-                    Text("Search")
-                }
-                .tag("search")
-        }
-    }
-}
-
 struct CanvasView: View {
     
     @State var showAboutView = false
@@ -103,7 +78,7 @@ struct CanvasView_Previews: PreviewProvider {
     static let symbols = Symbols()
     static var previews: some View {
         Group {
-            MainView()
+            CanvasView()
                 .environmentObject(symbols)
                 .previewDevice("iPhone 11 Pro Max")
                 
