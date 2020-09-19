@@ -32,6 +32,8 @@ struct AboutView: View {
                     }
                     Section(header: Text("Thanks")) {
                         Text("Thanks to Daniel Kirsch and the team at Detexify for their cool open-source web app that inspired me to make DeTeXt, and for providing the training data and prompt responses to my questions. \n\nThanks to Will Bishop for helping me figure out a tricky problem I had with the PencilKit APIs. \n\nFinally a big thanks to all the folks on the NetNewsWire Slack for being supportive and inspiring me to build my own iOS app.")
+                        Link("Will Bishop", destination: URL(string: "https://willbish.com")!)
+                        Link("NetNewsWire", destination: URL(string: "https://ranchero.com/netnewswire/")!)
                     }
                     
                 }
