@@ -98,11 +98,11 @@ struct RowView: View {
         if let conf = confidence {
             HStack {
                 ZStack {
-                Image("\(symbol.css_class)")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width:25, alignment: .center)
-                    .foregroundColor((colorScheme == .light ? Color.black : Color.white))
+                    Image("\(symbol.css_class)")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width:25, alignment: .center)
+                        .foregroundColor((colorScheme == .light ? Color.black : Color.white))
                 }
                 .frame(width:25, height:25, alignment: .leading)
                 SymbolDetailsView(symbol: symbol)
@@ -118,11 +118,11 @@ struct RowView: View {
                 SymbolDetailsView(symbol: symbol)
                 Spacer()
                 ZStack {
-                Image("\(symbol.css_class)")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width:25, alignment: .center)
-                    .foregroundColor((colorScheme == .light ? Color.black : Color.white))
+                    Image("\(symbol.css_class)")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width:25, alignment: .center)
+                        .foregroundColor((colorScheme == .light ? Color.black : Color.white))
                 }
                 .frame(width:25, height:25, alignment: .trailing)
                 
@@ -176,9 +176,6 @@ struct SymbolsView_Previews: PreviewProvider {
             SymbolsView()
                 .environmentObject(symbols)
                 .previewDevice("iPhone 11 Pro Max")
-            SymbolsView()
-                .environmentObject(symbols)
-                .previewDevice("iPad (7th generation)")
         }
     }
 }
