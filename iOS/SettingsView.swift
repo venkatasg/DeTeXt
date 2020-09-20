@@ -40,8 +40,9 @@ struct SettingsView: View {
             }
             .listStyle(InsetGroupedListStyle())
             
-        .navigationBarTitle("Settings", displayMode: .inline)
+            .navigationBarTitle("Settings", displayMode: .inline)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
