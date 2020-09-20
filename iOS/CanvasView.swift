@@ -16,7 +16,6 @@ class LabelScores: ObservableObject {
 
 struct CanvasView: View {
     
-    @State var showAboutView = false
     @State private var canvas = PKCanvasView()
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var symbols: Symbols
@@ -64,13 +63,10 @@ struct CanvasView: View {
                                             labelScores.clear = true
                                             labelScores.scores = [Dictionary<String, Double>.Element]()
                                             })
-                                            { Text("Clear").padding(8)},
-                                trailing: Button(action: {self.showAboutView.toggle()})
-                                            { Text("About").padding(8) })
-            .navigationBarTitle("", displayMode: .inline)
+                                            { Text("Clear").padding(8)})
+            .navigationBarTitle("DeTeXt", displayMode: .inline)
         }
         .navigationViewStyle(StackNavigationViewStyle())
-        .sheet(isPresented: $showAboutView) { AboutView() }
     }
 }
 

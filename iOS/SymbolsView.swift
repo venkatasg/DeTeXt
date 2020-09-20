@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SymbolsView: View {
     
-    @State var showAboutView = false
     @State var searchText = ""
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var symbols: Symbols
@@ -26,12 +25,9 @@ struct SymbolsView: View {
                 }
                 .listStyle(InsetListStyle())
             }
-            .navigationBarItems(trailing: Button(action: {self.showAboutView.toggle()})
-                                            { Text("About").padding(8) })
-            .navigationBarTitle("", displayMode: .inline)
+            .navigationBarTitle("Search", displayMode: .inline)
         }
         .navigationViewStyle(StackNavigationViewStyle())
-        .sheet(isPresented: $showAboutView) { AboutView() }
     }
 }
 

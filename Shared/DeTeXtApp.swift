@@ -42,6 +42,12 @@ struct MainView: View {
                     Text("Search")
                 }
                 .tag("search")
+            SettingsView()
+                .tabItem {
+                    Image(systemName: "gear")
+                    Text("Settings")
+                }
+                .tag("settings")
         }
     }
 }
