@@ -9,11 +9,14 @@ import SwiftUI
 
 struct AboutView: View {
     @Environment(\.presentationMode) var presentationMode
+    let appVersionString: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
     
     var body: some View {
         NavigationView {
                 List {
-                    Text("Made, with ❤️, by Venkat. Inspired by Detexify, I wanted to make a native iOS app to translate LaTeX symbols to their corresponding commands that was fast, efficient, and light.")
+                    Section(header: Text("DeTeXt \(appVersionString)")) {
+                        Text("Made, with ❤️, by Venkat. Inspired by Detexify, I wanted to make a native iOS app for translating hand-drawn symbols to their corresponding LaTeX commands that was fast, efficient, and light.")
+                    }
                     Section(header: Text("Feedback")) {
                         Text("You can contact me on Twitter @_venkatasg to report any bugs or if you have any feature requests for the app. Feel free to file issues on GitHub as well!")
                         Link("My Twitter", destination: URL(string: "https://twitter.com/_venkatasg")!)
