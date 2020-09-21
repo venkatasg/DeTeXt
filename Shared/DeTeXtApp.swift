@@ -39,7 +39,7 @@ struct MainView: View {
                 .environmentObject(symbols)
                 .tabItem {
                     Image(systemName: "magnifyingglass")
-                    Text("Search")
+                    Text("Symbols")
                 }
                 .tag("search")
             SettingsView()

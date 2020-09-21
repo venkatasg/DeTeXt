@@ -34,7 +34,7 @@ struct PKCanvas: UIViewRepresentable {
         func pencilInteractionDidTap(_ interaction: UIPencilInteraction) {
             // Clear the drawing when double tapped on pencil
             self.pkCanvas.canvasView.drawing = PKDrawing()
-            self.labelScores.clear = true
+            self.labelScores.isCanvasClear = true
             self.labelScores.scores = [Dictionary<String, Double>.Element]()
         }
 
@@ -42,7 +42,8 @@ struct PKCanvas: UIViewRepresentable {
             // if canvasView is empty escape gracefully
             if canvasView.drawing.bounds.isEmpty { }
             else {
-                labelScores.clear = false
+                modelHaptics()
+                labelScores.isCanvasClear = false
                 //create new drawing with default width of 10 and white strokes
                 var newDrawingStrokes = [PKStroke]()
                 for stroke in canvasView.drawing.strokes {

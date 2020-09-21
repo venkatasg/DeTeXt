@@ -11,7 +11,7 @@ import Combine
 
 class LabelScores: ObservableObject {
     @Published var scores = [Dictionary<String, Double>.Element]()
-    @Published var clear: Bool = true
+    @Published var isCanvasClear: Bool = true
 }
 
 struct CanvasView: View {
@@ -40,7 +40,7 @@ struct CanvasView: View {
 
                 Divider()
                 ZStack {
-                if labelScores.clear {
+                if labelScores.isCanvasClear {
                     Text("Draw in the canvas above")
                         .font(.system(.title, design: .rounded))
                         .frame(maxHeight:.infinity)
@@ -60,14 +60,25 @@ struct CanvasView: View {
             }
             .navigationBarItems(leading: Button(action: {
                                             self.canvas.drawing = PKDrawing()
-                                            labelScores.clear = true
+                                            labelScores.isCanvasClear = true
                                             labelScores.scores = [Dictionary<String, Double>.Element]()
+                                            clearHaptics()
                                             })
                                             { Text("Clear").padding(8)})
             .navigationBarTitle("DeTeXt", displayMode: .inline)
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
+}
+
+func clearHaptics() {
+    let generator = UINotificationFeedbackGenerator()
+    generator.notificationOccurred(.warning)
+}
+
+func modelHaptics() {
+    let generator = UINotificationFeedbackGenerator()
+    generator.notificationOccurred(.success)
 }
 
 struct CanvasView_Previews: PreviewProvider {
