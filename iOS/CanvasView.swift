@@ -53,6 +53,7 @@ struct CanvasView: View {
                     }
                     .listStyle(InsetListStyle())
                     .frame(maxHeight:.infinity)
+                    .onAppear(perform: modelHaptics)
                 }
                 }
                 .transition(.move(edge: .trailing))

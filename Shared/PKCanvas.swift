@@ -42,7 +42,6 @@ struct PKCanvas: UIViewRepresentable {
             // if canvasView is empty escape gracefully
             if canvasView.drawing.bounds.isEmpty { }
             else {
-                modelHaptics()
                 labelScores.isCanvasClear = false
                 //create new drawing with default width of 10 and white strokes
                 var newDrawingStrokes = [PKStroke]()
