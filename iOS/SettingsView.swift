@@ -41,26 +41,60 @@ struct SettingsView: View {
 //                                    })
 //                }
                 
-                //Help
-                Section(header: Text("Help")) {
-                    Text("You can contact me on Twitter to ask for support, report any bugs, or to suggest any features for the app. Feel free to file issues on GitHub as well!")
-                    Link("My Twitter", destination: URL(string: "https://twitter.com/_venkatasg")!)
-                    Link("GitHub Repository", destination: URL(string: "https://github.com/venkatasg/DeTeXt")!)
+                //Feedback
+                Section(header: HStack{
+                                        Image(systemName: "lightbulb")
+                                        Text("Feedback")}) {
+                    Text("You can contact me on Twitter to ask for support, report any bugs, or to suggest new features for the app. Feel free to file issues on GitHub as well!")
+                    HStack {
+                        Image(systemName: "message")
+                            .foregroundColor(.blue)
+                        Link("DM me on Twitter", destination: URL(string: "https://twitter.com/_venkatasg")!)
+                    }
+                    HStack {
+                        Image(systemName: "cloud")
+                        Link("GitHub Repository", destination: URL(string: "https://github.com/venkatasg/DeTeXt")!)
+                    }
                 }
                 
-                Section(header: Text("Privacy Policy")) {
-                    Text("DeTeXt does not collect or store any personal data or information.")
+                // Info
+                Section(header: HStack{
+                            Image(systemName: "questionmark.circle")
+                            Text("Info")}){
+                    NavigationLink(destination: PrivacyView(), label: {
+                        HStack {
+                                Image(systemName: "lock.shield")
+                                        .foregroundColor(.green)
+                                Text("Privacy")
+                        }
+                    })
+                    NavigationLink(destination: AboutView(), label: {
+                        HStack {
+                                Image(systemName: "info.circle.fill")
+                                        .foregroundColor(.blue)
+                                Text("About DeTeXt")
+                        }
+                    })
                 }
-                
-                // About
-                Section(header: Text(appVersion()),
-                        content: {NavigationLink(destination: AboutView(), label: {Text("About DeTeXt")})})
             }
             .listStyle(InsetGroupedListStyle())
             
             .navigationBarTitle("Settings", displayMode: .inline)
         }
         .navigationViewStyle(StackNavigationViewStyle())
+    }
+}
+
+struct PrivacyView: View {
+    
+    var body: some View {
+        List {
+            Text("DeTeXt does not collect or store any personal data or information. All processing of drawings to find the corresponding symbol happens on your device.")
+            Text("DeTeXt does not display any advertisements, use any trackers or analytics, or send any data to any server.")
+        }
+        .listStyle(InsetGroupedListStyle())
+        
+        .navigationBarTitle("Privacy", displayMode: .inline)
     }
 }
 

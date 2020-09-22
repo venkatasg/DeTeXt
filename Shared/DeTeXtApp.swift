@@ -58,10 +58,12 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static let symbols = Symbols()
+    static var settings: AppSettings = AppSettings()
     static var previews: some View {
         Group {
             MainView()
                 .environmentObject(symbols)
+                .environmentObject(settings)
                 .previewDevice("iPhone 11 Pro Max")
                 
         }
