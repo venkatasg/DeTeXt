@@ -9,18 +9,13 @@ import SwiftUI
 
 struct AboutView: View {
     @Environment(\.presentationMode) var presentationMode
-    let appVersionString: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
     
     var body: some View {
             List {
-                Section(header: Text("DeTeXt \(appVersionString)")) {
+                Section(header:Text(appVersion())) {
                     Text("Made, with ❤️, by Venkat. Inspired by Detexify, I wanted to make a native iOS app for translating hand-drawn symbols to their corresponding LaTeX commands that was fast, efficient, and light.")
                 }
-                Section(header: Text("Feedback")) {
-                    Text("You can contact me on Twitter @_venkatasg to report any bugs or if you have any feature requests for the app. Feel free to file issues on GitHub as well!")
-                    Link("My Twitter", destination: URL(string: "https://twitter.com/_venkatasg")!)
-                    Link("GitHub Repository", destination: URL(string: "https://github.com/venkatasg/DeTeXt")!)
-                }
+                
                 Section(header: Text("How it works")) {
                     Text("DeTeXt uses a MobileNet_v2 model PyTorch model trained on the Detexify training data, which was then translated to CoreML using ") +
                     Text("coremltools").font(.system(.body, design: .monospaced)) +
@@ -29,11 +24,9 @@ struct AboutView: View {
                     Link("coremltools", destination: URL(string: "https://coremltools.readme.io")!)
                     Link("MobileNet_v2", destination: URL(string: "https://pytorch.org/docs/stable/torchvision/models.html#torchvision.models.mobilenet_v2")!)
                 }
-                Section(header: Text("Privacy Policy")) {
-                    Text("DeTeXt does not collect or store any personal data or information.")
-                }
+                
                 Section(header: Text("Thanks")) {
-                    Text("Thanks to Daniel Kirsch and the team at Detexify for their cool open-source web app that inspired me to make DeTeXt, and for providing the training data and prompt responses to my questions. \n\nThanks to Will Bishop for helping me figure out a tricky problem I had with the PencilKit APIs. \n\nFinally a big thanks to all the folks on the NetNewsWire Slack for being supportive and inspiring me to build my own iOS app.")
+                    Text("Thanks to Daniel Kirsch and the team at Detexify for their cool open-source web app that inspired me to make DeTeXt, and for providing the training data and prompt responses to my questions. \n\nThanks to Will Bishop for helping me figure out a tricky problem I had with the PencilKit APIs.\n\n A big thanks to Hans Schuelein for beta testing new features and giving valuable feedback. \n\nFinally a big thanks to all the folks on the NetNewsWire Slack for being supportive and inspiring me to build my own iOS app.")
                     Link("Will Bishop", destination: URL(string: "https://willbish.com")!)
                     Link("NetNewsWire", destination: URL(string: "https://ranchero.com/netnewswire/")!)
                 }
