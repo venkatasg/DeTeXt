@@ -17,7 +17,6 @@ class LabelScores: ObservableObject {
 struct CanvasView: View {
     
     @State private var canvas = PKCanvasView()
-    @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var symbols: Symbols
     @ObservedObject var labelScores: LabelScores = LabelScores()
     
@@ -53,7 +52,7 @@ struct CanvasView: View {
                     }
                     .listStyle(InsetListStyle())
                     .frame(maxHeight:.infinity)
-//                    .onAppear(perform: modelHaptics)
+                    .onAppear(perform: modelHaptics)
                 }
                 }
                 .transition(.move(edge: .trailing))
@@ -63,7 +62,7 @@ struct CanvasView: View {
                                             self.canvas.drawing = PKDrawing()
                                             labelScores.isCanvasClear = true
                                             labelScores.scores = [Dictionary<String, Double>.Element]()
-//                                            clearHaptics()
+                                            clearHaptics()
                                             })
                                             { Text("Clear").padding(8)})
             .navigationBarTitle("DeTeXt", displayMode: .inline)

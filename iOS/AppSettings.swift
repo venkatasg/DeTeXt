@@ -7,10 +7,10 @@
 
 import Foundation
 import Combine
-import CoreHaptics
+//import CoreHaptics
 import SwiftUI
 
-enum ColorPalette: Int, CustomStringConvertible, CaseIterable {
+enum UserInterfaceColorPalette: Int, CustomStringConvertible, CaseIterable {
     case automatic = 0
     case light = 1
     case dark = 2
@@ -27,10 +27,9 @@ enum ColorPalette: Int, CustomStringConvertible, CaseIterable {
     }
 }
 
-
 class AppSettings: ObservableObject {
     
-    @Published var userTheme: Int {
+    @Published var userTheme: String {
             didSet {
                 UserDefaults.standard.set(userTheme, forKey: "userTheme")
             }
@@ -55,7 +54,7 @@ class AppSettings: ObservableObject {
 //        let hapticCapability = CHHapticEngine.capabilitiesForHardware()
 //        self.supportsHaptics = hapticCapability.supportsHaptics
 
-        self.userTheme = UserDefaults.standard.object(forKey: "userTheme") as? Int ?? ColorPalette.automatic.rawValue
+        self.userTheme = UserDefaults.standard.object(forKey: "userTheme") as? String ?? "Automatic"
 //        self.reduceHaptics = UserDefaults.standard.object(forKey: "reduceHaptics") as? Bool ?? !hapticCapability.supportsHaptics
 //        self.pencilClearOnTap = UserDefaults.standard.object(forKey: "pencilClearOnTap") as? Bool ?? false
     }

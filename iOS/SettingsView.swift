@@ -9,8 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    @EnvironmentObject private var settings: AppSettings
-    private let themes = ColorPalette.allCases
+//    @EnvironmentObject private var settings: AppSettings
     
     var body: some View {
         NavigationView {
@@ -45,14 +44,15 @@ struct SettingsView: View {
                 Section(header: HStack{
                                         Image(systemName: "lightbulb")
                                         Text("Feedback")}) {
-                    Text("You can contact me on Twitter to ask for support, report any bugs, or to suggest new features for the app. Feel free to file issues on GitHub as well!")
+                    Text("You can contact me on Twitter for support, to report any bugs, or to suggest new features for the app. The source code for DeTeXt is available freely under the MIT License on GitHub, where you can give feedback as well by filing issues.")
                     HStack {
                         Image(systemName: "message")
                             .foregroundColor(.blue)
-                        Link("DM me on Twitter", destination: URL(string: "https://twitter.com/_venkatasg")!)
+                        Link("My Twitter", destination: URL(string: "https://twitter.com/_venkatasg")!)
                     }
                     HStack {
-                        Image(systemName: "cloud")
+                        Image(systemName: "cloud.fill")
+                            .foregroundColor(.blue)
                         Link("GitHub Repository", destination: URL(string: "https://github.com/venkatasg/DeTeXt")!)
                     }
                 }
@@ -79,7 +79,7 @@ struct SettingsView: View {
             }
             .listStyle(InsetGroupedListStyle())
             
-            .navigationBarTitle("Settings", displayMode: .inline)
+            .navigationBarTitle("About", displayMode: .inline)
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
