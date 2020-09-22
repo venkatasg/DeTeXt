@@ -53,7 +53,7 @@ struct CanvasView: View {
                     }
                     .listStyle(InsetListStyle())
                     .frame(maxHeight:.infinity)
-                    .onAppear(perform: modelHaptics)
+//                    .onAppear(perform: modelHaptics)
                 }
                 }
                 .transition(.move(edge: .trailing))
@@ -63,7 +63,7 @@ struct CanvasView: View {
                                             self.canvas.drawing = PKDrawing()
                                             labelScores.isCanvasClear = true
                                             labelScores.scores = [Dictionary<String, Double>.Element]()
-                                            clearHaptics()
+//                                            clearHaptics()
                                             })
                                             { Text("Clear").padding(8)})
             .navigationBarTitle("DeTeXt", displayMode: .inline)
@@ -72,12 +72,13 @@ struct CanvasView: View {
     }
 }
 
-func clearHaptics() {
+// Functions for haptics
+private func clearHaptics() {
     let generator = UINotificationFeedbackGenerator()
     generator.notificationOccurred(.warning)
 }
 
-func modelHaptics() {
+private func modelHaptics() {
     let generator = UINotificationFeedbackGenerator()
     generator.notificationOccurred(.success)
 }
