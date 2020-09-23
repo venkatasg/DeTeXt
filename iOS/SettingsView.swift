@@ -44,16 +44,11 @@ struct SettingsView: View {
                 Section(header: HStack{
                                         Image(systemName: "lightbulb")
                                         Text("Feedback")}) {
-                    Text("You can contact me on Twitter for support, to report any bugs, or to suggest new features for the app. The source code for DeTeXt is available freely under the MIT License on GitHub, where you can give feedback as well by filing issues.")
+                    Text("You can contact me on Twitter for support, to report any bugs, or to suggest new features for the app.")
                     HStack {
                         Image(systemName: "message")
                             .foregroundColor(.blue)
                         Link("My Twitter", destination: URL(string: "https://twitter.com/_venkatasg")!)
-                    }
-                    HStack {
-                        Image(systemName: "cloud.fill")
-                            .foregroundColor(.blue)
-                        Link("GitHub Repository", destination: URL(string: "https://github.com/venkatasg/DeTeXt")!)
                     }
                 }
                 
