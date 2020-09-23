@@ -13,7 +13,6 @@ struct AboutView: View {
     var body: some View {
             List {
                 Section(header: HStack {
-                                    Image(systemName: "v.circle")
                                     Text(appVersion())
                         })
                 {
