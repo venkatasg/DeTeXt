@@ -26,6 +26,7 @@ struct CanvasView: View {
                 ZStack {
                     PKCanvas(canvasView: $canvas, labelScores: labelScores)
                         .environmentObject(symbols)
+                        .frame(minWidth: 150, idealWidth: 300, maxWidth: 600, minHeight: 100, idealHeight: 200, maxHeight: 400, alignment: .center)
                         .aspectRatio(1.5, contentMode: .fit)
                         .cornerRadius(15)
                         .overlay(
