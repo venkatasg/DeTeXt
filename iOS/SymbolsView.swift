@@ -95,12 +95,13 @@ struct RowView: View {
             HStack {
                 ZStack {
                     Image("\(symbol.css_class)")
-                        .resizable()
+                        .font(.largeTitle)
                         .aspectRatio(contentMode: .fit)
-                        .frame(width:25, alignment: .center)
+                        .frame(width:40, alignment: .center)
                         .foregroundColor((colorScheme == .light ? Color.black : Color.white))
                 }
-                .frame(width:25, height:25, alignment: .leading)
+                .frame(width:40, height:40, alignment: .leading)
+                Divider()
                 SymbolDetailsView(symbol: symbol)
                     .padding(.leading, 4)
                 Spacer()
@@ -115,12 +116,12 @@ struct RowView: View {
                 Spacer()
                 ZStack {
                     Image("\(symbol.css_class)")
-                        .resizable()
+                        .font(.largeTitle)
                         .aspectRatio(contentMode: .fit)
-                        .frame(width:25, alignment: .center)
+                        .frame(width:40, alignment: .center)
                         .foregroundColor((colorScheme == .light ? Color.black : Color.white))
                 }
-                .frame(width:25, height:25, alignment: .trailing)
+                .frame(width:40, height:40, alignment: .trailing)
                 
             }
         }
