@@ -46,14 +46,16 @@ struct SettingsView: View {
                                         Text("Feedback")}) {
                     Text("You can contact me on Twitter for support, to report any bugs, or to suggest new features for the app.")
                     HStack {
-                        Image(systemName: "message")
+                        Image(systemName: "message.fill")
                             .foregroundColor(.blue)
-                        Link("My Twitter", destination: URL(string: "https://twitter.com/_venkatasg")!)
+                        Link("Contact me on Twitter", destination: URL(string: "https://twitter.com/_venkatasg")!)
+                            .foregroundColor(.primary)
                     }
                     HStack {
                         Image(systemName: "heart.circle.fill")
                             .foregroundColor(.pink)
                         Link("Rate DeTeXt", destination: URL(string: "itms-apps://itunes.apple.com/app/id1531906207?action=write-review")!)
+                            .foregroundColor(.primary)
                     }
                 }
                 
