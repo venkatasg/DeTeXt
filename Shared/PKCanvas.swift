@@ -48,7 +48,7 @@ struct PKCanvas: UIViewRepresentable {
                 for stroke in canvasView.drawing.strokes {
                     var newPoints = [PKStrokePoint]()
                     stroke.path.forEach { (point) in
-                        let newPoint = PKStrokePoint(location: point.location, timeOffset: point.timeOffset, size: CGSize(width: 5,height: 5), opacity: CGFloat(2), force: point.force, azimuth: point.azimuth, altitude: point.altitude)
+                        let newPoint = PKStrokePoint(location: point.location, timeOffset: point.timeOffset, size: CGSize(width: 5,height: 5), opacity: CGFloat(2), force: point.force, azimuth: CGFloat.zero, altitude: CGFloat.pi/2)
                         newPoints.append(newPoint)
                     }
                     let newPath = PKStrokePath(controlPoints: newPoints, creationDate: Date())
