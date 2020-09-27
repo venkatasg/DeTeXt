@@ -50,6 +50,11 @@ struct SettingsView: View {
                             .foregroundColor(.blue)
                         Link("My Twitter", destination: URL(string: "https://twitter.com/_venkatasg")!)
                     }
+                    HStack {
+                        Image(systemName: "heart.circle.fill")
+                            .foregroundColor(.pink)
+                        Link("Rate DeTeXt", destination: URL(string: "itms-apps://itunes.apple.com/app/id1531906207?action=write-review")!)
+                    }
                 }
                 
                 // Info
