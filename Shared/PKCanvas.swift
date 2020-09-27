@@ -42,13 +42,23 @@ struct PKCanvas: UIViewRepresentable {
             // if canvasView is empty escape gracefully
             if canvasView.drawing.bounds.isEmpty { }
             else {
+                // haptic feedback
+                modelHaptics()
+                
+                // Find the scaling factor for drawings and appropriate pointsize
+                let scaleH = canvasView.drawing.bounds.size.width / canvasView.frame.width
+                let scaleW = canvasView.drawing.bounds.size.height / canvasView.frame.height
+                let scale = scaleH >= scaleW ? scaleH: scaleW
+                let pointSize = CGSize(width: 2.5 + scale*5.5, height: 2.5+scale*5.5)
+                print(pointSize)
+                
                 labelScores.isCanvasClear = false
                 //create new drawing with default width of 10 and white strokes
                 var newDrawingStrokes = [PKStroke]()
                 for stroke in canvasView.drawing.strokes {
                     var newPoints = [PKStrokePoint]()
                     stroke.path.forEach { (point) in
-                        let newPoint = PKStrokePoint(location: point.location, timeOffset: point.timeOffset, size: CGSize(width: 5,height: 5), opacity: CGFloat(2), force: point.force, azimuth: CGFloat.zero, altitude: CGFloat.pi/2)
+                        let newPoint = PKStrokePoint(location: point.location, timeOffset: point.timeOffset, size: pointSize, opacity: CGFloat(2), force: point.force, azimuth: CGFloat.zero, altitude: CGFloat.pi/2)
                         newPoints.append(newPoint)
                     }
                     let newPath = PKStrokePath(controlPoints: newPoints, creationDate: Date())
