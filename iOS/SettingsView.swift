@@ -47,12 +47,18 @@ struct SettingsView: View {
                     Text("You can contact me on Twitter for support, to report any bugs, or to suggest new features for the app.")
                     HStack {
                         Image(systemName: "message.fill")
+                            .font(.body)
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width:20, alignment: .center)
                             .foregroundColor(.blue)
                         Link("Contact me on Twitter", destination: URL(string: "https://twitter.com/_venkatasg")!)
                             .foregroundColor(.primary)
                     }
                     HStack {
                         Image(systemName: "heart.circle.fill")
+                            .font(.body)
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width:20, alignment: .center)
                             .foregroundColor(.pink)
                         Link("Rate DeTeXt", destination: URL(string: "itms-apps://itunes.apple.com/app/id1531906207?action=write-review")!)
                             .foregroundColor(.primary)
@@ -66,14 +72,20 @@ struct SettingsView: View {
                     NavigationLink(destination: PrivacyView(), label: {
                         HStack {
                                 Image(systemName: "lock.shield")
-                                        .foregroundColor(.green)
+                                    .font(.body)
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width:20, alignment: .center)
+                                    .foregroundColor(.green)
                                 Text("Privacy")
                         }
                     })
                     NavigationLink(destination: AboutView(), label: {
                         HStack {
                                 Image(systemName: "info.circle.fill")
-                                        .foregroundColor(.blue)
+                                    .font(.body)
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width:20, alignment: .center)
+                                    .foregroundColor(.blue)
                                 Text("About DeTeXt")
                         }
                     })
