@@ -43,6 +43,7 @@ struct SettingsView: View {
                 //Feedback
                 Section(header: HStack{
                                         Image(systemName: "lightbulb")
+                                            .accessibility(label: Text("Feedback Section"))
                                         Text("Feedback")}) {
                     Text("You can contact me on Twitter for support, to report any bugs, or to suggest new features for the app.")
                     HStack {
@@ -51,6 +52,7 @@ struct SettingsView: View {
                             .aspectRatio(contentMode: .fit)
                             .frame(width:20, alignment: .center)
                             .foregroundColor(.blue)
+                            .accessibility(label: Text("Contact me on Twitter"))
                         Link("Contact me on Twitter", destination: URL(string: "https://twitter.com/_venkatasg")!)
                             .foregroundColor(.primary)
                     }
@@ -60,6 +62,7 @@ struct SettingsView: View {
                             .aspectRatio(contentMode: .fit)
                             .frame(width:20, alignment: .center)
                             .foregroundColor(.pink)
+                            .accessibility(label: Text("Rate DeTeXt"))
                         Link("Rate DeTeXt", destination: URL(string: "itms-apps://itunes.apple.com/app/id1531906207?action=write-review")!)
                             .foregroundColor(.primary)
                     }
@@ -68,6 +71,7 @@ struct SettingsView: View {
                 // Info
                 Section(header: HStack{
                             Image(systemName: "questionmark.circle")
+                                .accessibility(label: Text("Information Section"))
                             Text("Info")}){
                     NavigationLink(destination: PrivacyView(), label: {
                         HStack {
@@ -76,6 +80,7 @@ struct SettingsView: View {
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width:20, alignment: .center)
                                     .foregroundColor(.green)
+                                    .accessibility(label: Text("Privacy"))
                                 Text("Privacy")
                         }
                     })
@@ -86,6 +91,7 @@ struct SettingsView: View {
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width:20, alignment: .center)
                                     .foregroundColor(.blue)
+                                    .accessibility(label: Text("About DeTeXt"))
                                 Text("About DeTeXt")
                         }
                     })

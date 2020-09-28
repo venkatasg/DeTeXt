@@ -36,6 +36,7 @@ struct MainView: View {
                 .environmentObject(symbols)
                 .tabItem {
                     Image(systemName: "scribble")
+                        .accessibility(label: Text("Draw symbols."))
                     Text("Draw")
                 }
                 .tag("draw")
@@ -43,6 +44,8 @@ struct MainView: View {
                 .environmentObject(symbols)
                 .tabItem {
                     Image(systemName: "magnifyingglass")
+                        .accessibility(label: Text("Search symbols."))
+                        .accessibility(hint: Text("Search the entire list of 1098 LaTeX symbols by name."))
                     Text("Symbols")
                 }
                 .tag("search")
@@ -50,6 +53,7 @@ struct MainView: View {
 //                .environmentObject(settings)
                 .tabItem {
                     Image(systemName: "questionmark.circle.fill")
+                        .accessibility(label: Text("About"))
                     Text("About")
                 }
                 .tag("about")
