@@ -20,7 +20,7 @@ struct SymbolsView: View {
                     .padding(.top, 8)
                     .padding(.bottom, 8)
                 Divider()
-                List(symbols.AllSymbols.filter({searchText.isEmpty ? true : ($0.command.lowercased().contains(searchText.lowercased()))})) { symbol in
+                List(symbols.AllSymbols.filter({searchText.isEmpty ? true : ($0.command.lowercased().contains(searchText.lowercased()) || $0.package?.lowercased().contains(searchText.lowercased()) ?? false  )})) { symbol in
                     RowView(symbol: symbol)
                 }
                 .listStyle(InsetListStyle())
@@ -103,7 +103,6 @@ struct RowView: View {
                 .frame(width:40, height:40, alignment: .leading)
                 Divider()
                 SymbolDetailsView(symbol: symbol)
-                    .padding(.leading, 4)
                 Spacer()
                 Text(String(format: "%.1f", conf) + "%")
                     .font(.system(.callout, design: .rounded))
