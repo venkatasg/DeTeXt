@@ -18,7 +18,7 @@ struct TipsView: View {
                                     Text("Copy commands")
                                     })
                 {
-                    Text("You can copy commands to the system clipboard by long-pressing on the one you want from the list and tapping 'Copy Command' from the context menu.")
+                    Text("You can copy commands to the system clipboard by long-pressing on a command from the list and tapping 'Copy Command' from the context menu.")
                 }
                 
                 Section(header: HStack {

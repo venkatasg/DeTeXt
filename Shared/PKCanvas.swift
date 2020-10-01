@@ -50,7 +50,6 @@ struct PKCanvas: UIViewRepresentable {
                 let scaleW = canvasView.drawing.bounds.size.height / canvasView.frame.height
                 let scale = scaleH >= scaleW ? scaleH: scaleW
                 let pointSize = CGSize(width: 2.5 + scale*5.5, height: 2.5+scale*5.5)
-                print(pointSize)
                 
                 labelScores.isCanvasClear = false
                 //create new drawing with default width of 10 and white strokes

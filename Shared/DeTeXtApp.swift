@@ -19,7 +19,6 @@ struct DeTeXtApp: App {
             MainView()
                 .environmentObject(symbols)
 //                .environmentObject(settings)
-//                .preferredColorScheme(userInterfaceColorScheme(theme: settings.userTheme))
         }
     }
 }

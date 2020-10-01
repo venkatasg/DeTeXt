@@ -14,3 +14,9 @@ func appVersion() -> String {
         let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? ""
         return "DeTeXt \(version) (Build \(build))"
     }
+
+// Functions for haptics
+func modelHaptics() {
+    let generator = UINotificationFeedbackGenerator()
+    generator.notificationOccurred(.success)
+}

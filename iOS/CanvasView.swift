@@ -70,17 +70,6 @@ struct CanvasView: View {
     }
 }
 
-// Functions for haptics
-private func clearHaptics() {
-    let generator = UINotificationFeedbackGenerator()
-    generator.notificationOccurred(.warning)
-}
-
-func modelHaptics() {
-    let generator = UINotificationFeedbackGenerator()
-    generator.notificationOccurred(.success)
-}
-
 struct CanvasView_Previews: PreviewProvider {
     static let symbols = Symbols()
     static var previews: some View {
