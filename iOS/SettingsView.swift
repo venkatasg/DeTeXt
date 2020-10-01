@@ -42,7 +42,7 @@ struct SettingsView: View {
                 
                 //Feedback
                 Section(header: HStack{
-                                        Image(systemName: "lightbulb")
+                                        Image(systemName: "bubble.left.and.bubble.right")
                                             .accessibility(label: Text("Feedback Section"))
                                         Text("Feedback")}) {
                     Text("You can contact me on Twitter for support, to report any bugs, or to suggest new features for the app.")
@@ -62,8 +62,8 @@ struct SettingsView: View {
                             .aspectRatio(contentMode: .fit)
                             .frame(width:20, alignment: .center)
                             .foregroundColor(.pink)
-                            .accessibility(label: Text("Rate DeTeXt"))
-                        Link("Rate DeTeXt", destination: URL(string: "itms-apps://itunes.apple.com/app/id1531906207?action=write-review")!)
+                            .accessibility(label: Text("Please Rate & Review DeTeXt"))
+                        Link("Please Rate & Review DeTeXt", destination: URL(string: "itms-apps://itunes.apple.com/app/id1531906207?action=write-review")!)
                             .foregroundColor(.primary)
                     }
                 }
