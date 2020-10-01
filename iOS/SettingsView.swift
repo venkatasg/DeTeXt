@@ -14,16 +14,6 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             List {
-                // Appearance
-//                Section(header: Text("Appearance"),
-//                        content: {
-//                            Picker(selection: $settings.theme, label: Text("Color Palette")) {
-//                                    ForEach.init(0..<themes.count) { index in
-//                                        Text(themes[index].description).tag(index)
-//                                    }
-//                                }
-//                                .pickerStyle(SegmentedPickerStyle())
-//                        })
                 
                 // Apple Pencil
 //                Section(header: Text("Apple Pencil"),

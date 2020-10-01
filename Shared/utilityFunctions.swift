@@ -14,14 +14,3 @@ func appVersion() -> String {
         let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? ""
         return "DeTeXt \(version) (Build \(build))"
     }
-
-func userInterfaceColorScheme(theme: String) -> ColorScheme? {
-        switch theme {
-        case "Light":
-            return ColorScheme.light
-        case "Dark":
-            return ColorScheme.dark
-        default:
-            return nil
-        }
-    }
