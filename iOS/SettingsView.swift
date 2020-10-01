@@ -84,6 +84,17 @@ struct SettingsView: View {
                                 Text("Privacy")
                         }
                     })
+                    NavigationLink(destination: TipsView(), label: {
+                        HStack {
+                                Image(systemName: "lightbulb.fill")
+                                    .font(.body)
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width:20, alignment: .center)
+                                    .foregroundColor(.yellow)
+                                    .accessibility(label: Text("Tips"))
+                                Text("Tips")
+                        }
+                    })
                     NavigationLink(destination: AboutView(), label: {
                         HStack {
                                 Image(systemName: "info.circle.fill")
