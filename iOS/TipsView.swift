@@ -30,6 +30,15 @@ struct TipsView: View {
                     Text("In the search tab, you can search by command name or package name. Searching by package name will show all symbols from that package.")
                 }
                 
+                Section(header: HStack {
+                                    Image(systemName: "pencil")
+                                        .accessibility(label: Text("Double tap to clear with Apple Pencil"))
+                                    Text("Clear with Apple Pencil")
+                                    })
+                {
+                    Text("You can double tap your Apple Pencil (2nd generation) to quickly clear the drawing canvas and start over.")
+                }
+                
                 
             }
             .listStyle(InsetGroupedListStyle())
