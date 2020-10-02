@@ -14,16 +14,30 @@ struct PKCanvas: UIViewRepresentable {
         var pkCanvas: PKCanvas
         @ObservedObject var labelScores: LabelScores
         
-        let model: deTeXq = {
-            do {
-                let config = MLModelConfiguration()
-                return try deTeXq(configuration: config)
-            }
-            catch {
-                print(error)
-                fatalError("Couldn't create model")
-            }
-        }()
+        #if !APPCLIP
+            let model: deTeX = {
+                do {
+                    let config = MLModelConfiguration()
+                    return try deTeX(configuration: config)
+                }
+                catch {
+                    print(error)
+                    fatalError("Couldn't create model")
+                }
+            }()
+        #else
+            let model: deTeX8 = {
+                do {
+                    let config = MLModelConfiguration()
+                    return try deTeX8(configuration: config)
+                }
+                catch {
+                    print(error)
+                    fatalError("Couldn't create model")
+                }
+            }()
+        #endif
+        
         private let trainedImageSize = CGSize(width: 300, height: 200)
         
         init(_ pkCanvas: PKCanvas, labelScores: LabelScores) {
