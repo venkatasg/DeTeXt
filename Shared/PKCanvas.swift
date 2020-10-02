@@ -13,30 +13,17 @@ struct PKCanvas: UIViewRepresentable {
     class Coordinator: NSObject, PKCanvasViewDelegate, UIPencilInteractionDelegate {
         var pkCanvas: PKCanvas
         @ObservedObject var labelScores: LabelScores
-        
-        #if !APPCLIP
-            let model: deTeX = {
-                do {
-                    let config = MLModelConfiguration()
-                    return try deTeX(configuration: config)
-                }
-                catch {
-                    print(error)
-                    fatalError("Couldn't create model")
-                }
-            }()
-        #else
-            let model: deTeX8 = {
-                do {
-                    let config = MLModelConfiguration()
-                    return try deTeX8(configuration: config)
-                }
-                catch {
-                    print(error)
-                    fatalError("Couldn't create model")
-                }
-            }()
-        #endif
+
+        let model: deTeX = {
+            do {
+                let config = MLModelConfiguration()
+                return try deTeX(configuration: config)
+            }
+            catch {
+                print(error)
+                fatalError("Couldn't create model")
+            }
+        }()
         
         private let trainedImageSize = CGSize(width: 300, height: 200)
         
