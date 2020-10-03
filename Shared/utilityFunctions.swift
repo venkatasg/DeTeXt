@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import SwiftUI
+import UIKit
 
 // Function to find version and build number
 func appVersion() -> String {

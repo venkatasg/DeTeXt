@@ -7,7 +7,6 @@
 
 import SwiftUI
 import PencilKit
-import Combine
 
 class LabelScores: ObservableObject {
     @Published var scores = [Dictionary<String, Double>.Element]()
