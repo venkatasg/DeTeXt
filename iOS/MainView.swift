@@ -18,7 +18,7 @@ struct MainView: View {
                 .environmentObject(symbols)
                 .tabItem {
                     Image(systemName: "scribble")
-                        .accessibility(label: Text("Draw symbols."))
+                        .accessibility(label: Text("Draw symbols"))
                     Text("Draw")
                 }
                 .tag("draw")
@@ -26,9 +26,9 @@ struct MainView: View {
                 .environmentObject(symbols)
                 .tabItem {
                     Image(systemName: "magnifyingglass")
-                        .accessibility(label: Text("Search symbols."))
+                        .accessibility(label: Text("Search symbols"))
                         .accessibility(hint: Text("Search the entire list of 1098 LaTeX symbols by name."))
-                    Text("Symbols")
+                    Text("Search")
                 }
                 .tag("search")
             AboutView()
