@@ -10,29 +10,32 @@ import SwiftUI
 struct ContentView: View {
     
     @EnvironmentObject var symbols: Symbols
+    @State var pack: String
     
     var body: some View {
-        List(symbols.AllSymbols) { symbol in
-            HStack {
-                ZStack {
-                    Image("\(symbol.css_class)", label: Text(symbol.command))
-                        .font(.largeTitle)
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width:40, alignment: .center)
-                        .foregroundColor(Color.white)
+        NavigationView {
+            List(symbols.AllSymbols.filter({ $0.package?.lowercased().contains(pack) ?? false})) { symbol in
+                HStack {
+                    ZStack {
+                        Image("\(symbol.css_class)", label: Text(symbol.command))
+                            .font(.largeTitle)
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width:40, alignment: .center)
+                            .foregroundColor(Color.white)
+                    }
+                    .frame(height:80, alignment: .leading)
+                    SymbolDetailsView(symbol: symbol)
                 }
-                .frame(height:80, alignment: .leading)
-                Spacer()
-                SymbolDetailsView(symbol: symbol)
             }
+            .listStyle(CarouselListStyle())
+            .navigationBarTitle(pack)
         }
-        .listStyle(CarouselListStyle())
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(pack: "tipa")
             .environmentObject(Symbols())
     }
 }

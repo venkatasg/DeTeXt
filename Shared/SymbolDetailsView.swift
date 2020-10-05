@@ -16,8 +16,7 @@ struct SymbolDetailsView: View {
             #if os(watchOS)
             Text("\(symbol.command)")
                 .font(.system(.body, design: .monospaced))
-                .padding(.bottom, 4)
-                .padding(.top, 4)
+                .foregroundColor(Color.gray)
             #else
             Text("\(symbol.command)")
                 .font(.system(.headline, design: .monospaced))

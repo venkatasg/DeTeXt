@@ -18,7 +18,7 @@ struct DeTeXtApp: App {
             MainView()
                 .environmentObject(symbols)
             #elseif os(watchOS)
-            ContentView()
+            MainView()
                 .environmentObject(symbols)
             #endif
         }
