@@ -13,12 +13,15 @@ struct DeTeXtApp: App {
     @StateObject var symbols = Symbols()
 
     var body: some Scene {
-        #if os(iOS)
         WindowGroup {
+            #if os(iOS)
             MainView()
                 .environmentObject(symbols)
+            #elseif os(watchOS)
+            ContentView()
+                .environmentObject(symbols)
+            #endif
         }
-        #endif
     }
 }
 

@@ -33,7 +33,7 @@ struct MainView: View {
                 .tag("search")
             AboutView()
                 .tabItem {
-                    Image(systemName: "questionmark.circle.fill")
+                    Image(systemName: "questionmark.circle")
                         .accessibility(label: Text("About"))
                     Text("About")
                 }
