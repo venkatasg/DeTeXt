@@ -12,11 +12,17 @@ struct SymbolDetailsView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
+            // Command name
+            #if os(watchOS)
+            Text("\(symbol.command)")
+                .font(.system(.body, design: .monospaced))
+                .padding(.bottom, 4)
+                .padding(.top, 4)
+            #else
             Text("\(symbol.command)")
                 .font(.system(.headline, design: .monospaced))
                 .padding(.bottom, 4)
                 .padding(.top, 4)
-            #if !os(watchOS)
             if symbol.mathmode {
                 Text(" mathmode")
                     .font(.footnote)
@@ -42,7 +48,6 @@ struct SymbolDetailsView: View {
                     .foregroundColor(Color.gray)
             }
             #endif
-            
         }
     }
 }
