@@ -9,11 +9,16 @@ import SwiftUI
 
 struct SearchView: View {
     
+    @State var searchText = ""
     @EnvironmentObject var symbols: Symbols
     
     var body: some View {
         NavigationView {
-            VStack {
+            List {
+//                SearchBar(text: $searchText)
+//                    .padding(.top, 8)
+//                    .padding(.bottom, 8)
+                
                 NavigationLink(
                     destination: ContentView(pack: "tipa")
                                     .environmentObject(symbols),
@@ -72,6 +77,35 @@ struct SearchView: View {
         }
     }
 }
+
+//struct SearchBar: View {
+//
+//    @Binding var text: String
+//    @State private var isEditing = false
+//
+//    var body: some View {
+//        HStack {
+//            TextField("Search", text: $text)
+//                .overlay(
+//                    HStack {
+//                        if isEditing {
+//                            Button(action: {
+//                                self.text = ""
+//                            }) {
+//                                Image(systemName: "multiply.circle.fill")
+//                                    .foregroundColor(.gray)
+//                                    .padding(.trailing, 8)
+//                            }
+//                        }
+//                    }
+//                )
+////                .padding(.horizontal, 10)
+//                .onTapGesture {
+//                    self.isEditing = true
+//                }
+//        }
+//    }
+//}
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
