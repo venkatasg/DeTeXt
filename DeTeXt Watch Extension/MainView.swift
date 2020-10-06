@@ -26,6 +26,13 @@ struct MainView: View {
                     Text("Search")
                 }
                 .tag("search")
+            
+            BrowseView()
+                .environmentObject(symbols)
+                .tabItem {
+                    Text("Browse")
+                }
+                .tag("browse")
         }
     }
 }

@@ -20,10 +20,11 @@ struct ContentView: View {
                         Image("\(symbol.css_class)", label: Text(symbol.command))
                             .font(.largeTitle)
                             .aspectRatio(contentMode: .fit)
-                            .frame(width:40, alignment: .center)
+                            .frame(height:40, alignment: .center)
                             .foregroundColor(Color.white)
                     }
-                    .frame(height:80, alignment: .leading)
+                    .frame(height:40, alignment: .leading)
+                    .padding(.trailing, 10)
                     SymbolDetailsView(symbol: symbol)
                 }
             }

@@ -38,6 +38,7 @@ struct CanvasView: View {
                 .padding(.bottom, 10)
 
                 Divider()
+
                 ZStack {
                 if labelScores.isCanvasClear {
                     Text("Draw in the canvas above")
