@@ -34,6 +34,21 @@ struct ContentView: View {
     }
 }
 
+
+
+//Button(action: {
+//    self.showingSheet = true
+//}) {
+//    Text("Show Sheet")
+//}.sheet(isPresented: $showingSheet) {
+//    Text("Sheet").padding()
+//    #if os(macOS)
+//    Button("Close") {
+//        showingSheet.toggle()
+//    }.padding()
+//    #endif
+//}
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView(pack: "tipa")
