@@ -65,7 +65,7 @@ struct PKCanvas: UIViewRepresentable {
                     newDrawingStrokes.append(PKStroke(ink: PKInk(.pen, color: UIColor.white), path: newPath))
                 }
                 let newDrawing = PKDrawing(strokes: newDrawingStrokes)
-                var image = newDrawing.image(from: newDrawing.bounds, scale: 10.0)
+                var image = newDrawing.image(from: newDrawing.bounds, scale: 3.0)
                 //flip color from black to white in dark mode
                 if image.averageColor?.cgColor.components![0] == 0 {
                     image = invertColors(image: image)
