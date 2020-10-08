@@ -72,7 +72,9 @@ struct PKCanvas: UIViewRepresentable {
                 }
                 // overlay image on a black background
                 let processed_image = overlayBlackBg(image: image)
-                predictImage(image: processed_image)
+                DispatchQueue.main.async {
+                    self.predictImage(image: processed_image)
+                }
             }
         }
         
