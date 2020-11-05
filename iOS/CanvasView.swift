@@ -55,7 +55,6 @@ struct CanvasView: View {
                     .frame(maxHeight:.infinity)
                 }
                 }
-                .transition(.move(edge: .trailing))
                 .animation(.easeInOut)
             }
             .navigationBarItems(leading: Button(action: {
