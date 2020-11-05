@@ -90,7 +90,6 @@ struct SearchView_Previews: PreviewProvider {
         Group {
             SearchView()
                 .environmentObject(symbols)
-                .previewDevice("iPhone 11 Pro Max")
         }
     }
 }

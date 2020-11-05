@@ -51,7 +51,6 @@ struct TipsView: View {
 struct Tips_Previews: PreviewProvider {
     static var previews: some View {
         TipsView()
-            .previewDevice("iPhone 11 Pro Max")
     }
 }
 

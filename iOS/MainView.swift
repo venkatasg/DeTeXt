@@ -47,10 +47,7 @@ struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             MainView()
-                .previewLayout(.device)
                 .environmentObject(symbols)
-                .previewDevice("iPhone 11 Pro Max")
-                
         }
     }
 }

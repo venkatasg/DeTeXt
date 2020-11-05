@@ -76,8 +76,6 @@ struct CanvasView_Previews: PreviewProvider {
         Group {
             CanvasView()
                 .environmentObject(symbols)
-                .previewDevice("iPhone 11 Pro Max")
-                
         }
     }
 }

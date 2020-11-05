@@ -106,7 +106,5 @@ struct AboutView_Previews: PreviewProvider {
     
     static var previews: some View {
         AboutView()
-            .previewDevice("iPhone 11 Pro Max")
-            
     }
 }
