@@ -17,6 +17,7 @@ struct PKCanvas: UIViewRepresentable {
         let model: deTeX = {
             do {
                 let config = MLModelConfiguration()
+                config.computeUnits = .all
                 return try deTeX(configuration: config)
             }
             catch {
