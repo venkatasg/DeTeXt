@@ -19,7 +19,7 @@ struct AboutView: View {
                                         Text("Feedback")}) {
                     Text("You can contact me on Twitter for support, to report any bugs, or to suggest new features for the app.")
                     HStack {
-                        Image(systemName: "message.fill")
+                        Image(systemName: "quote.bubble.fill")
                             .font(.body)
                             .aspectRatio(contentMode: .fit)
                             .frame(width:20, alignment: .center)
