@@ -13,6 +13,10 @@ struct MainView: View {
     @EnvironmentObject var symbols: Symbols
     
     var body: some View {
+        #if targetEnvironment(macCatalyst)
+        macCanvasView()
+            .environmentObject(symbols)
+        #else
         TabView(selection: $selection) {
             CanvasView()
                 .environmentObject(symbols)
@@ -39,6 +43,7 @@ struct MainView: View {
                 }
                 .tag("about")
         }
+        #endif
     }
 }
 
