@@ -59,7 +59,7 @@ struct InfoView: View {
                             .aspectRatio(contentMode: .fit)
                             .frame(width:20, alignment: .center)
                             .foregroundColor(.green)
-                        Link("MobileNet_v2 PyTorch", destination: URL(string: "https://pytorch.org/docs/stable/torchvision/models.html#torchvision.models.mobilenet_v2")!)
+                        Link("MobileNet_V2 PyTorch", destination: URL(string: "https://pytorch.org/docs/stable/torchvision/models.html#torchvision.models.mobilenet_v2")!)
                             .foregroundColor(.primary)
                     }
                 }
