@@ -14,10 +14,8 @@ struct DeTeXtApp: App {
 
     var body: some Scene {
         WindowGroup {
-            #if os(iOS)
             MainView()
                 .environmentObject(symbols)
-            #endif
         }
     }
 }

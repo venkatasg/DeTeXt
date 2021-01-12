@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="2960px" height="1500px" viewBox="0 0 2960 1500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>symbol2dc2d7475a836ba905ecf2e27f9ed47e</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="symbol2dc2d7475a836ba905ecf2e27f9ed47e">
+            <g id="Guides" transform="translate(187.000000, 568.000000)">
+                <g id="H-reference" transform="translate(76.000000, 0.000000)" fill="#27AAE1" fill-rule="nonzero">
+                    <path d="M54.9316,71 L57.666,71 L30.5664,0.541 L28.0762,0.541 L0.976562,71 L3.66211,71 L12.9395,46.5371 L45.7031,46.5371 L54.9316,71 Z M29.1992,3.9102 L29.4434,3.9102 L44.8242,44.291 L13.8184,44.291 L29.1992,3.9102 Z" id="Shape"></path>
+                </g>
+                <line x1="0" y1="71" x2="2773" y2="71" id="Baseline-S" stroke="#27AAE1" stroke-width="0.577"></line>
+                <line x1="0" y1="0.541" x2="2773" y2="0.541" id="Capline-S" stroke="#27AAE1" stroke-width="0.577"></line>
+                <g id="H-reference" transform="translate(76.000000, 430.000000)" fill="#27AAE1" fill-rule="nonzero">
+                    <path d="M54.9316,71 L57.666,71 L30.5664,0.541 L28.0762,0.541 L0.976562,71 L3.66211,71 L12.9395,46.5371 L45.7031,46.5371 L54.9316,71 Z M29.1992,3.9102 L29.4434,3.9102 L44.8242,44.291 L13.8184,44.291 L29.1992,3.9102 Z" id="Shape"></path>
+                </g>
+                <line x1="0" y1="501" x2="2773" y2="501" id="Baseline-M" stroke="#27AAE1" stroke-width="0.577"></line>
+                <line x1="0" y1="430.54" x2="2773" y2="430.54" id="Capline-M" stroke="#27AAE1" stroke-width="0.577"></line>
+                <g id="H-reference" transform="translate(76.000000, 860.000000)" fill="#27AAE1" fill-rule="nonzero">
+                    <path d="M54.9316,71 L57.666,71 L30.5664,0.541 L28.0762,0.541 L0.976562,71 L3.66211,71 L12.9395,46.5371 L45.7031,46.5371 L54.9316,71 Z M29.1992,3.9102 L29.4434,3.9102 L44.8242,44.291 L13.8184,44.291 L29.1992,3.9102 Z" id="Shape"></path>
+                </g>
+                <line x1="0" y1="931" x2="2773" y2="931" id="Baseline-L" stroke="#27AAE1" stroke-width="0.577"></line>
+                <line x1="0" y1="860.54" x2="2773" y2="860.54" id="Capline-L" stroke="#27AAE1" stroke-width="0.577"></line>
+                <rect id="left-margin" fill="#00AEEF" fill-rule="nonzero" opacity="0.4" x="1131.06" y="405.79" width="12.4512" height="119.336"></rect>
+                <rect id="right-margin" fill="#00AEEF" fill-rule="nonzero" opacity="0.4" x="1230.18" y="405.79" width="12.4512" height="119.336"></rect>
+            </g>
+            <g id="Regular-M" transform="translate(1327.898400, 1010.484400)" fill="#000000" fill-rule="nonzero">
+                <g id="g0-40-link" transform="translate(5.454921, 5.855458)">
+                    <path d="M56.3039133,20.742044 C57.2194266,27.3032047 62.6362032,31.3467114 68.2818506,31.3467114 C75.1481772,31.3467114 80.4123709,25.8536471 80.4123709,19.2161911 C80.4123709,12.3498569 74.9193065,7.08567087 68.3581459,7.08567087 C62.4073249,7.08567087 57.1431313,11.3580559 56.3039133,17.6903382 L6.94262192,17.6903382 C5.56935966,17.6903382 4.27238508,17.6903382 4.27238508,19.2161911 C4.27238508,20.742044 5.64564733,20.742044 6.94262192,20.742044 L56.3039133,20.742044 Z M68.3581459,28.2950056 C63.1702476,28.2950056 59.2793238,24.0989158 59.2793238,19.2161911 C59.2793238,14.1045881 63.3991259,10.1373767 68.2818506,10.1373767 C73.4697413,10.1373767 77.360665,14.3334664 77.360665,19.2161911 C77.360665,24.3277942 73.240863,28.2950056 68.3581459,28.2950056 Z" id="g0-40"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
