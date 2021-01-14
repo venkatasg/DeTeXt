@@ -24,7 +24,7 @@ struct macCanvasView: View {
     
     var body: some View {
         NavigationView {
-            VStack(spacing: 0) {
+            HStack(spacing: 0) {
                 ZStack {
                     PKCanvas(canvasView: $canvas, labelScores: labelScores)
                         .environmentObject(symbols)
@@ -44,9 +44,9 @@ struct macCanvasView: View {
 
                 ZStack {
                 if labelScores.isCanvasClear {
-                    Text("Draw in the canvas above")
+                    Text("Draw in the canvas to the left")
                         .font(.system(.title, design: .rounded))
-                        .frame(maxHeight:.infinity)
+//                        .frame(maxHeight:.infinity)
                 }
                 else {
                     List {

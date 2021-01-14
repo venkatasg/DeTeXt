@@ -14,8 +14,34 @@ struct MainView: View {
     
     var body: some View {
         #if targetEnvironment(macCatalyst)
-        macCanvasView()
-            .environmentObject(symbols)
+        NavigationView {
+            List {
+                NavigationLink(
+                    destination: CanvasView()
+                                    .environmentObject(symbols),
+                    label: {
+                        Group {
+                            Image(systemName: "scribble")
+                                        .accessibility(label: Text("Draw symbols"))
+                            Text("Draw")
+                            }
+                            .font(.largeTitle)
+                        })
+                NavigationLink(
+                    destination: SearchView()
+                                    .environmentObject(symbols),
+                    label: {
+                        Group {
+                            Image(systemName: "magnifyingglass")
+                                .accessibility(label: Text("Search symbols"))
+                                .accessibility(hint: Text("Search the entire list of 1098 LaTeX symbols by name."))
+                            Text("Search")
+                            }
+                            .font(.largeTitle)
+                        })
+                }
+                .listStyle(SidebarListStyle())
+        }
         #else
         TabView(selection: $selection) {
             CanvasView()
