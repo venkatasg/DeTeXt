@@ -22,21 +22,39 @@ struct CanvasView: View {
     var body: some View {
         NavigationView {
             VStack (spacing:0) {
-                ZStack {
-                    PKCanvas(canvasView: $canvas, labelScores: labelScores)
-                        .environmentObject(symbols)
-                        .frame(minWidth: 150, idealWidth: 300, maxWidth: 600, minHeight: 100, idealHeight: 200, maxHeight: 400, alignment: .center)
-                        .aspectRatio(1.5, contentMode: .fit)
-                        .cornerRadius(15)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 15)
-                                .stroke(Color.blue, lineWidth: 3)
-                            )
-                        .padding(10)
-                }
-                .padding(.top, 10)
-                .padding(.bottom, 10)
-
+                    ZStack {
+                        PKCanvas(canvasView: $canvas, labelScores: labelScores)
+                            .environmentObject(symbols)
+                            .frame(minWidth: 150, idealWidth: 300, maxWidth: 600, minHeight: 100, idealHeight: 200, maxHeight: 400, alignment: .center)
+                            .aspectRatio(1.5, contentMode: .fit)
+                            .cornerRadius(5)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 5)
+                                    .stroke(Color.blue, lineWidth: 3)
+                                )
+                            .padding(10)
+                    }
+//                    .padding(.top, 0)
+//                    .padding(.bottom, 0)
+                    .overlay( Group {
+                        if !labelScores.isCanvasClear {
+                            ZStack {
+                                Button(action:
+                                        {   self.canvas.drawing = PKDrawing()
+                                            labelScores.isCanvasClear = true
+                                            labelScores.scores = [Dictionary<String, Double>.Element]() })
+                                            { Image(systemName: "xmark.circle.fill")
+                                                .font(.title)
+                                                .foregroundColor(.red)
+                                                .background(Color.white)}
+                                            .padding(15)
+//                                            .alignmentGuide(.top) { $0[.bottom] }
+                            }
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+                        }
+                    })
+                    .padding(.bottom, 20)
+                
                 Divider()
 
                 ZStack {
