@@ -82,7 +82,7 @@ struct AboutView: View {
             }
             .listStyle(InsetGroupedListStyle())
             
-            .navigationBarTitle("About", displayMode: .inline)
+            .navigationTitle("About")
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }

@@ -25,7 +25,7 @@ struct SearchView: View {
                 }
                 .listStyle(InsetListStyle())
             }
-            .navigationBarTitle("Search", displayMode: .inline)
+            .navigationTitle("Search")
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }

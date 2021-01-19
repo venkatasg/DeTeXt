@@ -57,13 +57,15 @@ struct CanvasView: View {
                 }
                 .animation(.easeInOut)
             }
-            .navigationBarItems(leading: Button(action: {
-                                            self.canvas.drawing = PKDrawing()
-                                            labelScores.isCanvasClear = true
-                                            labelScores.scores = [Dictionary<String, Double>.Element]()
-                                            })
-                                            { Text("Clear").padding(8)})
-            .navigationBarTitle("DeTeXt", displayMode: .inline)
+            .navigationTitle("Draw")
+//            .toolbar(content: {
+//                ToolbarItem(placement: .cancellationAction) {
+//                    Button(action: {
+//                                    self.canvas.drawing = PKDrawing()
+//                                    labelScores.isCanvasClear = true
+//                                    labelScores.scores = [Dictionary<String, Double>.Element]()})
+//                                    { Text("Clear").padding(8)} }})
+    
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
