@@ -42,6 +42,7 @@ struct MainView: View {
                 }
                 .listStyle(SidebarListStyle())
         }
+        .navigationViewStyle(DoubleColumnNavigationViewStyle())
         #else
         TabView(selection: $selection) {
             CanvasView()
