@@ -29,13 +29,11 @@ struct CanvasView: View {
                             .aspectRatio(1.5, contentMode: .fit)
                             .cornerRadius(5)
                             .overlay(
-                                RoundedRectangle(cornerRadius: 5)
+                                RoundedRectangle(cornerRadius: 15)
                                     .stroke(Color.blue, lineWidth: 3)
                                 )
                             .padding(10)
                     }
-//                    .padding(.top, 0)
-//                    .padding(.bottom, 0)
                     .overlay( Group {
                         if !labelScores.isCanvasClear {
                             ZStack {
@@ -45,10 +43,8 @@ struct CanvasView: View {
                                             labelScores.scores = [Dictionary<String, Double>.Element]() })
                                             { Image(systemName: "xmark.circle.fill")
                                                 .font(.title)
-                                                .foregroundColor(.red)
-                                                .background(Color.white)}
+                                                .foregroundColor(.red)}
                                             .padding(15)
-//                                            .alignmentGuide(.top) { $0[.bottom] }
                             }
                             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
                         }
@@ -76,13 +72,6 @@ struct CanvasView: View {
                 .animation(.easeInOut)
             }
             .navigationTitle("Draw")
-//            .toolbar(content: {
-//                ToolbarItem(placement: .cancellationAction) {
-//                    Button(action: {
-//                                    self.canvas.drawing = PKDrawing()
-//                                    labelScores.isCanvasClear = true
-//                                    labelScores.scores = [Dictionary<String, Double>.Element]()})
-//                                    { Text("Clear").padding(8)} }})
     
         }
         .navigationViewStyle(StackNavigationViewStyle())
