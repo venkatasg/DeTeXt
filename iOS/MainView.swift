@@ -49,6 +49,7 @@ struct MainView: View {
         TabView(selection: $selection) {
             NavigationView {
                 CanvasView() }
+                    .navigationViewStyle(StackNavigationViewStyle())
                     .environmentObject(symbols)
                     .tabItem {
                         Image(systemName: "scribble")
@@ -58,6 +59,7 @@ struct MainView: View {
                     .tag("draw")
             NavigationView {
                 SearchView() }
+                    .navigationViewStyle(StackNavigationViewStyle())
                     .environmentObject(symbols)
                     .tabItem {
                         Image(systemName: "magnifyingglass")
