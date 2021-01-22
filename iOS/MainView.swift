@@ -45,23 +45,25 @@ struct MainView: View {
         .navigationViewStyle(DoubleColumnNavigationViewStyle())
         #else
         TabView(selection: $selection) {
-            CanvasView()
-                .environmentObject(symbols)
-                .tabItem {
-                    Image(systemName: "scribble")
-                        .accessibility(label: Text("Draw symbols"))
-                    Text("Draw")
-                }
-                .tag("draw")
-            SearchView()
-                .environmentObject(symbols)
-                .tabItem {
-                    Image(systemName: "magnifyingglass")
-                        .accessibility(label: Text("Search symbols"))
-                        .accessibility(hint: Text("Search the entire list of 1098 LaTeX symbols by name."))
-                    Text("Search")
-                }
-                .tag("search")
+            NavigationView {
+                CanvasView() }
+                    .environmentObject(symbols)
+                    .tabItem {
+                        Image(systemName: "scribble")
+                            .accessibility(label: Text("Draw symbols"))
+                        Text("Draw")
+                    }
+                    .tag("draw")
+            NavigationView {
+                SearchView() }
+                    .environmentObject(symbols)
+                    .tabItem {
+                        Image(systemName: "magnifyingglass")
+                            .accessibility(label: Text("Search symbols"))
+                            .accessibility(hint: Text("Search the entire list of 1098 LaTeX symbols by name."))
+                        Text("Search")
+                    }
+                    .tag("search")
             AboutView()
                 .tabItem {
                     Image(systemName: "questionmark.circle")

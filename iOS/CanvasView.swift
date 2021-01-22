@@ -20,7 +20,6 @@ struct CanvasView: View {
     @ObservedObject var labelScores: LabelScores = LabelScores()
     
     var body: some View {
-        NavigationView {
             VStack (spacing:0) {
                     ZStack {
                         PKCanvas(canvasView: $canvas, labelScores: labelScores)
@@ -74,8 +73,6 @@ struct CanvasView: View {
             .navigationTitle("Draw")
     
         }
-        .navigationViewStyle(StackNavigationViewStyle())
-    }
 }
 
 struct CanvasView_Previews: PreviewProvider {

@@ -14,7 +14,6 @@ struct SearchView: View {
     @EnvironmentObject var symbols: Symbols
         
     var body: some View {
-        NavigationView {
             VStack(spacing: 0) {
                 SearchBar(text: $searchText)
                     .padding(.top, 8)
@@ -26,8 +25,6 @@ struct SearchView: View {
                 .listStyle(InsetListStyle())
             }
             .navigationTitle("Search")
-        }
-        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
