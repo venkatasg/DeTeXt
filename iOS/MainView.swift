@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     
-    @State private var selection: String = "draw"
+    @State private var selection: String? = "draw"
     @EnvironmentObject var symbols: Symbols
     
     var body: some View {
@@ -19,17 +19,19 @@ struct MainView: View {
                 NavigationLink(
                     destination: CanvasView()
                                     .environmentObject(symbols),
+                    tag: "draw", selection: $selection,
                     label: {
                         Group {
                             Image(systemName: "scribble")
                                         .accessibility(label: Text("Draw symbols"))
                             Text("Draw")
                             }
-                            .font(.largeTitle)
+                            .font(.title)
                         })
                 NavigationLink(
                     destination: SearchView()
                                     .environmentObject(symbols),
+                    tag: "search", selection: $selection,
                     label: {
                         Group {
                             Image(systemName: "magnifyingglass")
@@ -37,7 +39,7 @@ struct MainView: View {
                                 .accessibility(hint: Text("Search the entire list of 1098 LaTeX symbols by name."))
                             Text("Search")
                             }
-                            .font(.largeTitle)
+                            .font(.title)
                         })
                 }
                 .listStyle(SidebarListStyle())
