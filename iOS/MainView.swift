@@ -48,26 +48,30 @@ struct MainView: View {
         #else
         TabView(selection: $selection) {
             NavigationView {
-                CanvasView() }
-                    .navigationViewStyle(StackNavigationViewStyle())
-                    .environmentObject(symbols)
-                    .tabItem {
-                        Image(systemName: "scribble")
-                            .accessibility(label: Text("Draw symbols"))
-                        Text("Draw")
-                    }
-                    .tag("draw")
+                CanvasView()
+                }
+                .navigationViewStyle(StackNavigationViewStyle())
+                .environmentObject(symbols)
+                .tabItem {
+                    Image(systemName: "scribble")
+                        .accessibility(label: Text("Draw symbols"))
+                    Text("Draw")
+                }
+                .tag("draw")
+            
             NavigationView {
-                SearchView() }
-                    .navigationViewStyle(StackNavigationViewStyle())
-                    .environmentObject(symbols)
-                    .tabItem {
-                        Image(systemName: "magnifyingglass")
-                            .accessibility(label: Text("Search symbols"))
-                            .accessibility(hint: Text("Search the entire list of 1098 LaTeX symbols by name."))
-                        Text("Search")
-                    }
-                    .tag("search")
+                SearchView()
+                }
+                .navigationViewStyle(StackNavigationViewStyle())
+                .environmentObject(symbols)
+                .tabItem {
+                    Image(systemName: "magnifyingglass")
+                        .accessibility(label: Text("Search symbols"))
+                        .accessibility(hint: Text("Search the entire list of 1098 LaTeX symbols by name."))
+                    Text("Search")
+                }
+                .tag("search")
+            
             AboutView()
                 .tabItem {
                     Image(systemName: "questionmark.circle")
