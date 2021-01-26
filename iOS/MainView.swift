@@ -19,7 +19,7 @@ struct MainView: View {
                 NavigationLink(
                     destination: CanvasView()
                                     .environmentObject(symbols),
-                    tag: "draw", selection: $selection,
+                    tag: "draw", selection: self.$selection,
                     label: {
                         Group {
                             Image(systemName: "scribble")
@@ -31,7 +31,7 @@ struct MainView: View {
                 NavigationLink(
                     destination: SearchView()
                                     .environmentObject(symbols),
-                    tag: "search", selection: $selection,
+                    tag: "search", selection: self.$selection,
                     label: {
                         Group {
                             Image(systemName: "magnifyingglass")
@@ -42,9 +42,9 @@ struct MainView: View {
                             .font(.title)
                         })
                 }
-                .listStyle(SidebarListStyle())
+                
         }
-        .navigationViewStyle(DoubleColumnNavigationViewStyle())
+//        .listStyle(SidebarListStyle())
         #else
         TabView(selection: $selection) {
             NavigationView {
