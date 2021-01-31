@@ -17,28 +17,34 @@ struct DeTeXtApp: App {
         WindowGroup {
             SidebarView()
                 .environmentObject(symbols)
-            }
-        .commands {
-                    SidebarCommands()
-                    CommandGroup(replacing: .help, addition: {
-                        Link("Help and Support",
-                             destination: URL(string: "https://venkatasg.me/apps/detext#support")!)
-                        
-                        Divider()
-                        
-                        Link("Website",
-                             destination: URL(string: "https://venkatasg.me/apps/detext")!)
-                        Link("GitHub Repository",
-                             destination: URL(string: "https://github.com/venkatasg/DeTeXt")!)
-                        
-                        Divider()
-                        
-                        Link("Credits",
-                             destination: URL(string: "https://venkatasg.me/apps/detext#credits")!)
-                        Link("Version History",
-                             destination: URL(string: "https://venkatasg.me/apps/detext#version-history")!)
-                    })
+        }
+        .commands {   
+            CommandGroup(replacing: .help, addition: {
+                Link("Help and Support",
+                     destination: URL(string: "https://venkatasg.me/apps/detext#support")!)
+                
+                Divider()
+                
+                Link("Website",
+                     destination: URL(string: "https://venkatasg.me/apps/detext")!)
+                Link("GitHub Repository",
+                     destination: URL(string: "https://github.com/venkatasg/DeTeXt")!)
+                
+                Divider()
+                
+                Link("Credits",
+                     destination: URL(string: "https://venkatasg.me/apps/detext#credits")!)
+                Link("Version History",
+                     destination: URL(string: "https://venkatasg.me/apps/detext#version-history")!)
+            })
+    
+            CommandGroup(after: CommandGroupPlacement.undoRedo) {
+                    Button("Clear Canvas") {
+                        print("Clear canvas")
+                    }
+                    .keyboardShortcut("r", modifiers: [.command])
                 }
+        }
         #else
         WindowGroup {
             MainView()
