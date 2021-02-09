@@ -62,6 +62,7 @@ struct CanvasView: View {
                     List {
                         ForEach(labelScores.scores, id: \.key) { key, value in
                             RowView(symbol: symbols.AllSymbols.first(where: {$0.id==key})!, confidence: (value*100) )
+                                .onDrag { NSItemProvider(object: symbols.AllSymbols.first(where: {$0.id==key})!.command as NSString) }
                         }
                     }
                     .listStyle(InsetListStyle())

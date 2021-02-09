@@ -21,6 +21,7 @@ struct SearchView: View {
                 Divider()
                 List(symbols.AllSymbols.filter({searchText.isEmpty ? true : ($0.command.lowercased().contains(searchText.lowercased()) || $0.package?.lowercased().contains(searchText.lowercased()) ?? false  )})) { symbol in
                     RowView(symbol: symbol)
+                        .onDrag { NSItemProvider(object: symbol.command as NSString) }
                 }
                 .listStyle(InsetListStyle())
             }
