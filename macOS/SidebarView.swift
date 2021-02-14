@@ -18,29 +18,32 @@ struct SidebarView: View {
                 NavigationLink(
                     destination: CanvasView()
                                     .environmentObject(symbols),
-                    tag: "draw", selection: self.$selection,
+                    tag: "draw",
+                    selection: self.$selection,
                     label: {
                         Group {
                             Image(systemName: "scribble")
                                         .accessibility(label: Text("Draw symbols"))
                             Text("Draw")
-                            }
-                            .font(.title)
-                        })
+                        }
+                        .font(.title)
+                    })
+                
                 NavigationLink(
                     destination: SearchView()
                                     .environmentObject(symbols),
-                    tag: "search", selection: self.$selection,
+                    tag: "search",
+                    selection: self.$selection,
                     label: {
                         Group {
                             Image(systemName: "magnifyingglass")
                                 .accessibility(label: Text("Search symbols"))
                                 .accessibility(hint: Text("Search the entire list of 1098 LaTeX symbols by name."))
                             Text("Search")
-                            }
-                            .font(.title)
-                        })
-                }
+                        }
+                        .font(.title)
+                    })
+            }
         }
     }
 }

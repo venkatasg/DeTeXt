@@ -93,6 +93,7 @@ struct PKCanvas: UIViewRepresentable {
 
     @Binding var canvasView: PKCanvasView
     @ObservedObject var labelScores: LabelScores
+    
     let pencilInteraction = UIPencilInteraction()
 
     func makeCoordinator() -> Coordinator {

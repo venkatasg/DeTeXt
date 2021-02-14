@@ -39,17 +39,17 @@ struct DeTeXtApp: App {
             })
     
             CommandGroup(after: CommandGroupPlacement.undoRedo) {
-                    Button("Clear Canvas") {
-                        print("Clear canvas")
-                    }
-                    .keyboardShortcut("r", modifiers: [.command])
+                Button("Clear Canvas") {
+                    print("Clear canvas")
                 }
+                .keyboardShortcut("r", modifiers: [.command])
+            }
         }
         #else
         WindowGroup {
             MainView()
                 .environmentObject(symbols)
-            }
+        }
         #endif
     }
 }

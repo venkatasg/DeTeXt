@@ -26,7 +26,9 @@ struct RowView: View {
                             .foregroundColor((colorScheme == .light ? Color.black : Color.white))
                     }
                     .frame(width:40, height:40, alignment: .leading)
+                    
                     Divider()
+                    
                     SymbolDetailsView(symbol: symbol)
                     Spacer()
                     Text(String(format: "%.1f", conf) + "%")
