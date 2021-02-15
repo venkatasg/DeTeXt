@@ -34,8 +34,8 @@ struct DeTeXtApp: App {
                 
                 Link("Credits",
                      destination: URL(string: "https://venkatasg.me/apps/detext#credits")!)
-                Link("Version History",
-                     destination: URL(string: "https://venkatasg.me/apps/detext#version-history")!)
+                Link("Release Notes",
+                     destination: URL(string: "https://venkatasg.me/apps/detext#release-notes")!)
             })
     
             CommandGroup(after: CommandGroupPlacement.undoRedo) {

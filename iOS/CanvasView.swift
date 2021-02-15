@@ -10,7 +10,6 @@ import PencilKit
 
 class LabelScores: ObservableObject {
     @Published var scores = [Dictionary<String, Double>.Element]()
-    @Published var isCanvasClear: Bool = true
 }
 
 struct CanvasView: View {
@@ -34,12 +33,10 @@ struct CanvasView: View {
                             .padding(10)
                     }
                     .overlay( Group {
-                        if !labelScores.isCanvasClear {
+                        if !self.canvas.drawing.bounds.isEmpty {
                             ZStack {
                                 Button(action:
-                                        {   self.canvas.drawing = PKDrawing()
-                                            labelScores.isCanvasClear = true
-                                            labelScores.scores = [Dictionary<String, Double>.Element]() })
+                                        {   ClearCanvas() })
                                             { Image(systemName: "xmark.circle.fill")
                                                 .font(.title)
                                                 .foregroundColor(.red)}
@@ -53,7 +50,7 @@ struct CanvasView: View {
                 Divider()
 
                 ZStack {
-                if labelScores.isCanvasClear {
+                    if self.canvas.drawing.bounds.isEmpty {
                     Text("Draw in the canvas above")
                         .font(.system(.title, design: .rounded))
                         .frame(maxHeight:.infinity)
