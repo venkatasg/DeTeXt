@@ -35,7 +35,7 @@ struct CanvasView: View {
                         if !labelScores.scores.isEmpty {
                             ZStack {
                                 Button(action:
-                                        {   ClearCanvas() })
+                                        { labelScores.ClearScores() })
                                             { Image(systemName: "xmark.circle.fill")
                                                 .font(.title)
                                                 .foregroundColor(.red)}
@@ -69,11 +69,6 @@ struct CanvasView: View {
             }
             .navigationTitle("Draw")
         }
-    
-    func ClearCanvas() {
-        self.canvas.drawing = PKDrawing()
-        self.labelScores.ClearScores()
-    }
 }
 
 struct CanvasView_Previews: PreviewProvider {

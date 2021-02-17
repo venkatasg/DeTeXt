@@ -35,7 +35,6 @@ struct PKCanvas: UIViewRepresentable {
         
         func pencilInteractionDidTap(_ interaction: UIPencilInteraction) {
             // Clear the drawing when double tapped on pencil
-            self.pkCanvas.canvasView.drawing = PKDrawing()
             self.labelScores.ClearScores()
         }
 
