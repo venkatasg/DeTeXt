@@ -9,8 +9,7 @@ import SwiftUI
 
 struct SidebarView: View {
     
-    @State private var selection: String? = "draw"
-    
+    @State private var isDefaultItemActive = true
     @ObservedObject var labelScores: LabelScores
     @ObservedObject var symbols: Symbols
     
@@ -19,8 +18,7 @@ struct SidebarView: View {
             List {
                 NavigationLink(
                     destination: CanvasView(labelScores: labelScores, symbols: symbols),
-                    tag: "draw",
-                    selection: self.$selection,
+                    isActive: $isDefaultItemActive,
                     label: {
                         Group {
                             Image(systemName: "scribble")
@@ -32,8 +30,6 @@ struct SidebarView: View {
                 
                 NavigationLink(
                     destination: SearchView(symbols: symbols),
-                    tag: "search",
-                    selection: self.$selection,
                     label: {
                         Group {
                             Image(systemName: "magnifyingglass")
