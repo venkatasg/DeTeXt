@@ -10,15 +10,16 @@ import SwiftUI
 struct MainView: View {
     
     @State private var selection: String? = "draw"
-    @EnvironmentObject var symbols: Symbols
+    
+    @ObservedObject var labelScores: LabelScores
+    @ObservedObject var symbols: Symbols
     
     var body: some View {
         TabView(selection: $selection) {
             NavigationView {
-                CanvasView()
+                CanvasView(labelScores: labelScores, symbols: symbols)
                 }
                 .navigationViewStyle(StackNavigationViewStyle())
-                .environmentObject(symbols)
                 .tabItem {
                     Image(systemName: "scribble")
                         .accessibility(label: Text("Draw symbols"))
@@ -27,10 +28,9 @@ struct MainView: View {
                 .tag("draw")
             
             NavigationView {
-                SearchView()
+                SearchView(symbols: symbols)
                 }
                 .navigationViewStyle(StackNavigationViewStyle())
-                .environmentObject(symbols)
                 .tabItem {
                     Image(systemName: "magnifyingglass")
                         .accessibility(label: Text("Search symbols"))
@@ -51,11 +51,13 @@ struct MainView: View {
 }
 
 struct MainView_Previews: PreviewProvider {
+    
     static let symbols = Symbols()
+    static let labelScores = LabelScores()
+    
     static var previews: some View {
         Group {
-            MainView()
-                .environmentObject(symbols)
+            MainView(labelScores: labelScores, symbols: symbols)
         }
     }
 }

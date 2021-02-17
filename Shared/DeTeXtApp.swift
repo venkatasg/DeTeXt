@@ -6,17 +6,26 @@
 //
 
 import SwiftUI
+import PencilKit
+
+class LabelScores: ObservableObject {
+    @Published var scores = [Dictionary<String, Double>.Element]()
+    
+    func ClearScores() {
+        self.scores = [Dictionary<String, Double>.Element]()
+    }
+}
 
 @main
 struct DeTeXtApp: App {
     
     @StateObject var symbols = Symbols()
+    @StateObject var labelScores: LabelScores = LabelScores()
 
     var body: some Scene {
         #if targetEnvironment(macCatalyst)
         WindowGroup {
-            SidebarView()
-                .environmentObject(symbols)
+            SidebarView(labelScores: labelScores, symbols: symbols)
         }
         .commands {   
             CommandGroup(replacing: .help, addition: {
@@ -40,15 +49,14 @@ struct DeTeXtApp: App {
     
             CommandGroup(after: CommandGroupPlacement.undoRedo) {
                 Button("Clear Canvas") {
-                    print("Clear canvas")
+                    self.labelScores.ClearScores()
                 }
                 .keyboardShortcut("r", modifiers: [.command])
             }
         }
         #else
         WindowGroup {
-            MainView()
-                .environmentObject(symbols)
+            MainView(labelScores: labelScores, symbols: symbols)
         }
         #endif
     }

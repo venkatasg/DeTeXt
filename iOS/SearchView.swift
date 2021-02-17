@@ -11,7 +11,7 @@ struct SearchView: View {
     
     @State var searchText = ""
     @Environment(\.colorScheme) var colorScheme
-    @EnvironmentObject var symbols: Symbols
+    @ObservedObject var symbols: Symbols
         
     var body: some View {
             VStack(spacing: 0) {
@@ -86,8 +86,7 @@ struct SearchView_Previews: PreviewProvider {
     static let symbols = Symbols()
     static var previews: some View {
         Group {
-            SearchView()
-                .environmentObject(symbols)
+            SearchView(symbols: symbols)
         }
     }
 }

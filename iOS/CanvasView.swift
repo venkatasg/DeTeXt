@@ -8,15 +8,14 @@
 import SwiftUI
 import PencilKit
 
-class LabelScores: ObservableObject {
-    @Published var scores = [Dictionary<String, Double>.Element]()
-}
+
 
 struct CanvasView: View {
     
-    @State private var canvas = PKCanvasView()
-    @EnvironmentObject var symbols: Symbols
-    @ObservedObject var labelScores: LabelScores = LabelScores()
+    @ObservedObject var labelScores: LabelScores
+    @ObservedObject var symbols: Symbols
+    
+    @State var canvas = PKCanvasView()
     
     var body: some View {
             VStack (spacing:0) {
@@ -33,7 +32,7 @@ struct CanvasView: View {
                             .padding(10)
                     }
                     .overlay( Group {
-                        if !self.canvas.drawing.bounds.isEmpty {
+                        if !labelScores.scores.isEmpty {
                             ZStack {
                                 Button(action:
                                         {   ClearCanvas() })
@@ -50,35 +49,39 @@ struct CanvasView: View {
                 Divider()
 
                 ZStack {
-                    if self.canvas.drawing.bounds.isEmpty {
-                    Text("Draw in the canvas above")
-                        .font(.system(.title, design: .rounded))
-                        .frame(maxHeight:.infinity)
-                }
-                else {
-                    List {
-                        ForEach(labelScores.scores, id: \.key) { key, value in
-                            RowView(symbol: symbols.AllSymbols.first(where: {$0.id==key})!, confidence: (value*100) )
-                                .onDrag { NSItemProvider(object: symbols.AllSymbols.first(where: {$0.id==key})!.command as NSString) }
-                        }
+                    if labelScores.scores.isEmpty {
+                        Text("Draw in the canvas above")
+                            .font(.system(.title, design: .rounded))
+                            .frame(maxHeight:.infinity)
                     }
-                    .listStyle(InsetListStyle())
-                    .frame(maxHeight:.infinity)
-                }
+                    else {
+                        List {
+                            ForEach(labelScores.scores, id: \.key) { key, value in
+                                RowView(symbol: symbols.AllSymbols.first(where: {$0.id==key})!, confidence: (value*100) )
+                                    .onDrag { NSItemProvider(object: symbols.AllSymbols.first(where: {$0.id==key})!.command as NSString) }
+                            }
+                        }
+                        .listStyle(InsetListStyle())
+                        .frame(maxHeight:.infinity)
+                    }
                 }
                 .animation(.easeInOut)
             }
             .navigationTitle("Draw")
-    
         }
+    
+    func ClearCanvas() {
+        self.canvas.drawing = PKDrawing()
+        self.labelScores.ClearScores()
+    }
 }
 
 struct CanvasView_Previews: PreviewProvider {
     static let symbols = Symbols()
+    static let labelScores = LabelScores()
     static var previews: some View {
         Group {
-            CanvasView()
-                .environmentObject(symbols)
+            CanvasView(labelScores: labelScores, symbols: symbols)
         }
     }
 }

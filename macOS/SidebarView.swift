@@ -10,14 +10,15 @@ import SwiftUI
 struct SidebarView: View {
     
     @State private var selection: String? = "draw"
-    @EnvironmentObject var symbols: Symbols
+    
+    @ObservedObject var labelScores: LabelScores
+    @ObservedObject var symbols: Symbols
     
     var body: some View {
         NavigationView {
             List {
                 NavigationLink(
-                    destination: CanvasView()
-                                    .environmentObject(symbols),
+                    destination: CanvasView(labelScores: labelScores, symbols: symbols),
                     tag: "draw",
                     selection: self.$selection,
                     label: {
@@ -30,8 +31,7 @@ struct SidebarView: View {
                     })
                 
                 NavigationLink(
-                    destination: SearchView()
-                                    .environmentObject(symbols),
+                    destination: SearchView(symbols: symbols),
                     tag: "search",
                     selection: self.$selection,
                     label: {
@@ -49,11 +49,13 @@ struct SidebarView: View {
 }
 
 struct SidebarView_Previews: PreviewProvider {
+    
     static let symbols = Symbols()
+    static let labelScores = LabelScores()
+    
     static var previews: some View {
         Group {
-            SidebarView()
-                .environmentObject(symbols)
+            SidebarView(labelScores: labelScores, symbols: symbols)
         }
     }
 }
