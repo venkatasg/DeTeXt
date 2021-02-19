@@ -8,8 +8,6 @@
 import SwiftUI
 import PencilKit
 
-
-
 struct CanvasView: View {
     
     @ObservedObject var labelScores: LabelScores
