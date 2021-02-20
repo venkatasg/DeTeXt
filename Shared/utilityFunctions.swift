@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 // Function to find version and build number
 func appVersion() -> String {
@@ -14,11 +15,8 @@ func appVersion() -> String {
         return "DeTeXt \(version) (Build \(build))"
     }
 
-// Functions for haptics
-#if !os(macOS)
-    import UIKit
-    func modelHaptics() {
-        let generator = UINotificationFeedbackGenerator()
-        generator.notificationOccurred(.success)
-    }
-#endif
+// Functions for haptics    
+func modelHaptics() {
+    let generator = UINotificationFeedbackGenerator()
+    generator.notificationOccurred(.success)
+}
