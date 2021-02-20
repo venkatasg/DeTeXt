@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 // Function to find version and build number
 func appVersion() -> String {
@@ -16,7 +15,10 @@ func appVersion() -> String {
     }
 
 // Functions for haptics
-func modelHaptics() {
-    let generator = UINotificationFeedbackGenerator()
-    generator.notificationOccurred(.success)
-}
+#if !os(macOS)
+    import UIKit
+    func modelHaptics() {
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.success)
+    }
+#endif

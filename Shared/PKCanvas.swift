@@ -43,7 +43,9 @@ struct PKCanvas: UIViewRepresentable {
             if canvasView.drawing.bounds.isEmpty { }
             else {
                 // haptic feedback
-                modelHaptics()
+                #if !os(macOS)
+                    modelHaptics()
+                #endif
                 
                 // Find the scaling factor for drawings and appropriate pointsize
                 let scaleH = canvasView.drawing.bounds.size.width / canvasView.frame.width
