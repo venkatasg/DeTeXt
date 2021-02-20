@@ -9,44 +9,45 @@ import SwiftUI
 
 struct SymbolDetailsView: View {
     let symbol: Symbol
+    #if targetEnvironment(macCatalyst)
+        let mainFontSize = Font.TextStyle.title
+        let subFontSize = Font.TextStyle.body
+    #else
+        let mainFontSize = Font.TextStyle.headline
+        let subFontSize = Font.TextStyle.footnote
+    #endif
     
     var body: some View {
         VStack(alignment: .leading) {
-            // Command name
-            #if os(watchOS)
             Text("\(symbol.command)")
-                .font(.system(.body, design: .monospaced))
-                .foregroundColor(Color.gray)
-            #else
-            Text("\(symbol.command)")
-                .font(.system(.headline, design: .monospaced))
+                .font(.system(mainFontSize, design: .monospaced))
                 .padding(.bottom, 4)
                 .padding(.top, 4)
+            
             if symbol.mathmode {
                 Text(" mathmode")
-                    .font(.footnote)
+                    .font(.system(subFontSize, design: .default))
                     .foregroundColor(Color.gray)
             }
             else if symbol.textmode {
                 Text(" textmode")
-                    .font(.footnote)
+                    .font(.system(subFontSize, design: .default))
                     .foregroundColor(Color.gray)
             }
             else {}
 
             if let package = symbol.package {
                 Text("\\usepackage{\(package)}")
-                    .font(.system(.footnote, design: .monospaced))
+                    .font(.system(subFontSize, design: .monospaced))
                     .foregroundColor(Color.gray)
             }
             
             
             if let fontenc = symbol.fontenc {
                 Text("fontenc: \(fontenc)")
-                    .font(.system(.footnote, design: .monospaced))
+                    .font(.system(subFontSize, design: .monospaced))
                     .foregroundColor(Color.gray)
             }
-            #endif
         }
     }
 }

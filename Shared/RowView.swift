@@ -11,6 +11,12 @@ struct RowView: View {
     
     @Environment(\.colorScheme) var colorScheme
     
+    #if targetEnvironment(macCatalyst)
+        let confidenceFontSize = Font.TextStyle.title2
+    #else
+        let confidenceFontSize = Font.TextStyle.callout
+    #endif
+    
     let symbol: Symbol
     var confidence: Double?
     
@@ -32,7 +38,7 @@ struct RowView: View {
                     SymbolDetailsView(symbol: symbol)
                     Spacer()
                     Text(String(format: "%.1f", conf) + "%")
-                        .font(.system(.callout, design: .rounded))
+                        .font(.system(confidenceFontSize, design: .rounded))
                 }
             }
             else {
