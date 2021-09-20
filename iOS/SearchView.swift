@@ -12,6 +12,7 @@ struct SearchView: View {
     @State var searchText = ""
     @Environment(\.colorScheme) var colorScheme
     @ObservedObject var symbols: Symbols
+    @State var showAboutView = false
         
     var body: some View {
             VStack(spacing: 0) {
@@ -25,7 +26,14 @@ struct SearchView: View {
                 }
                 .listStyle(InsetListStyle())
             }
+            .navigationBarItems(trailing: Button(action: {self.showAboutView.toggle()}) {
+                Image(systemName: "questionmark.circle")
+                    .font(.title2)
+                    .accessibility(label: Text("About"))
+                }
+            )
             .navigationTitle("Search")
+            .sheet(isPresented: $showAboutView) { AboutView() }
     }
 }
 

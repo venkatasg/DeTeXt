@@ -12,6 +12,7 @@ struct CanvasView: View {
     
     @ObservedObject var labelScores: LabelScores
     @ObservedObject var symbols: Symbols
+    @State var showAboutView = false
     
     @State var canvas = PKCanvasView()
     
@@ -65,8 +66,16 @@ struct CanvasView: View {
                 }
                 .animation(.easeInOut)
             }
+            .navigationBarItems(trailing: Button(action: {self.showAboutView.toggle()}) {
+                    Image(systemName: "questionmark.circle")
+                        .font(.title2)
+                        .accessibility(label: Text("About"))
+                }
+            )
             .navigationTitle("Draw")
+            .sheet(isPresented: $showAboutView) { AboutView() }
         }
+    
 }
 
 struct CanvasView_Previews: PreviewProvider {
