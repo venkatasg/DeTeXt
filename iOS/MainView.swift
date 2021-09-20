@@ -38,14 +38,6 @@ struct MainView: View {
                     Text("Search")
                 }
                 .tag("search")
-            
-            AboutView()
-                .tabItem {
-                    Image(systemName: "questionmark.circle")
-                        .accessibility(label: Text("About"))
-                    Text("About")
-                }
-                .tag("about")
         }
     }
 }
