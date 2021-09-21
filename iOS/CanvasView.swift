@@ -68,7 +68,7 @@ struct CanvasView: View {
             }
             .navigationBarItems(trailing: Button(action: {self.showAboutView.toggle()}) {
                     Image(systemName: "questionmark.circle")
-                        .font(.title2)
+                        .font(.title3)
                         .accessibility(label: Text("About"))
                 }
             )
