@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct MainView: View {
     
@@ -39,6 +40,9 @@ struct MainView: View {
                 }
                 .tag("search")
         }
+        .onAppear() {
+            UITabBar.appearance().backgroundColor = UIColor.secondarySystemBackground
+               }
     }
 }
 
