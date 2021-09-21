@@ -118,7 +118,7 @@ struct AboutView: View {
                 self.presentationMode.wrappedValue.dismiss()}) {
                     #if targetEnvironment(macCatalyst)
                         Image(systemName: "xmark.circle")
-                            .font(.title3)
+                            .font(.title2)
                             .accessibility(label: Text("Close"))
                     #else
                         Image(systemName: "chevron.down")
