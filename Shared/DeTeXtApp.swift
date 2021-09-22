@@ -35,9 +35,9 @@ struct DeTeXtApp: App {
                 Divider()
                 
                 Link("Website",
-                     destination: URL(string: "https://venkatasg.me/apps/detext")!)
+                     destination: URL(string: "https://venkatasg.net/apps/detext")!)
                 Link("Release Notes",
-                     destination: URL(string: "https://venkatasg.me/apps/detext#release-notes")!)
+                     destination: URL(string: "https://venkatasg.net/apps/detext#release-notes")!)
                 Link("GitHub Repository",
                      destination: URL(string: "https://github.com/venkatasg/DeTeXt")!)
             })
