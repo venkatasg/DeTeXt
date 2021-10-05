@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AboutView: View {
     
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
         
     var body: some View {
         NavigationView {
@@ -115,7 +115,7 @@ struct AboutView: View {
             
             .navigationTitle("About")
             .navigationBarItems(trailing: Button(action: {
-                self.presentationMode.wrappedValue.dismiss()}) {
+                self.dismiss()}) {
                     #if targetEnvironment(macCatalyst)
                         Image(systemName: "xmark.circle")
                             .font(.title2)

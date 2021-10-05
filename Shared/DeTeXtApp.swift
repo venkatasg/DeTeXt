@@ -53,6 +53,14 @@ struct DeTeXtApp: App {
         WindowGroup {
             MainView(labelScores: labelScores, symbols: symbols)
         }
+        .commands {
+            CommandGroup(after: CommandGroupPlacement.undoRedo) {
+                Button("Clear Canvas") {
+                    self.labelScores.ClearScores()
+                }
+                .keyboardShortcut("r", modifiers: [.command])
+            }
+        }
         #endif
     }
 }

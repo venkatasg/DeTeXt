@@ -33,13 +33,16 @@ struct CanvasView: View {
                     .overlay( Group {
                         if !labelScores.scores.isEmpty {
                             ZStack {
-                                Button(action:
-                                        { labelScores.ClearScores() })
-                                            { Image(systemName: "xmark.circle.fill")
-                                                .font(.title)
-                                                .foregroundColor(.red)}
-                                            .padding(15)
+                                Button(action: { labelScores.ClearScores()},
+                                       label: {
+                                    Image(systemName: "xmark.circle.fill")
+                                        .font(.title)
+                                        .foregroundColor(.red)
+                                    }
+                                )
+                                .padding(15)
                             }
+//                            .animation(.easeInOut(duration: 2), value: self.canvas)
                             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
                         }
                     })
@@ -64,7 +67,7 @@ struct CanvasView: View {
                         .frame(maxHeight:.infinity)
                     }
                 }
-                .animation(.easeInOut)
+//                .animation(.easeInOut(duration: 2.0), value: true)
             }
             .navigationBarItems(trailing: Button(action: {self.showAboutView.toggle()}) {
                     #if targetEnvironment(macCatalyst)
