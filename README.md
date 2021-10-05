@@ -52,4 +52,4 @@ DeTeXt was built using SwiftUI, PencilKit, CoreML and Combine.
 Code used to generate drawings, figures and the image classification model can
 be found in the [supplementary repository](https://github.com/venkatasg/DeTeXt-Supplementary)
 
-**Note**: Switch to the iOS 14 branch to test on devices with iOS 14.
+**Note**: The main branch of this repository is built for iOS 15, and uses new APIs introduced with that release. Switch to the iOS-14 branch to run/test on devices with iOS 14.
