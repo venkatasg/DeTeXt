@@ -24,19 +24,15 @@ struct RowView: View {
         Group {
             if let conf = confidence {
                 HStack {
-                    ZStack {
-                        Image("\(symbol.css_class)", label: Text(symbol.command))
-                            .font(.largeTitle)
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width:40, alignment: .center)
-                            .foregroundColor((colorScheme == .light ? Color.black : Color.white))
-                    }
-                    .frame(width:40, height:40, alignment: .leading)
+                    Image("\(symbol.css_class)", label: Text(symbol.command))
+                            .asThumbnail(colorScheme: colorScheme)
                     
                     Divider()
                     
                     SymbolDetailsView(symbol: symbol)
+                    
                     Spacer()
+                    
                     Text(String(format: "%.1f", conf) + "%")
                         .font(.system(confidenceFontSize, design: .rounded))
                 }
@@ -44,20 +40,16 @@ struct RowView: View {
             else {
                 HStack {
                     SymbolDetailsView(symbol: symbol)
+                    
                     Spacer()
-                    ZStack {
-                        Image("\(symbol.css_class)", label: Text(symbol.command))
-                            .font(.largeTitle)
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width:40, alignment: .center)
-                            .foregroundColor((colorScheme == .light ? Color.black : Color.white))
-                    }
-                    .frame(width:40, height:40, alignment: .trailing)
+                    
+                    Image("\(symbol.css_class)", label: Text(symbol.command))
+                            .asThumbnail(colorScheme: colorScheme)
                     
                 }
             }
         }
-        .contextMenu(/*@START_MENU_TOKEN@*/ContextMenu(menuItems: {
+        .contextMenu(ContextMenu(menuItems: {
             Button(action: {
                 let pasteboard = UIPasteboard.general
                 pasteboard.string = symbol.command
@@ -67,7 +59,15 @@ struct RowView: View {
                     Image(systemName: "doc.on.doc.fill")
                 }
             }
-        })/*@END_MENU_TOKEN@*/)
+        }))
     }
 }
 
+extension Image {
+    func asThumbnail(colorScheme: ColorScheme) -> some View {
+        font(.largeTitle)
+            .aspectRatio(contentMode: .fit)
+            .frame(width:40, alignment: .center)
+            .foregroundColor((colorScheme == .light ? Color.black : Color.white))
+    }
+}

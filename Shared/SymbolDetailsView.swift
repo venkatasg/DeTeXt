@@ -24,30 +24,38 @@ struct SymbolDetailsView: View {
                 .padding(.bottom, 4)
                 .padding(.top, 4)
             
+            // Display mode if present
             if symbol.mathmode {
-                Text(" mathmode")
-                    .font(.system(subFontSize, design: .default))
-                    .foregroundColor(Color.gray)
+                Text(" mathmode").def(fontSize: subFontSize)
             }
             else if symbol.textmode {
-                Text(" textmode")
-                    .font(.system(subFontSize, design: .default))
-                    .foregroundColor(Color.gray)
+                Text(" textmode").def(fontSize: subFontSize)
             }
             else {}
 
+            // Display package if present
             if let package = symbol.package {
-                Text("\\usepackage{\(package)}")
-                    .font(.system(subFontSize, design: .monospaced))
-                    .foregroundColor(Color.gray)
+                Text("\\usepackage{\(package)}").mono(fontSize: subFontSize)
             }
             
-            
+            // Display font enc if present
             if let fontenc = symbol.fontenc {
-                Text("fontenc: \(fontenc)")
-                    .font(.system(subFontSize, design: .monospaced))
-                    .foregroundColor(Color.gray)
+                Text("fontenc: \(fontenc)").mono(fontSize: subFontSize)
             }
         }
+    }
+}
+
+extension Text {
+    // Text View modifier to show monospace text for package name and fontenc
+    func mono(fontSize: Font.TextStyle) -> some View {
+        font(.system(fontSize, design: .monospaced))
+            .foregroundColor(Color.gray)
+    }
+    
+    // Text view modifier to show text for mode
+    func def(fontSize: Font.TextStyle) -> some View {
+        font(.system(fontSize, design: .default))
+            .foregroundColor(Color.gray)
     }
 }
