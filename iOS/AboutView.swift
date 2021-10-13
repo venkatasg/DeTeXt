@@ -115,7 +115,8 @@ struct AboutView: View {
             
             .navigationTitle("About")
             .navigationBarItems(trailing: Button(action: {
-                self.dismiss()}) {
+                self.dismiss()
+            }) {
                     #if targetEnvironment(macCatalyst)
                         Image(systemName: "xmark.circle")
                             .font(.title2)
@@ -134,7 +135,7 @@ struct AboutView: View {
 
 
 struct AboutView_Previews: PreviewProvider {
-    
+
     static var previews: some View {
         AboutView()
     }

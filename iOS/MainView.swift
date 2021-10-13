@@ -8,38 +8,46 @@
 import SwiftUI
 import UIKit
 
+enum Tab {
+    case draw
+    case search
+}
+
+class TabController: ObservableObject {
+    @Published var activeTab = Tab.draw
+    
+    func open(_ tab: Tab) {
+        activeTab = tab
+    }
+}
+
 struct MainView: View {
     
-    @State private var selection: String? = "draw"
+    @StateObject private var tabController = TabController()
     
     @ObservedObject var labelScores: LabelScores
     @ObservedObject var symbols: Symbols
     
     var body: some View {
-        TabView(selection: $selection) {
-            NavigationView {
-                CanvasView(labelScores: labelScores, symbols: symbols)
-                }
-                .navigationViewStyle(StackNavigationViewStyle())
+        TabView(selection: $tabController.activeTab) {
+            CanvasView(labelScores: labelScores, symbols: symbols)
+                .tag(Tab.draw)
                 .tabItem {
                     Image(systemName: "scribble")
                         .accessibility(label: Text("Draw symbols"))
                     Text("Draw")
                 }
-                .tag("draw")
             
-            NavigationView {
-                SearchView(symbols: symbols)
-                }
-                .navigationViewStyle(StackNavigationViewStyle())
+            SearchView(symbols: symbols)
+                .tag(Tab.search)
                 .tabItem {
                     Image(systemName: "magnifyingglass")
                         .accessibility(label: Text("Search symbols"))
                         .accessibility(hint: Text("Search the entire list of 1098 LaTeX symbols by name."))
                     Text("Search")
                 }
-                .tag("search")
         }
+        .environmentObject(tabController)
         .onAppear() {
             let appearance = UITabBarAppearance()
             UITabBar.appearance().scrollEdgeAppearance = appearance

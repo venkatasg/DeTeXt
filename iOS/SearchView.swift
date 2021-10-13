@@ -10,32 +10,37 @@ import SwiftUI
 struct SearchView: View {
     
     @State var searchText = ""
-    @Environment(\.colorScheme) var colorScheme
     @ObservedObject var symbols: Symbols
     @State var showAboutView = false
+    
+    @EnvironmentObject private var tabController: TabController
         
     var body: some View {
-        List(symbols.AllSymbols.filter({searchText.isEmpty ? true : ($0.command.lowercased().contains(searchText.lowercased()) || $0.package?.lowercased().contains(searchText.lowercased()) ?? false  )})) { symbol in
-            RowView(symbol: symbol)
-                .onDrag { NSItemProvider(object: symbol.command as NSString) }
+        NavigationView {
+            List(symbols.AllSymbols.filter({searchText.isEmpty ? true : ($0.command.lowercased().contains(searchText.lowercased()) || $0.package?.lowercased().contains(searchText.lowercased()) ?? false  )})) { symbol in
+                RowView(symbol: symbol)
+                    .onDrag { NSItemProvider(object: symbol.command as NSString) }
+                }
+                .listStyle(InsetListStyle())
+                .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
+            
+            .navigationBarItems(trailing: Button(action: {self.showAboutView.toggle()}) {
+                    #if targetEnvironment(macCatalyst)
+                        Image(systemName: "questionmark.circle")
+                            .font(.title2)
+                            .accessibility(label: Text("About"))
+                    #else
+                        Image(systemName: "questionmark.circle")
+                            .font(.title3)
+                            .accessibility(label: Text("About"))
+                    #endif
+                }
+            )
+            .navigationTitle("Search")
+            .sheet(isPresented: $showAboutView, onDismiss: { tabController.open(.search) }) { AboutView() }
         }
-        .listStyle(InsetListStyle())
-        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
-        .navigationBarItems(trailing: Button(action: {self.showAboutView.toggle()}) {
-                #if targetEnvironment(macCatalyst)
-                    Image(systemName: "questionmark.circle")
-                        .font(.title2)
-                        .accessibility(label: Text("About"))
-                #else
-                    Image(systemName: "questionmark.circle")
-                        .font(.title3)
-                        .accessibility(label: Text("About"))
-                #endif
-            }
-        )
-        .navigationTitle("Search")
-        .sheet(isPresented: $showAboutView) { AboutView() }
-    }
+        .navigationViewStyle(StackNavigationViewStyle())
+    }   
 }
 
 struct SearchView_Previews: PreviewProvider {
