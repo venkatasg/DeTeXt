@@ -32,16 +32,6 @@ struct AboutView: View {
                             .foregroundColor(.primary)
                     }
                     HStack {
-                        Image(systemName: "quote.bubble.fill")
-                            .font(.body)
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width:20, alignment: .center)
-                            .foregroundColor(.blue)
-                            .accessibility(label: Text("Contact me on Twitter"))
-                        Link("Contact me on Twitter", destination: URL(string: "https://twitter.com/_venkatasg")!)
-                            .foregroundColor(.primary)
-                    }
-                    HStack {
                         Image(systemName: "heart.circle.fill")
                             .font(.body)
                             .aspectRatio(contentMode: .fit)
@@ -91,7 +81,7 @@ struct AboutView: View {
                             .aspectRatio(contentMode: .fit)
                             .frame(width:20, alignment: .center)
                             .foregroundColor(.green)
-                        Link("MobileNet_V2 PyTorch", destination: URL(string: "https://pytorch.org/docs/stable/torchvision/models.html#torchvision.models.mobilenet_v2")!)
+                        Link("MobileNet_V2 PyTorch", destination: URL(string: "https://pytorch.org/hub/pytorch_vision_mobilenet_v2/")!)
                             .foregroundColor(.primary)
                     }
                 }
