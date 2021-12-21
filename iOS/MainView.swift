@@ -8,11 +8,13 @@
 import SwiftUI
 import UIKit
 
+// Enumeration of two major view in app
 enum Tab {
     case draw
     case search
 }
 
+// Tabcontroller controls active TabView
 class TabController: ObservableObject {
     @Published var activeTab = Tab.draw
     
