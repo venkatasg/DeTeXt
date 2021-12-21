@@ -25,7 +25,7 @@ struct DeTeXtApp: App {
     var body: some Scene {
         #if targetEnvironment(macCatalyst)
         WindowGroup {
-            SidebarView(labelScores: labelScores, symbols: symbols)
+            TwoColumnMainView(labelScores: labelScores, symbols: symbols)
         }
         .commands {   
             CommandGroup(replacing: .help, addition: {
