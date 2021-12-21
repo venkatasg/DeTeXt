@@ -37,7 +37,11 @@ struct SearchView: View {
                 }
             )
             .navigationTitle("Search")
-            .sheet(isPresented: $showAboutView, onDismiss: { tabController.open(.search) }) { AboutView() }
+            #if targetEnvironment(macCatalyst)
+            .sheet(isPresented: $showAboutView) { AboutView() }
+            #else
+            .sheet(isPresented: $showAboutView, onDismiss: { tabController.open(.draw) }) { AboutView() }
+            #endif
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }   

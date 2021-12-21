@@ -71,9 +71,9 @@ struct CanvasView: View {
 
             .navigationBarItems(trailing: Button(action: {self.showAboutView.toggle()}) {
                     #if targetEnvironment(macCatalyst)
-                        Image(systemName: "questionmark.circle")
-                            .font(.title2)
-                            .accessibility(label: Text("About"))
+//                        Image(systemName: "questionmark.circle")
+//                            .font(.title2)
+//                            .accessibility(label: Text("About"))
                     #else
                         Image(systemName: "questionmark.circle")
                             .font(.title3)
