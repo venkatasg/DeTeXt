@@ -19,6 +19,7 @@ struct RowView: View {
     
     let symbol: Symbol
     var confidence: Double?
+    let pasteboard = UIPasteboard.general
     
     var body: some View {
         Group {
@@ -49,9 +50,12 @@ struct RowView: View {
                 }
             }
         }
+        .contentShape(Rectangle())
+        .onTapGesture(count: 2) {
+            pasteboard.string = symbol.command
+        }
         .contextMenu(ContextMenu(menuItems: {
             Button(action: {
-                let pasteboard = UIPasteboard.general
                 pasteboard.string = symbol.command
             }){
                 HStack {
