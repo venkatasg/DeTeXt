@@ -117,6 +117,7 @@ struct AboutView: View {
                             .accessibility(label: Text("Close"))
                     #endif
                 }
+                .buttonStyle(.borderless)
             )
         }
         .navigationViewStyle(StackNavigationViewStyle())
