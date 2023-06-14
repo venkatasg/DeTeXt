@@ -15,7 +15,7 @@ struct AboutView: View {
         NavigationView {
             List {
                 Section(header: Text(appVersion()).padding(.leading, 0)) {
-                    Text("Made, with ❤️, by Venkat. Inspired by Detexify, I wanted to make a native iOS app for translating hand-drawn symbols to their corresponding LaTeX commands that was fast, efficient, and lightweight.")
+                    Text("Made, with ❤️, by [Venkat](https://venkatasg.net). Inspired by Detexify, I wanted to make a native iOS app for translating hand-drawn symbols to their corresponding LaTeX commands that was fast, efficient, and lightweight.")
                 }
                 
                 //Feedback
@@ -23,13 +23,12 @@ struct AboutView: View {
                     Text("You can [email me](mailto:venkat@venkatasg.net) or contact me on [Twitter](https://twitter.com/_venkatasg) for support, to report any bugs, or to suggest new features for the app.")
                     HStack {
                         Image(systemName: "heart.circle.fill")
-                            .font(.body)
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width:20, alignment: .center)
                             .foregroundColor(.pink)
                             .accessibility(label: Text("Please Rate & Review DeTeXt"))
                         Link("Rate and Review on App Store", destination: URL(string: "itms-apps://itunes.apple.com/app/id1531906207?action=write-review")!)
-                            .foregroundColor(.primary)
+                        Spacer()
+                        Image(systemName: "chevron.forward")
+                            .foregroundColor(.blue)
                     }
                 }
                 
@@ -56,20 +55,13 @@ struct AboutView: View {
                 }
             }
             .listStyle(InsetGroupedListStyle())
-            
+            .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("About")
-            .navigationBarItems(trailing: Button(action: {
+            .navigationBarItems(leading: Button(action: {
                 self.dismiss()
             }) {
-                    #if targetEnvironment(macCatalyst)
-                        Image(systemName: "xmark.circle")
-                            .font(.title2)
-                            .accessibility(label: Text("Close"))
-                    #else
-                        Image(systemName: "chevron.down")
-                            .font(.title3)
-                            .accessibility(label: Text("Close"))
-                    #endif
+                    Text("Done")
+                        .accessibility(label: Text("Done"))
                 }
                 .buttonStyle(.borderless)
             )
