@@ -28,19 +28,23 @@ struct CanvasView: View {
                         .aspectRatio(1.5, contentMode: .fit)
                         .cornerRadius(5)
                         .overlay(
-                            RoundedRectangle(cornerRadius: 15)
+                            RoundedRectangle(cornerRadius: 10, style: .continuous)
                                 .stroke(Color.blue, lineWidth: 3)
                             )
-                        .padding(10)
+                        .padding(.init(top: 10, leading: 10, bottom: 20, trailing: 10))
                     }
                     .overlay( Group {
                         if !labelScores.scores.isEmpty {
                             ZStack {
-                                Button(action: { labelScores.ClearScores()},
-                                       label: {
-                                    Image(systemName: "xmark.circle.fill")
-                                        .font(.title)
-                                        .foregroundColor(.red)
+                                Button(
+                                    role: .destructive,
+                                    action: {
+                                        labelScores.ClearScores()
+                                    },
+                                    label: {
+                                        Image(systemName: "clear.fill")
+                                            .font(.title)
+                                            .foregroundColor(.red)
                                     }
                                 )
                                 .padding(15)
@@ -48,14 +52,13 @@ struct CanvasView: View {
                             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
                         }
                     })
-                    .padding(.bottom, 20)
                 
                 Divider()
 
                 ZStack {
                     List {
                         ForEach(labelScores.scores, id: \.key) { key, value in
-                            RowView(symbol: symbols.AllSymbols.first(where: {$0.id==key})!, confidence: (value*100) )
+                            RowView(symbol: symbols.AllSymbols.first(where: {$0.id==key})! )
                                 .onDrag { NSItemProvider(object: symbols.AllSymbols.first(where: {$0.id==key})!.command as NSString) }
                             }
                         }
@@ -71,9 +74,6 @@ struct CanvasView: View {
 
             .navigationBarItems(trailing: Button(action: {self.showAboutView.toggle()}) {
                     #if targetEnvironment(macCatalyst)
-//                        Image(systemName: "questionmark.circle")
-//                            .font(.title2)
-//                            .accessibility(label: Text("About"))
                     #else
                         Image(systemName: "questionmark.circle")
                             .font(.title3)
