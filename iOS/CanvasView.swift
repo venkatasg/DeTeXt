@@ -42,9 +42,15 @@ struct CanvasView: View {
                                         labelScores.ClearScores()
                                     },
                                     label: {
-                                        Image(systemName: "clear.fill")
-                                            .font(.title)
-                                            .foregroundColor(.red)
+                                        #if targetEnvironment(macCatalyst)
+                                            Text("Clear")
+                                                .font(.title)
+                                                .foregroundColor(.red)
+                                        #else
+                                            Image(systemName: "clear.fill")
+                                                .font(.title)
+                                                .foregroundColor(.red)
+                                        #endif
                                     }
                                 )
                                 .padding(15)
@@ -71,22 +77,22 @@ struct CanvasView: View {
                         .opacity(labelScores.scores.isEmpty ? 1 : 0)
                     }
                 }
-
+            #if targetEnvironment(macCatalyst)
+            .navigationTitle("Draw")
+            #else
             .navigationBarItems(trailing: Button(action: {self.showAboutView.toggle()}) {
-                    #if targetEnvironment(macCatalyst)
-                    #else
+                    
                         Image(systemName: "questionmark.circle")
                             .font(.title3)
                             .accessibility(label: Text("About"))
-                    #endif
                 }
             )
             .navigationTitle("Draw")
             .sheet(isPresented: $showAboutView, onDismiss: { tabController.open(.draw) }) { AboutView() }
+            #endif
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
-    
 }
 
 struct CanvasView_Previews: PreviewProvider {
