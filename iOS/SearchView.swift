@@ -23,24 +23,17 @@ struct SearchView: View {
                 }
                 .listStyle(InsetListStyle())
                 .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
-            
-            .navigationBarItems(trailing: Button(action: {self.showAboutView.toggle()}) {
-                    #if targetEnvironment(macCatalyst)
-                        Image(systemName: "questionmark.circle")
-                            .font(.title2)
-                            .accessibility(label: Text("About"))
-                    #else
+            #if targetEnvironment(macCatalyst)
+                .navigationTitle("Search")
+            #else
+                .navigationBarItems(trailing: Button(action: {self.showAboutView.toggle()}) {
                         Image(systemName: "questionmark.circle")
                             .font(.title3)
                             .accessibility(label: Text("About"))
-                    #endif
                 }
-            )
-            .navigationTitle("Search")
-            #if targetEnvironment(macCatalyst)
-            .sheet(isPresented: $showAboutView) { AboutView() }
-            #else
-            .sheet(isPresented: $showAboutView, onDismiss: { tabController.open(.search) }) { AboutView() }
+                )
+                .navigationTitle("Search")
+                .sheet(isPresented: $showAboutView, onDismiss: { tabController.open(.search) }) { AboutView() }
             #endif
         }
         .navigationViewStyle(StackNavigationViewStyle())
