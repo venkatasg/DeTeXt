@@ -57,13 +57,10 @@ struct AboutView: View {
             .listStyle(InsetGroupedListStyle())
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("About")
-            .navigationBarItems(leading: Button(action: {
-                self.dismiss()
-            }) {
+            .navigationBarItems(leading: Button(action: { self.dismiss() }) {
                     Text("Done")
                         .accessibility(label: Text("Done"))
                 }
-                .buttonStyle(.borderless)
             )
         }
         .navigationViewStyle(StackNavigationViewStyle())

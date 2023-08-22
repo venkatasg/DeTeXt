@@ -29,13 +29,11 @@ struct DeTeXtApp: App {
         }
         .commands {   
             CommandGroup(replacing: .help, addition: {
-                Link("Send me an email",
+                Link("Contact Support...",
                      destination: URL(string: "mailto:venkat@venkatasg.net")!)
                 
                 Divider()
-                
-                Link("Website",
-                     destination: URL(string: "https://venkatasg.net/apps/detext")!)
+
                 Link("Release Notes",
                      destination: URL(string: "https://venkatasg.net/apps/detext#release-notes")!)
                 Link("GitHub Repository",
@@ -64,6 +62,4 @@ struct DeTeXtApp: App {
         #endif
     }
 }
-
-
 
