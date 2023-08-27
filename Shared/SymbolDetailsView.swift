@@ -21,26 +21,32 @@ struct SymbolDetailsView: View {
         VStack(alignment: .leading) {
             Text("\(symbol.command)")
                 .font(.system(mainFontSize, design: .monospaced))
-                .padding(.bottom, 4)
-                .padding(.top, 4)
+                .padding(.bottom, 2)
+                .padding(.top, 10)
             
             // Display mode if present
-            if symbol.mathmode {
-                Text(" mathmode").def(fontSize: subFontSize)
+            if (symbol.mathmode && !symbol.textmode) {
+                Text("mathmode").def(fontSize: subFontSize)
             }
-            else if symbol.textmode {
-                Text(" textmode").def(fontSize: subFontSize)
+            
+            else if (symbol.textmode && !symbol.mathmode) {
+                Text("textmode").def(fontSize: subFontSize)
             }
+            
+            else if (symbol.textmode && symbol.mathmode) {
+                Text("mathmode, textmode").def(fontSize: subFontSize)
+            }
+            
             else {}
 
             // Display package if present
             if let package = symbol.package {
-                Text("\\usepackage{\(package)}").mono(fontSize: subFontSize)
+                Text("package:\(package)").mono(fontSize: subFontSize)
             }
             
-            // Display font enc if present
-            if let fontenc = symbol.fontenc {
-                Text("fontenc: \(fontenc)").mono(fontSize: subFontSize)
+            // Display unicode codepoint if present
+            if let unicode = symbol.unicode {
+                Text("U+\(unicode)").mono(fontSize: subFontSize)
             }
         }
     }
@@ -55,7 +61,7 @@ extension Text {
     
     // Text view modifier to show text for mode
     func def(fontSize: Font.TextStyle) -> some View {
-        font(.system(fontSize, design: .default))
+        font(.system(fontSize))
             .foregroundColor(Color.gray)
     }
 }

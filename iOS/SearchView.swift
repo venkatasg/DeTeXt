@@ -22,7 +22,10 @@ struct SearchView: View {
                     .onDrag { NSItemProvider(object: symbol.command as NSString) }
                 }
                 .listStyle(InsetListStyle())
-                .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
+                .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search by command or package")
+                .autocorrectionDisabled(true)
+                .textInputAutocapitalization(.never)
+            
             #if targetEnvironment(macCatalyst)
                 .navigationTitle("Search")
             #else

@@ -10,11 +10,11 @@ import Foundation
 struct Symbol : Codable, Identifiable {
     let id: String
     let command: String
+    let unicode: String?
     let css_class: String
     let mathmode: Bool
     let textmode: Bool
     let package: String?
-    let fontenc: String?
 }
 
 // ObservableObject must be a class
