@@ -19,7 +19,7 @@ struct CanvasView: View {
     @State var canvas = PKCanvasView()
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack (spacing:0) {
                 ZStack {
                     PKCanvas(canvasView: $canvas, labelScores: labelScores)
@@ -80,18 +80,17 @@ struct CanvasView: View {
             #if targetEnvironment(macCatalyst)
             .navigationTitle("Draw")
             #else
-            .navigationBarItems(trailing: Button(action: {self.showAboutView.toggle()}) {
-                    
-                        Image(systemName: "questionmark.circle")
-                            .font(.title3)
-                            .accessibility(label: Text("About"))
+            .toolbar {
+                Button(action: {self.showAboutView.toggle()}) {
+                    Image(systemName: "questionmark.circle")
+                        .font(.title3)
+                        .accessibility(label: Text("About"))
                 }
-            )
+            }
             .navigationTitle("Draw")
             .sheet(isPresented: $showAboutView, onDismiss: { tabController.open(.draw) }) { AboutView() }
             #endif
         }
-        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

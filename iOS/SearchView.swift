@@ -11,12 +11,12 @@ struct SearchView: View {
     
     @State var searchText = ""
     @ObservedObject var symbols: Symbols
-    @State var showAboutView = false
+    @State private var showAboutView = false
     
     @EnvironmentObject private var tabController: TabController
         
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List(symbols.AllSymbols.filter({searchText.isEmpty ? true : ($0.command.lowercased().contains(searchText.lowercased()) || $0.package?.lowercased().contains(searchText.lowercased()) ?? false  )})) { symbol in
                 RowView(symbol: symbol)
                     .onDrag { NSItemProvider(object: symbol.command as NSString) }
@@ -26,18 +26,18 @@ struct SearchView: View {
             #if targetEnvironment(macCatalyst)
                 .navigationTitle("Search")
             #else
-                .navigationBarItems(trailing: Button(action: {self.showAboutView.toggle()}) {
+                .toolbar{
+                    Button(action: {self.showAboutView.toggle()}) {
                         Image(systemName: "questionmark.circle")
                             .font(.title3)
                             .accessibility(label: Text("About"))
+                    }
                 }
-                )
                 .navigationTitle("Search")
                 .sheet(isPresented: $showAboutView, onDismiss: { tabController.open(.search) }) { AboutView() }
             #endif
         }
-        .navigationViewStyle(StackNavigationViewStyle())
-    }   
+    }
 }
 
 struct SearchView_Previews: PreviewProvider {

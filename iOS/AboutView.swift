@@ -12,7 +12,7 @@ struct AboutView: View {
     @Environment(\.dismiss) var dismiss
         
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List {
                 Section(header: Text(appVersion())) {
                     Text("Made, with ❤️, by [Venkat](https://venkatasg.net). Inspired by Detexify, I wanted to make a native iOS app for translating hand-drawn symbols to their corresponding LaTeX commands that was fast, efficient, and lightweight.")
@@ -57,13 +57,15 @@ struct AboutView: View {
             .listStyle(InsetGroupedListStyle())
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("About")
-            .navigationBarItems(leading: Button(action: { self.dismiss() }) {
-                    Text("Done")
-                        .accessibility(label: Text("Done"))
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: { self.dismiss() }) {
+                        Text("Done")
+                            .accessibility(label: Text("Done"))
+                    }
                 }
-            )
+            }
         }
-        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

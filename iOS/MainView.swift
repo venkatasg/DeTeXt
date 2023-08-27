@@ -37,6 +37,7 @@ struct MainView: View {
                 .tabItem {
                     Image(systemName: "scribble")
                         .accessibility(label: Text("Draw symbols"))
+                        .accessibility(hint: Text("Search the entire list of 1098 LaTeX symbols by drawing on a canvas."))
                     Text("Draw")
                 }
             
