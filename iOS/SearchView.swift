@@ -20,6 +20,7 @@ struct SearchView: View {
             List(symbols.AllSymbols.filter({searchText.isEmpty ? true : ($0.command.lowercased().contains(searchText.lowercased()) || $0.package?.lowercased().contains(searchText.lowercased()) ?? false  )})) { symbol in
                 RowView(symbol: symbol)
                     .onDrag { NSItemProvider(object: symbol.command as NSString) }
+                    .frame(minHeight:70)
                 }
                 .listStyle(InsetListStyle())
                 .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search by command or package")

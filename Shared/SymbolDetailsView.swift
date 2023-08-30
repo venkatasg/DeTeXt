@@ -21,8 +21,7 @@ struct SymbolDetailsView: View {
         VStack(alignment: .leading) {
             Text("\(symbol.command)")
                 .font(.system(mainFontSize, design: .monospaced))
-                .padding(.bottom, 2)
-                .padding(.top, 10)
+                .padding(.init(top: 2, leading: 0, bottom: 4, trailing: 0))
             
             // Display mode if present
             if (symbol.mathmode && !symbol.textmode) {
