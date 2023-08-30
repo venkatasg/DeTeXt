@@ -19,7 +19,7 @@ struct RowView: View {
             SymbolDetailsView(symbol: symbol)
             Spacer()
             Image("\(symbol.css_class)", label: Text(symbol.command))
-                .font(.largeTitle)
+                .font(.hugeTitle)
                 .preferredColorScheme(colorScheme)
         }
         .contentShape(Rectangle())
@@ -58,11 +58,14 @@ struct RowView: View {
             }
             .disabled((symbol.unicode ?? "").isEmpty)
         } preview: {
-            Image("\(symbol.css_class)", label: Text(symbol.command))
-                .font(.system(size: 200))
-                .preferredColorScheme(colorScheme)
+            SymbolPreviewView(symbol: symbol)
+                .frame(minWidth: 300)
         }
     }
+}
+
+extension Font {
+    static let hugeTitle = Font.custom(".system", size: 40, relativeTo: .largeTitle)
 }
 
 extension Image {

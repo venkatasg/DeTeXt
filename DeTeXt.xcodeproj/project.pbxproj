@@ -12,6 +12,7 @@
 		821EE83724FAB50E0058877D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 821EE82224FAB50E0058877D /* Assets.xcassets */; };
 		821EE84824FAB5520058877D /* ImageHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821EE84724FAB5510058877D /* ImageHelpers.swift */; };
 		821EE84E24FAB5660058877D /* symbols.json in Resources */ = {isa = PBXBuildFile; fileRef = 821EE84D24FAB5660058877D /* symbols.json */; };
+		823C6D702A9C1D5100FF17F4 /* SymbolPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823C6D6F2A9C1D5100FF17F4 /* SymbolPreviewView.swift */; };
 		823F1DBC2771B0ED001F5413 /* deTeX.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 823F1DBB2771B0ED001F5413 /* deTeX.mlmodel */; };
 		824A115125131B28003A7A8E /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 824A115025131B28003A7A8E /* Launch Screen.storyboard */; };
 		8253ADE5252AC21F00FD9FD3 /* SymbolDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8253ADE4252AC21E00FD9FD3 /* SymbolDetailsView.swift */; };
@@ -68,6 +69,7 @@
 		821EE82A24FAB50E0058877D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		821EE84724FAB5510058877D /* ImageHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageHelpers.swift; sourceTree = "<group>"; };
 		821EE84D24FAB5660058877D /* symbols.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = symbols.json; sourceTree = "<group>"; };
+		823C6D6F2A9C1D5100FF17F4 /* SymbolPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolPreviewView.swift; sourceTree = "<group>"; };
 		823F1DBB2771B0ED001F5413 /* deTeX.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = deTeX.mlmodel; sourceTree = "<group>"; };
 		824A115025131B28003A7A8E /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		8253ADE4252AC21E00FD9FD3 /* SymbolDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolDetailsView.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				821EE82124FAB50C0058877D /* CanvasView.swift */,
 				829568E4250BC95200508BB0 /* SearchView.swift */,
 				825E2CBC2526D0A1008866F5 /* AboutView.swift */,
+				823C6D6F2A9C1D5100FF17F4 /* SymbolPreviewView.swift */,
 				82893B34252BC6B100B9C9DA /* Assets.xcassets */,
 				821EE82A24FAB50E0058877D /* Info.plist */,
 				824A115025131B28003A7A8E /* Launch Screen.storyboard */,
@@ -239,6 +242,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				827D30F02529097A0047D92D /* MainView.swift in Sources */,
+				823C6D702A9C1D5100FF17F4 /* SymbolPreviewView.swift in Sources */,
 				82A26B8125E09FD00082C3AA /* TwoColumnMainView.swift in Sources */,
 				82B3D01F251060EA00F27316 /* PKCanvas.swift in Sources */,
 				821EE83524FAB50E0058877D /* CanvasView.swift in Sources */,

@@ -532,7 +532,6 @@
 },
 {
 "command":"\\DH",
-"fontenc":"T1",
 "mathmode":false,
 "textmode":true,
 "id":"latex2e-T1-_DH",
@@ -541,7 +540,6 @@
 },
 {
 "command":"\\dh",
-"fontenc":"T1",
 "mathmode":false,
 "textmode":true,
 "id":"latex2e-T1-_dh",
@@ -550,7 +548,6 @@
 },
 {
 "command":"\\DJ",
-"fontenc":"T1",
 "mathmode":false,
 "textmode":true,
 "id":"latex2e-T1-_DJ",
@@ -559,7 +556,6 @@
 },
 {
 "command":"\\dj",
-"fontenc":"T1",
 "mathmode":false,
 "textmode":true,
 "id":"latex2e-T1-_dj",
@@ -568,7 +564,6 @@
 },
 {
 "command":"\\NG",
-"fontenc":"T1",
 "mathmode":false,
 "textmode":true,
 "id":"latex2e-T1-_NG",
@@ -577,7 +572,6 @@
 },
 {
 "command":"\\ng",
-"fontenc":"T1",
 "mathmode":false,
 "textmode":true,
 "id":"latex2e-T1-_ng",
@@ -586,7 +580,6 @@
 },
 {
 "command":"\\TH",
-"fontenc":"T1",
 "mathmode":false,
 "textmode":true,
 "id":"latex2e-T1-_TH",
@@ -595,7 +588,6 @@
 },
 {
 "command":"\\th",
-"fontenc":"T1",
 "mathmode":false,
 "textmode":true,
 "id":"latex2e-T1-_th",
@@ -604,7 +596,6 @@
 },
 {
 "command":"\\guillemotleft",
-"fontenc":"T1",
 "mathmode":false,
 "textmode":true,
 "id":"latex2e-T1-_guillemotleft",
@@ -613,7 +604,6 @@
 },
 {
 "command":"\\guilsinglleft",
-"fontenc":"T1",
 "mathmode":false,
 "textmode":true,
 "id":"latex2e-T1-_guilsinglleft",
@@ -622,7 +612,6 @@
 },
 {
 "command":"\\quotedblbase",
-"fontenc":"T1",
 "mathmode":false,
 "textmode":true,
 "id":"latex2e-T1-_quotedblbase",
@@ -631,7 +620,6 @@
 },
 {
 "command":"\\textquotedbl",
-"fontenc":"T1",
 "mathmode":false,
 "textmode":true,
 "id":"latex2e-T1-_textquotedbl",
@@ -640,7 +628,6 @@
 },
 {
 "command":"\\guillemotright",
-"fontenc":"T1",
 "mathmode":false,
 "textmode":true,
 "id":"latex2e-T1-_guillemotright",
@@ -649,7 +636,6 @@
 },
 {
 "command":"\\guilsinglright",
-"fontenc":"T1",
 "mathmode":false,
 "textmode":true,
 "id":"latex2e-T1-_guilsinglright",
@@ -658,7 +644,6 @@
 },
 {
 "command":"\\quotesinglbase",
-"fontenc":"T1",
 "mathmode":false,
 "textmode":true,
 "id":"latex2e-T1-_quotesinglbase",
