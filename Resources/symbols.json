@@ -53,7 +53,7 @@
 "textmode":true,
 "id":"latex2e-OT1-_textbackslash",
 "css_class":"symbol482af6e5c5d0a6a5fad741dbb9d4840a",
-"unicode":"\\"
+"unicode":"005C"
 },
 {
 "command":"\\textparagraph",
@@ -165,7 +165,7 @@
 "textmode":true,
 "id":"latex2e-OT1-_textdaggerdbl",
 "css_class":"symbole4d898aa1ccf4e631ac5deae2feb8778",
-"unicode":null
+"unicode":"2021"
 },
 {
 "command":"\\textregistered",
@@ -173,7 +173,7 @@
 "textmode":true,
 "id":"latex2e-OT1-_textregistered",
 "css_class":"symbole38eee8655f03141bf222e6e11cfce38",
-"unicode":null
+"unicode":"00AE"
 },
 {
 "command":"\\textdollar",
@@ -189,7 +189,7 @@
 "textmode":true,
 "id":"latex2e-OT1-_textsection",
 "css_class":"symbolfc4a5ba8adfffc6fe9f10cdf74e79bc6",
-"unicode":null
+"unicode":"00A7"
 },
 {
 "command":"\\textellipsis",
@@ -269,7 +269,7 @@
 "textmode":true,
 "id":"latex2e-OT1-!`",
 "css_class":"symbolc3eee68c756b71361c24f956c80706c2",
-"unicode":null
+"unicode":"00A1"
 },
 {
 "command":"\\$",
@@ -657,7 +657,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textbabygamma",
 "css_class":"symbol9be111510d2d8d01b47554839c0d8981",
-"unicode":null
+"unicode":"0263"
 },
 {
 "command":"\\textglotstop",
@@ -666,7 +666,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textglotstop",
 "css_class":"symbolf8e6f5336045b3609672066017a57531",
-"unicode":null
+"unicode": "0294"
 },
 {
 "command":"\\textrtailn",
@@ -675,7 +675,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textrtailn",
 "css_class":"symbol26f6fa404b754efddb49a3824504f4b3",
-"unicode":null
+"unicode": "0273"
 },
 {
 "command":"\\textbarb",
@@ -693,7 +693,7 @@
 "textmode":true,
 "id":"tipa-OT1-_texthalflength",
 "css_class":"symbol1dc701dd932e13f325d5a372b1fd57b5",
-"unicode":null
+"unicode": "02D1"
 },
 {
 "command":"\\textrtailr",
@@ -702,7 +702,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textrtailr",
 "css_class":"symbola7accb8c3c6b8bea1a101393a8444855",
-"unicode":null
+"unicode": "027D"
 },
 {
 "command":"\\textbarc",
@@ -729,7 +729,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textrtails",
 "css_class":"symbolbbfd0d2882f51a12a672e90cc355d55c",
-"unicode":null
+"unicode": "0282"
 },
 {
 "command":"\\textbard",
@@ -756,7 +756,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textrtailt",
 "css_class":"symbold74e5f1b4cabd9a975de94a433abd806",
-"unicode":null
+"unicode":"0288"
 },
 {
 "command":"\\textbardotlessj",
@@ -765,7 +765,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textbardotlessj",
 "css_class":"symbol3795982172b3580721b766b469de94eb",
-"unicode":null
+"unicode": "025F"
 },
 {
 "command":"\\texthtb",
@@ -774,7 +774,7 @@
 "textmode":true,
 "id":"tipa-OT1-_texthtb",
 "css_class":"symbola8496e6002d5d0853baedd14dfbcd65a",
-"unicode":null
+"unicode": "0253"
 },
 {
 "command":"\\textrtailz",
@@ -783,7 +783,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textrtailz",
 "css_class":"symbol14106b5da6d3c8a88f5e61c2628f610b",
-"unicode":null
+"unicode": "0290"
 },
 {
 "command":"\\textbarg",
@@ -801,7 +801,7 @@
 "textmode":true,
 "id":"tipa-OT1-_texthtbardotlessj",
 "css_class":"symbol0cfc6ae2e3cd5a442d414061e16a9ed8",
-"unicode":null
+"unicode":"0284"
 },
 {
 "command":"\\textrthook",
@@ -819,7 +819,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textbarglotstop",
 "css_class":"symbol5646d0557c0ef9d01336db73943b289c",
-"unicode":null
+"unicode":"02A1"
 },
 {
 "command":"\\texthtc",
@@ -837,7 +837,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textsca",
 "css_class":"symbold96c25d455059f6d667e3362fb295fd5",
-"unicode":null
+"unicode":"1D00"
 },
 {
 "command":"\\textbari",
@@ -846,7 +846,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textbari",
 "css_class":"symbol2452b4a218bb94e75cf586cc50b0164e",
-"unicode":null
+"unicode":"0268"
 },
 {
 "command":"\\texthtd",
@@ -855,7 +855,7 @@
 "textmode":true,
 "id":"tipa-OT1-_texthtd",
 "css_class":"symbol5b3abe3a3e23c97ba67f5feacfdf810a",
-"unicode":null
+"unicode":"0257"
 },
 {
 "command":"\\textscb",
@@ -864,7 +864,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textscb",
 "css_class":"symbol14c10d562bf2a7bda3d48536962837a7",
-"unicode":null
+"unicode":"0299"
 },
 {
 "command":"\\textbarl",
@@ -882,7 +882,7 @@
 "textmode":true,
 "id":"tipa-OT1-_texthtg",
 "css_class":"symbol556e2f87a05da75b7a5a97ee84e64e93",
-"unicode":null
+"unicode":"0260"
 },
 {
 "command":"\\textsce",
@@ -891,7 +891,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textsce",
 "css_class":"symbol8863cb92d011a3ba839bf2074c99767c",
-"unicode":null
+"unicode":"1D07"
 },
 {
 "command":"\\textbaro",
@@ -900,7 +900,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textbaro",
 "css_class":"symbola1a1a79384fb2e88c89115170883d5aa",
-"unicode":null
+"unicode":"0275"
 },
 {
 "command":"\\texthth",
@@ -909,7 +909,7 @@
 "textmode":true,
 "id":"tipa-OT1-_texthth",
 "css_class":"symbolb47b8890d5e69fe3453c010eadb73b5e",
-"unicode":null
+"unicode":"0266"
 },
 {
 "command":"\\textscg",
@@ -918,7 +918,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textscg",
 "css_class":"symbolae90be9845db83ca5cb578c1c41fdb3d",
-"unicode":null
+"unicode":"0262"
 },
 {
 "command":"\\textbarrevglotstop",
@@ -927,7 +927,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textbarrevglotstop",
 "css_class":"symbol37a54c5c9858bc805c727a2de6142101",
-"unicode":null
+"unicode":"02A2"
 },
 {
 "command":"\\texththeng",
@@ -936,7 +936,7 @@
 "textmode":true,
 "id":"tipa-OT1-_texththeng",
 "css_class":"symbolc3c47e4300eb5fde5993dd8e8b6501aa",
-"unicode":null
+"unicode":"0267"
 },
 {
 "command":"\\textsch",
@@ -945,7 +945,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textsch",
 "css_class":"symbol20af373fcc1408671d9a28421788b349",
-"unicode":null
+"unicode":"029C"
 },
 {
 "command":"\\textbaru",
@@ -954,7 +954,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textbaru",
 "css_class":"symbol23d705e0800e42e5a11e0d8f2fc7c3eb",
-"unicode":null
+"unicode":"0289"
 },
 {
 "command":"\\texthtk",
@@ -972,7 +972,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textschwa",
 "css_class":"symbol71bded9a25dd297084818e2148b83165",
-"unicode":null
+"unicode":"0259"
 },
 {
 "command":"\\textbeltl",
@@ -981,7 +981,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textbeltl",
 "css_class":"symbol886acfd0ed1424a4c75f5907979b7856",
-"unicode":null
+"unicode":"026C"
 },
 {
 "command":"\\texthtp",
@@ -999,7 +999,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textsci",
 "css_class":"symbol4012f53fac4334d0a4f82af6a42d8876",
-"unicode":null
+"unicode":"026A"
 },
 {
 "command":"\\textbeta",
@@ -1026,7 +1026,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textscj",
 "css_class":"symbolb36fbb31f00c062cdc3f0bb47ed72bd2",
-"unicode":null
+"unicode":"1D0A"
 },
 {
 "command":"\\textbullseye",
@@ -1071,7 +1071,7 @@
 "textmode":true,
 "id":"tipa-OT1-_texthtscg",
 "css_class":"symbol9a9f7068ce83667ae7a978e7f0111e2a",
-"unicode":null
+"unicode":"029B"
 },
 {
 "command":"\\textscn",
@@ -1080,7 +1080,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textscn",
 "css_class":"symbol078f1bf9dd16450257f4b1f3c95521cd",
-"unicode":null
+"unicode":"0274"
 },
 {
 "command":"\\textchi",
@@ -2088,7 +2088,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textglobfall",
 "css_class":"symbol714bbbb2741ce1524a370a5a445e8a99",
-"unicode":null
+"unicode":"2198"
 },
 {
 "command":"\\textrtaild",
@@ -2115,7 +2115,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textglobrise",
 "css_class":"symbol81115b0cb22b9369417eaef4eb210f12",
-"unicode":null
+"unicode":"2197"
 },
 {
 "command":"\\textrtaill",
@@ -2178,7 +2178,7 @@
 "textmode":true,
 "id":"textcomp-OT1-_textdollaroldstyle",
 "css_class":"symbol6d3e62ea7b7e55dc9b323124482e7e09",
-"unicode":null
+"unicode":"0024"
 },
 {
 "command":"\\textlira",
@@ -2187,7 +2187,7 @@
 "textmode":true,
 "id":"textcomp-OT1-_textlira",
 "css_class":"symbol11c41588eaaa684faf957f0d5bd2653d",
-"unicode":null
+"unicode":"20A4"
 },
 {
 "command":"\\textyen",
@@ -2421,7 +2421,7 @@
 "textmode":true,
 "id":"textcomp-OT1-_textcopyleft",
 "css_class":"symbolf7c4abd0d72929e9b036d79cf1d9c6da",
-"unicode":null
+"unicode":"1F12F"
 },
 {
 "command":"\\textregistered",
@@ -2430,7 +2430,7 @@
 "textmode":true,
 "id":"textcomp-OT1-_textregistered",
 "css_class":"symbol4a26d560666f33d065e1559a2711c386",
-"unicode":null
+"unicode":"00AE"
 },
 {
 "command":"\\texttrademark",
@@ -2574,7 +2574,7 @@
 "textmode":true,
 "id":"textcomp-OT1-_textdaggerdbl",
 "css_class":"symbol8e8e192342e75fc1f9a019c1d7706a54",
-"unicode":null
+"unicode":"2021"
 },
 {
 "command":"\\textquotesingle",
@@ -7069,7 +7069,7 @@
 "textmode":false,
 "id":"latex2e-OT1-_backslash",
 "css_class":"symbol64d5bf17eee06023fd2d1571cd3185c5",
-"unicode":"\\"
+"unicode":"005C"
 },
 {
 "command":"\\emptyset",
