@@ -65,7 +65,7 @@ struct RowView: View {
 }
 
 extension Font {
-    static let hugeTitle = Font.custom(".system", size: 40, relativeTo: .largeTitle)
+    static let hugeTitle = Font.custom("San Francisco", size: 40, relativeTo: .largeTitle)
 }
 
 extension Image {

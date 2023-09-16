@@ -14,6 +14,12 @@ struct CanvasView: View {
     @ObservedObject var symbols: Symbols
     @State var showAboutView = false
     
+    #if targetEnvironment(macCatalyst)
+    let rowHeight:CGFloat = 100
+    #else
+    let rowHeight:CGFloat = 70
+    #endif
+        
     @EnvironmentObject private var tabController: TabController
     
     @State var canvas = PKCanvasView()
@@ -65,7 +71,7 @@ struct CanvasView: View {
                     List {
                         ForEach(labelScores.scores, id: \.key) { key, value in
                             RowView(symbol: symbols.AllSymbols.first(where: {$0.id==key})! )
-                                .frame(minHeight:70)
+                                .frame(minHeight:self.rowHeight)
                                 .onDrag { NSItemProvider(object: symbols.AllSymbols.first(where: {$0.id==key})!.command as NSString) }
                             }
                         }
@@ -79,7 +85,7 @@ struct CanvasView: View {
                     }
                 }
             #if targetEnvironment(macCatalyst)
-            .navigationTitle("Draw")
+            .navigationTitle("")
             #else
             .toolbar {
                 Button(action: {self.showAboutView.toggle()}) {

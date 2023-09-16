@@ -389,7 +389,7 @@
 "textmode":true,
 "id":"latex2e-OT1-_--",
 "css_class":"symbol211e06131239794f36520054e54b1326",
-"unicode":null
+"unicode":"2013"
 },
 {
 "command":"\\---",
@@ -397,7 +397,7 @@
 "textmode":true,
 "id":"latex2e-OT1-_---",
 "css_class":"symbolf18329709a120c44dd581f98a43a0951",
-"unicode":null
+"unicode":"2014"
 },
 {
 "command":"\\----",
@@ -405,7 +405,7 @@
 "textmode":true,
 "id":"latex2e-OT1-_----",
 "css_class":"symbol39cef0a81732b6fea5a8234b1b556909",
-"unicode":null
+"unicode":"2015"
 },
 {
 "command":"\\checkmark",
@@ -1107,7 +1107,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textscoelig",
 "css_class":"symbol2d41b684f2c2cc376503218fb97b1aa0",
-"unicode":null
+"unicode":"0276"
 },
 {
 "command":"\\textcloseepsilon",
@@ -1116,7 +1116,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textcloseepsilon",
 "css_class":"symbol752d45aa69bf0dee285244bb726f8aaf",
-"unicode":null
+"unicode":"029A"
 },
 {
 "command":"\\texthvlig",
@@ -1134,7 +1134,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textscomega",
 "css_class":"symbole10b0d6ef85c0568d1844726600659c8",
-"unicode":null
+"unicode":"03C9"
 },
 {
 "command":"\\textcloseomega",
@@ -1143,7 +1143,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textcloseomega",
 "css_class":"symbold843594801eacf29f3f26f63df86e7c1",
-"unicode":null
+"unicode":"0277"
 },
 {
 "command":"\\textinvglotstop",
@@ -1152,7 +1152,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textinvglotstop",
 "css_class":"symbolb41ed23355b5dcb07fa63c317e1ad6a9",
-"unicode":null
+"unicode":"0296"
 },
 {
 "command":"\\textscr",
@@ -1161,7 +1161,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textscr",
 "css_class":"symbolbaa76ec460048fc7066de803c7ae7a17",
-"unicode":null
+"unicode":"0280"
 },
 {
 "command":"\\textcloserevepsilon",
@@ -1170,7 +1170,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textcloserevepsilon",
 "css_class":"symbola1791a39e9fd9bfb26d8f4dc5e5b1793",
-"unicode":null
+"unicode":"025E"
 },
 {
 "command":"\\textinvscr",
@@ -1179,7 +1179,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textinvscr",
 "css_class":"symbol40a48b986fe563b63577c53e6af62808",
-"unicode":null
+"unicode":"0281"
 },
 {
 "command":"\\textscripta",
@@ -1188,7 +1188,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textscripta",
 "css_class":"symbol6565979f1bcee65a6244f9fbf09ae376",
-"unicode":null
+"unicode":"0251"
 },
 {
 "command":"\\textcommatailz",
@@ -1197,7 +1197,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textcommatailz",
 "css_class":"symbol35b6edc4e14b24417dc3a804fa6d903d",
-"unicode":null
+"unicode":"1D8E"
 },
 {
 "command":"\\textiota",
@@ -1215,7 +1215,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textscriptg",
 "css_class":"symbolf0f2339cfcbc3d3d3a04fb948c645bf9",
-"unicode":null
+"unicode":"0261"
 },
 {
 "command":"\\textcorner",
@@ -1224,7 +1224,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textcorner",
 "css_class":"symbol5ac3ddbd80214f1b142a1d2c01138118",
-"unicode":null
+"unicode":"02E5"
 },
 {
 "command":"\\textlambda",
@@ -1242,7 +1242,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textscriptv",
 "css_class":"symbol6386b05fb3805fa156b0970f904535e2",
-"unicode":null
+"unicode":"028B"
 },
 {
 "command":"\\textcrb",
@@ -1260,7 +1260,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textlengthmark",
 "css_class":"symbold96196e76233ac7253c352febd01b30c",
-"unicode":null
+"unicode":"02D0"
 },
 {
 "command":"\\textscu",
@@ -1269,7 +1269,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textscu",
 "css_class":"symbol4a109c00a8235e29a5273444d08e9945",
-"unicode":null
+"unicode":"1D1C"
 },
 {
 "command":"\\textcrd",
@@ -1296,7 +1296,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textscy",
 "css_class":"symbol5dcd048b7ba28f62fcaed7d68ce200f8",
-"unicode":null
+"unicode":"028F"
 },
 {
 "command":"\\textcrg",
@@ -1323,7 +1323,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textsecstress",
 "css_class":"symbolf41d4fb051bac874c6eee24dccdfe3cf",
-"unicode":null
+"unicode":"02CC"
 },
 {
 "command":"\\textcrh",
@@ -1341,7 +1341,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textlhtlongy",
 "css_class":"symbolab237f68c134a0c88bbf2b44066ab40b",
-"unicode":null
+"unicode":"02AE"
 },
 {
 "command":"\\textsoftsign",
@@ -1404,7 +1404,7 @@
 "textmode":true,
 "id":"tipa-OT1-_texttctclig",
 "css_class":"symbol7ebfdd306000a8a99200cf6db931f053",
-"unicode":null
+"unicode":"02A8"
 },
 {
 "command":"\\textcrtwo",
@@ -1746,7 +1746,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textprimstress",
 "css_class":"symbol39788f8997e08c287c5264aa1bba7f9e",
-"unicode":null
+"unicode":"02C8"
 },
 {
 "command":"\\textturnr",

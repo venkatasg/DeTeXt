@@ -12,6 +12,13 @@ struct SearchView: View {
     @State var searchText = ""
     @ObservedObject var symbols: Symbols
     @State private var showAboutView = false
+//    @State private var isPresented = true
+    
+    #if targetEnvironment(macCatalyst)
+    let rowHeight:CGFloat = 100
+    #else
+    let rowHeight:CGFloat = 70
+    #endif
     
     @EnvironmentObject private var tabController: TabController
         
@@ -20,15 +27,19 @@ struct SearchView: View {
             List(symbols.AllSymbols.filter({searchText.isEmpty ? true : ($0.command.lowercased().contains(searchText.lowercased()) || $0.package?.lowercased().contains(searchText.lowercased()) ?? false  )})) { symbol in
                 RowView(symbol: symbol)
                     .onDrag { NSItemProvider(object: symbol.command as NSString) }
-                    .frame(minHeight:70)
+                    .frame(minHeight: self.rowHeight)
                 }
                 .listStyle(InsetListStyle())
-                .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search by command or package")
+                .searchable(
+                    text: $searchText,
+//                    isPresented: $isPresented, placement: .navigationBarDrawer(displayMode: .always),
+                    prompt: "Search by command or package"
+                )
                 .autocorrectionDisabled(true)
                 .textInputAutocapitalization(.never)
             
             #if targetEnvironment(macCatalyst)
-                .navigationTitle("Search")
+                .navigationTitle("")
             #else
                 .toolbar{
                     Button(action: {self.showAboutView.toggle()}) {
