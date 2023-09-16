@@ -30,11 +30,20 @@ struct SearchView: View {
                     .frame(minHeight: self.rowHeight)
                 }
                 .listStyle(InsetListStyle())
+                #if targetEnvironment(macCatalyst)
                 .searchable(
                     text: $searchText,
-//                    isPresented: $isPresented, placement: .navigationBarDrawer(displayMode: .always),
+//                    isPresented: $isPresented,
                     prompt: "Search by command or package"
                 )
+                #else
+                .searchable(
+                    text: $searchText,
+//                    isPresented: $isPresented,
+                    placement: .navigationBarDrawer(displayMode: .always),
+                    prompt: "Search by command or package"
+                )
+                #endif
                 .autocorrectionDisabled(true)
                 .textInputAutocapitalization(.never)
             
