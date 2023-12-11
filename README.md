@@ -15,6 +15,10 @@ of the name of the symbol and/or command. The app has 1098 symbols including
 all default mathematical symbols, and symbols from packages like tipa, amsmath,
 amssymb, textcomp and more.
 
+- Copy the symbol, or the character itself, or its Unicode codepoint to the system clipboard to paste anywhere else.
+
+![Screenshots illustrating DeTeXt usage on iPhone](iphone.png)
+
 DeTeXt was built using SwiftUI, PencilKit, CoreML and Combine.
 
 [Download DeTeXt from the App Store!](https://apps.apple.com/us/app/id1531906207)
