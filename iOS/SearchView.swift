@@ -12,7 +12,7 @@ struct SearchView: View {
     @State var searchText = ""
     @ObservedObject var symbols: Symbols
     @State private var showAboutView = false
-//    @State private var isPresented = true
+    @State private var isPresented = false
     
     #if targetEnvironment(macCatalyst)
     let rowHeight:CGFloat = 100
@@ -33,13 +33,13 @@ struct SearchView: View {
                 #if targetEnvironment(macCatalyst)
                 .searchable(
                     text: $searchText,
-//                    isPresented: $isPresented,
+                    isPresented: $isPresented,
                     prompt: "Search by command or package"
                 )
                 #else
                 .searchable(
                     text: $searchText,
-//                    isPresented: $isPresented,
+                    isPresented: $isPresented,
                     placement: .navigationBarDrawer(displayMode: .always),
                     prompt: "Search by command or package"
                 )

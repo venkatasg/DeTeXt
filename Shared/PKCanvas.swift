@@ -10,7 +10,7 @@ import PencilKit
 import CoreML
 
 struct PKCanvas: UIViewRepresentable {
-    class Coordinator: NSObject, PKCanvasViewDelegate, UIPencilInteractionDelegate {
+    class Coordinator: NSObject, PKCanvasViewDelegate {
         var pkCanvas: PKCanvas
         @ObservedObject var labelScores: LabelScores
 
@@ -33,10 +33,12 @@ struct PKCanvas: UIViewRepresentable {
             self.labelScores  = labelScores
         }
         
-        func pencilInteractionDidTap(_ interaction: UIPencilInteraction) {
-            // Clear the drawing when double tapped on pencil
-            self.labelScores.ClearScores()
-        }
+//        #if os(iOS)
+//        func pencilInteractionDidTap(_ interaction: UIPencilInteraction) {
+//            // Clear the drawing when double tapped on pencil
+//            self.labelScores.ClearScores()
+//        }
+//        #endif
 
         func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
             // if canvasView is empty escape gracefully
@@ -91,7 +93,9 @@ struct PKCanvas: UIViewRepresentable {
     @Binding var canvasView: PKCanvasView
     @ObservedObject var labelScores: LabelScores
     
-    let pencilInteraction = UIPencilInteraction()
+//    #if os(iOS)
+//    let pencilInteraction = UIPencilInteraction()
+//    #endif
 
     func makeCoordinator() -> Coordinator {
         Coordinator(self, labelScores: labelScores)
@@ -104,9 +108,10 @@ struct PKCanvas: UIViewRepresentable {
         self.canvasView.becomeFirstResponder()
         self.canvasView.delegate = context.coordinator
         self.canvasView.drawingPolicy = .anyInput
-        
-        self.pencilInteraction.delegate = context.coordinator
-        self.canvasView.addInteraction(self.pencilInteraction)
+//        #if os(iOS)
+//        self.pencilInteraction.delegate = context.coordinator
+//        self.canvasView.addInteraction(self.pencilInteraction)
+//        #endif
         
         return canvasView
     }

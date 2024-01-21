@@ -17,21 +17,31 @@ struct RowView: View {
     var body: some View {
         HStack {
             SymbolDetailsView(symbol: symbol)
+                .onTapGesture(count: 2) {
+                    pasteboard.string = symbol.command
+//                    CopyToastView(copy: "command")
+                }
             Spacer()
             Image("\(symbol.css_class)", label: Text(symbol.command))
                 .font(.hugeTitle)
                 .preferredColorScheme(colorScheme)
+                .onTapGesture(count: 2) {
+                    if let num = Int(symbol.unicode!, radix: 16) {
+                        if let scalarValue = UnicodeScalar(num) {
+                            let myString = String(scalarValue)
+                            pasteboard.string = myString
+//                            CopyToastView(copy: "character")
+                        }
+                    }
+                }
         }
         .contentShape(Rectangle())
-        .onTapGesture(count: 2) {
-            pasteboard.string = symbol.command
-        }
         .contextMenu{
             // Copy command
             Button {
                 pasteboard.string = symbol.command
             } label: {
-                Label("Copy command", systemImage: "command")
+                Label("Copy command", systemImage: "command.square.fill")
             }
             
             // Copy decoded unicode character
@@ -46,7 +56,7 @@ struct RowView: View {
                     pasteboard.string = symbol.unicode!
                 }
             } label : {
-                Label("Copy character", systemImage: "sum")
+                Label("Copy character", systemImage: "character.phonetic")
             }
             .disabled((symbol.unicode ?? "").isEmpty)
             
@@ -54,7 +64,7 @@ struct RowView: View {
             Button {
                 pasteboard.string = "U+" + symbol.unicode!
             } label : {
-                Label("Copy code point", systemImage: "number")
+                Label("Copy codepoint", systemImage: "number")
             }
             .disabled((symbol.unicode ?? "").isEmpty)
         } preview: {

@@ -51,6 +51,7 @@ struct DeTeXtApp: App {
         WindowGroup {
             MainView(labelScores: labelScores, symbols: symbols)
         }
+        .defaultSize(CGSize(width: 500, height: 800))
         .commands {
             CommandGroup(after: CommandGroupPlacement.undoRedo) {
                 Button("Clear Canvas") {

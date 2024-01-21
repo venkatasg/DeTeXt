@@ -11,12 +11,13 @@ import UIKit
 // Function to find version and build number
 func appVersion() -> String {
         let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""
-        let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? ""
-        return "DeTeXt \(version) (Build \(build))"
+        return "DeTeXt \(version)"
     }
 
 // Functions for haptics    
 func modelHaptics() {
+    #if os(iOS)
     let generator = UINotificationFeedbackGenerator()
     generator.notificationOccurred(.success)
+    #endif
 }
