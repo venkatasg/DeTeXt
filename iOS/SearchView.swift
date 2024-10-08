@@ -14,6 +14,9 @@ struct SearchView: View {
     @State private var showAboutView = false
     @State private var isPresented = false
     
+    @State private var showToast = false
+    @State private var toastText = ""
+    
     #if targetEnvironment(macCatalyst)
     let rowHeight:CGFloat = 100
     #else
@@ -25,11 +28,17 @@ struct SearchView: View {
     var body: some View {
         NavigationStack {
             List(symbols.AllSymbols.filter({searchText.isEmpty ? true : ($0.command.lowercased().contains(searchText.lowercased()) || $0.package?.lowercased().contains(searchText.lowercased()) ?? false  )})) { symbol in
-                RowView(symbol: symbol)
+                RowView(symbol: symbol, showToast: { copiedText in
+                    toastText = copiedText
+                    withAnimation {
+                        showToast = true
+                    }
+                })
                     .onDrag { NSItemProvider(object: symbol.command as NSString) }
                     .frame(minHeight: self.rowHeight)
                 }
                 .listStyle(InsetListStyle())
+                .toast(isShowing: $showToast, text: toastText)
                 #if targetEnvironment(macCatalyst)
                 .searchable(
                     text: $searchText,

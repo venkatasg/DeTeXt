@@ -14,6 +14,9 @@ struct CanvasView: View {
     @ObservedObject var symbols: Symbols
     @State var showAboutView = false
     
+    @State private var showToast = false
+    @State private var toastText = ""
+    
     #if targetEnvironment(macCatalyst)
     let rowHeight:CGFloat = 100
     #else
@@ -70,13 +73,19 @@ struct CanvasView: View {
                 ZStack {
                     List {
                         ForEach(labelScores.scores, id: \.key) { key, value in
-                            RowView(symbol: symbols.AllSymbols.first(where: {$0.id==key})! )
+                            RowView(symbol: symbols.AllSymbols.first(where: {$0.id==key})!, showToast: { copiedText in
+                                toastText = copiedText
+                                withAnimation {
+                                    showToast = true
+                                }
+                            })
                                 .frame(minHeight:self.rowHeight)
                                 .onDrag { NSItemProvider(object: symbols.AllSymbols.first(where: {$0.id==key})!.command as NSString) }
                             }
                         }
                         .listStyle(InsetListStyle())
                         .frame(maxHeight:.infinity)
+                        .toast(isShowing: $showToast, text: toastText)
                     
                     Text("Draw in the canvas above")
                         .font(.system(.title, design: .rounded))

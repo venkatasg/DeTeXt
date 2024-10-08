@@ -13,24 +13,27 @@ struct RowView: View {
     
     let symbol: Symbol
     let pasteboard = UIPasteboard.general
+    let showToast: (String) -> Void
     
     var body: some View {
         HStack {
             SymbolDetailsView(symbol: symbol)
                 .onTapGesture(count: 2) {
                     pasteboard.string = symbol.command
-//                    CopyToastView(copy: "command")
+                    showToast(symbol.command)
                 }
             Spacer()
             Image("\(symbol.css_class)", label: Text(symbol.command))
                 .font(.hugeTitle)
                 .preferredColorScheme(colorScheme)
                 .onTapGesture(count: 2) {
-                    if let num = Int(symbol.unicode!, radix: 16) {
-                        if let scalarValue = UnicodeScalar(num) {
-                            let myString = String(scalarValue)
-                            pasteboard.string = myString
-//                            CopyToastView(copy: "character")
+                    if let myChar = symbol.unicode {
+                        if let num = Int(myChar, radix: 16) {
+                            if let scalarValue = UnicodeScalar(num) {
+                                let myString = String(scalarValue)
+                                pasteboard.string = myString
+                                showToast(myString)
+                            }
                         }
                     }
                 }
@@ -40,20 +43,28 @@ struct RowView: View {
             // Copy command
             Button {
                 pasteboard.string = symbol.command
+                showToast(symbol.command)
             } label: {
                 Label("Copy command", systemImage: "command.square.fill")
             }
             
             // Copy decoded unicode character
             Button {
-                if let num = Int(symbol.unicode!, radix: 16) {
-                    if let scalarValue = UnicodeScalar(num) {
-                        let myString = String(scalarValue)
-                        pasteboard.string = myString
+                if let myChar = symbol.unicode {
+                    if let num = Int(myChar, radix: 16) {
+                        if let scalarValue = UnicodeScalar(num) {
+                            let myString = String(scalarValue)
+                            pasteboard.string = myString
+                            showToast(myString)
                     }
                 }
                 else {
-                    pasteboard.string = symbol.unicode!
+                    pasteboard.string = myChar
+                    showToast(myChar)
+                    }
+                }
+                else {
+                    showToast("Copy character unavailable.")
                 }
             } label : {
                 Label("Copy character", systemImage: "character.phonetic")
@@ -62,7 +73,14 @@ struct RowView: View {
             
             // Copy the raw unicode codepoint
             Button {
-                pasteboard.string = "U+" + symbol.unicode!
+                if let myChar = symbol.unicode {
+                    pasteboard.string = "U+" + myChar
+                    showToast("U+" + myChar)
+                }
+                else {
+                    showToast("Copy codepoint unavailable.")
+                }
+                
             } label : {
                 Label("Copy codepoint", systemImage: "number")
             }
