@@ -53,10 +53,18 @@ struct CopyToastView: View {
             Text("\(self.whatsCopied)")
                 .font(.system(.body, design: .monospaced))
         }
-        .padding()
-        .background(.background)
-        .clipShape(Capsule())
-        .shadow(color: Color.black.opacity(0.25), radius: 4, x: 0, y: 1)
+        .padding(.vertical, 10)
+                .padding(.horizontal, 16)
+                .background(
+                            Capsule()
+                                .fill(Color(UIColor.systemBackground))
+                                .overlay(
+                                    Capsule()
+                                        .stroke(Color.secondary.opacity(0.2), lineWidth: 1)
+                                )
+                        )
+                .shadow(color: Color.primary.opacity(0.1), radius: 3, x: 0, y: 2)
+                .shadow(color: Color.primary.opacity(0.1), radius: 1, x: 0, y: 1)
     }
 }
 
