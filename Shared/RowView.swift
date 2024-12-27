@@ -13,14 +13,15 @@ struct RowView: View {
     
     let symbol: Symbol
     let pasteboard = UIPasteboard.general
-    let showToast: (String) -> Void
+    let toastManager: ToastManager
     
     var body: some View {
         HStack {
             SymbolDetailsView(symbol: symbol)
                 .onTapGesture(count: 2) {
                     pasteboard.string = symbol.command
-                    showToast(symbol.command)
+                    toastManager.show(symbol.command)
+                    modelHaptics()
                 }
             Spacer()
             Image("\(symbol.css_class)", label: Text(symbol.command))
@@ -32,7 +33,8 @@ struct RowView: View {
                             if let scalarValue = UnicodeScalar(num) {
                                 let myString = String(scalarValue)
                                 pasteboard.string = myString
-                                showToast(myString)
+                                toastManager.show(myString)
+                                modelHaptics()
                             }
                         }
                     }
@@ -40,10 +42,10 @@ struct RowView: View {
         }
         .contentShape(Rectangle())
         .contextMenu{
-            // Copy command
+            // Copy command string
             Button {
                 pasteboard.string = symbol.command
-                showToast(symbol.command)
+                toastManager.show(symbol.command)
             } label: {
                 Label("Copy command", systemImage: "command.square.fill")
             }
@@ -55,16 +57,18 @@ struct RowView: View {
                         if let scalarValue = UnicodeScalar(num) {
                             let myString = String(scalarValue)
                             pasteboard.string = myString
-                            showToast(myString)
+                            toastManager.show(myString)
+                            modelHaptics()
+                        }
+                    }
+                    else {
+                        pasteboard.string = myChar
+                        toastManager.show(myChar)
+                        modelHaptics()
                     }
                 }
                 else {
-                    pasteboard.string = myChar
-                    showToast(myChar)
-                    }
-                }
-                else {
-                    showToast("Copy character unavailable.")
+                    toastManager.show("Copy character unavailable.")
                 }
             } label : {
                 Label("Copy character", systemImage: "character.phonetic")
@@ -75,10 +79,11 @@ struct RowView: View {
             Button {
                 if let myChar = symbol.unicode {
                     pasteboard.string = "U+" + myChar
-                    showToast("U+" + myChar)
+                    toastManager.show("U+" + myChar)
+                    modelHaptics()
                 }
                 else {
-                    showToast("Copy codepoint unavailable.")
+                    toastManager.show("Copy codepoint unavailable.")
                 }
                 
             } label : {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Symbol : Codable, Identifiable {
+class Symbol : Codable, Identifiable {
     let id: String
     let command: String
     let unicode: String?
@@ -17,7 +17,7 @@ struct Symbol : Codable, Identifiable {
     let package: String?
 }
 
-// ObservableObject must be a class
+
 class Symbols: ObservableObject {
     
     let AllSymbols: [Symbol]

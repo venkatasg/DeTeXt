@@ -9,13 +9,10 @@ import SwiftUI
 
 struct SearchView: View {
     
-    @State var searchText = ""
-    @ObservedObject var symbols: Symbols
+    @State private var searchText = ""
     @State private var showAboutView = false
     @State private var isPresented = false
-    
-    @State private var showToast = false
-    @State private var toastText = ""
+    @State private var toastManager = ToastManager()
     
     #if targetEnvironment(macCatalyst)
     let rowHeight:CGFloat = 100
@@ -24,21 +21,17 @@ struct SearchView: View {
     #endif
     
     @EnvironmentObject private var tabController: TabController
+    @EnvironmentObject private var symbols: Symbols
         
     var body: some View {
         NavigationStack {
             List(symbols.AllSymbols.filter({searchText.isEmpty ? true : ($0.command.lowercased().contains(searchText.lowercased()) || $0.package?.lowercased().contains(searchText.lowercased()) ?? false  )})) { symbol in
-                RowView(symbol: symbol, showToast: { copiedText in
-                    toastText = copiedText
-                    withAnimation {
-                        showToast = true
-                    }
-                })
+                RowView(symbol: symbol, toastManager: toastManager)
                     .onDrag { NSItemProvider(object: symbol.command as NSString) }
                     .frame(minHeight: self.rowHeight)
                 }
                 .listStyle(InsetListStyle())
-                .toast(isShowing: $showToast, text: toastText)
+                .toast(using: toastManager)
                 #if targetEnvironment(macCatalyst)
                 .searchable(
                     text: $searchText,
@@ -77,7 +70,8 @@ struct SearchView_Previews: PreviewProvider {
     static let symbols = Symbols()
     static var previews: some View {
         Group {
-            SearchView(symbols: symbols)
+            SearchView()
+                .environmentObject(symbols)
         }
     }
 }

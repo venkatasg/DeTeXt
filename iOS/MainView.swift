@@ -16,7 +16,7 @@ enum Tab {
 
 // Tabcontroller controls active TabView
 class TabController: ObservableObject {
-    @Published var activeTab = Tab.draw
+    var activeTab = Tab.draw
     
     func open(_ tab: Tab) {
         activeTab = tab
@@ -25,14 +25,15 @@ class TabController: ObservableObject {
 
 struct MainView: View {
     
-    @StateObject private var tabController = TabController()
+    @State private var tabController = TabController()
     
     @ObservedObject var labelScores: LabelScores
-    @ObservedObject var symbols: Symbols
+    
+    @EnvironmentObject private var symbols: Symbols
     
     var body: some View {
         TabView(selection: $tabController.activeTab) {
-            CanvasView(labelScores: labelScores, symbols: symbols)
+            CanvasView(labelScores: labelScores)
                 .tag(Tab.draw)
                 .tabItem {
                     Image(systemName: "scribble")
@@ -40,8 +41,10 @@ struct MainView: View {
                         .accessibility(hint: Text("Search the entire list of 1098 LaTeX symbols by drawing on a canvas."))
                     Text("Draw")
                 }
+                .environmentObject(symbols)
+                .environmentObject(tabController)
             
-            SearchView(symbols: symbols)
+            SearchView()
                 .tag(Tab.search)
                 .tabItem {
                     Image(systemName: "magnifyingglass")
@@ -49,8 +52,9 @@ struct MainView: View {
                         .accessibility(hint: Text("Search the entire list of 1098 LaTeX symbols by name."))
                     Text("Search")
                 }
+                .environmentObject(symbols)
+                .environmentObject(tabController)
         }
-        .environmentObject(tabController)
         .onAppear() {
             let appearance = UITabBarAppearance()
             UITabBar.appearance().scrollEdgeAppearance = appearance
@@ -65,7 +69,8 @@ struct MainView_Previews: PreviewProvider {
     
     static var previews: some View {
         Group {
-            MainView(labelScores: labelScores, symbols: symbols)
+            MainView(labelScores: labelScores)
+                .environmentObject(symbols)
         }
     }
 }

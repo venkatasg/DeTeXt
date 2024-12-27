@@ -8,24 +8,30 @@
 import SwiftUI
 import PencilKit
 
+@MainActor
 class LabelScores: ObservableObject {
     @Published var scores = [Dictionary<String, Double>.Element]()
     
-    func ClearScores() {
+    func clearScores() {
         self.scores = [Dictionary<String, Double>.Element]()
+    }
+    
+    func updateScores(updatedScores : [String : Double]) {
+        self.scores = Array(updatedScores.sorted { $0.1 > $1.1 } [..<20])
     }
 }
 
 @main
 struct DeTeXtApp: App {
     
-    @StateObject var symbols = Symbols()
+    let symbols = Symbols()
     @StateObject var labelScores: LabelScores = LabelScores()
 
     var body: some Scene {
         #if targetEnvironment(macCatalyst)
         WindowGroup {
-            TwoColumnMainView(labelScores: labelScores, symbols: symbols)
+            TwoColumnMainView(labelScores: labelScores)
+                .environmentObject(symbols)
         }
         .commands {   
             CommandGroup(replacing: .help, addition: {
@@ -42,20 +48,21 @@ struct DeTeXtApp: App {
     
             CommandGroup(after: CommandGroupPlacement.undoRedo) {
                 Button("Clear Canvas") {
-                    self.labelScores.ClearScores()
+                    self.labelScores.clearScores()
                 }
                 .keyboardShortcut("r", modifiers: [.command])
             }
         }
         #else
         WindowGroup {
-            MainView(labelScores: labelScores, symbols: symbols)
+            MainView(labelScores: labelScores)
+                .environmentObject(symbols)
         }
         .defaultSize(CGSize(width: 500, height: 800))
         .commands {
             CommandGroup(after: CommandGroupPlacement.undoRedo) {
                 Button("Clear Canvas") {
-                    self.labelScores.ClearScores()
+                    self.labelScores.clearScores()
                 }
                 .keyboardShortcut("r", modifiers: [.command])
             }

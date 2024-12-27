@@ -2,34 +2,72 @@
 //  CopyToastView.swift
 //  iOS
 //
-//  Created by Venkat on 19/9/23.
+//  Created by Venkat & Claude on 20/10/24.
 //
 
 import SwiftUI
 
-// Toast modifier to handle showing/hiding of toast
+//Manage toast state and timing, as well as
+@MainActor
+@Observable class ToastManager {
+    var currentToast: Toast?
+    private var task: Task<Void, Never>?
+    
+    struct Toast: Equatable {
+        let id = UUID()
+        let text: String
+    }
+    
+    func show(_ text: String, duration: Double = 2.0) {
+        // Cancel any existing task
+        task?.cancel()
+        
+        // Dismiss current toast if exists
+        if currentToast != nil {
+            currentToast = nil
+            
+            // Small delay to allow dismissal animation
+            Task {
+                try? await Task.sleep(for: .milliseconds(10))
+                showNewToast(text, duration: duration)
+            }
+        } else {
+            showNewToast(text, duration: duration)
+        }
+    }
+    
+    private func showNewToast(_ text: String, duration: Double) {
+        withAnimation {
+            currentToast = Toast(text: text)
+        }
+        
+        task = Task {
+            try? await Task.sleep(for: .seconds(duration))
+            guard !Task.isCancelled else { return }
+            await MainActor.run {
+                withAnimation {
+                    currentToast = nil
+                }
+            }
+        }
+    }
+}
+
 struct ToastModifier: ViewModifier {
-    @Binding var isShowing: Bool
-    let text: String
-    let duration: Double
+    var toastManager: ToastManager
     
     func body(content: Content) -> some View {
         ZStack {
             content
             
-            if isShowing {
+            if let toast = toastManager.currentToast {
                 VStack {
+                    CopyToastView(whatsCopied: toast.text)
+                        .transition(.move(edge: .top).combined(with: .opacity))
+                        .id(toast.id)  // Force view replacement on id change
                     Spacer()
-                    CopyToastView(whatsCopied: text)
-                        .transition(.move(edge: .bottom).combined(with: .opacity))
-                        .onAppear {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
-                                withAnimation {
-                                    isShowing = false
-                                }
-                            }
-                        }
                 }
+                .padding(.vertical, 10)
             }
         }
     }
@@ -37,14 +75,14 @@ struct ToastModifier: ViewModifier {
 
 // View extension to make it easier to use
 extension View {
-    func toast(isShowing: Binding<Bool>, text: String, duration: Double = 2.0) -> some View {
-        modifier(ToastModifier(isShowing: isShowing, text: text, duration: duration))
+    func toast(using toastManager: ToastManager) -> some View {
+        modifier(ToastModifier(toastManager: toastManager))
     }
 }
 
 struct CopyToastView: View {
     
-    @State var whatsCopied: String
+    var whatsCopied: String
     
     var body: some View {
         HStack {

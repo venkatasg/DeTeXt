@@ -11,34 +11,30 @@ import PencilKit
 struct CanvasView: View {
     
     @ObservedObject var labelScores: LabelScores
-    @ObservedObject var symbols: Symbols
-    @State var showAboutView = false
     
-    @State private var showToast = false
-    @State private var toastText = ""
+    @State var showAboutView = false
+    @State private var toastManager = ToastManager()
+    
+    @EnvironmentObject private var tabController: TabController
+    @EnvironmentObject private var symbols: Symbols
     
     #if targetEnvironment(macCatalyst)
     let rowHeight:CGFloat = 100
     #else
     let rowHeight:CGFloat = 70
     #endif
-        
-    @EnvironmentObject private var tabController: TabController
-    
-    @State var canvas = PKCanvasView()
     
     var body: some View {
         NavigationStack {
             VStack (spacing:0) {
                 ZStack {
-                    PKCanvas(canvasView: $canvas, labelScores: labelScores)
-                        .environmentObject(symbols)
+                    PKCanvas(labelScores: labelScores)
                         .frame(minWidth: 150, idealWidth: 300, maxWidth: 600, minHeight: 100, idealHeight: 200, maxHeight: 400, alignment: .center)
                         .aspectRatio(1.5, contentMode: .fit)
                         .cornerRadius(5)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                .stroke(Color.blue, lineWidth: 3)
+                                .stroke(Color.accentColor, lineWidth: 3)
                             )
                         .padding(.init(top: 10, leading: 10, bottom: 20, trailing: 10))
                     }
@@ -48,7 +44,7 @@ struct CanvasView: View {
                                 Button(
                                     role: .destructive,
                                     action: {
-                                        labelScores.ClearScores()
+                                        labelScores.clearScores()
                                     },
                                     label: {
                                         #if targetEnvironment(macCatalyst)
@@ -73,19 +69,14 @@ struct CanvasView: View {
                 ZStack {
                     List {
                         ForEach(labelScores.scores, id: \.key) { key, value in
-                            RowView(symbol: symbols.AllSymbols.first(where: {$0.id==key})!, showToast: { copiedText in
-                                toastText = copiedText
-                                withAnimation {
-                                    showToast = true
-                                }
-                            })
+                            RowView(symbol: symbols.AllSymbols.first(where: {$0.id==key})!, toastManager: toastManager)
                                 .frame(minHeight:self.rowHeight)
                                 .onDrag { NSItemProvider(object: symbols.AllSymbols.first(where: {$0.id==key})!.command as NSString) }
                             }
                         }
                         .listStyle(InsetListStyle())
                         .frame(maxHeight:.infinity)
-                        .toast(isShowing: $showToast, text: toastText)
+                        .toast(using: toastManager)
                     
                     Text("Draw in the canvas above")
                         .font(.system(.title, design: .rounded))
@@ -113,9 +104,13 @@ struct CanvasView: View {
 struct CanvasView_Previews: PreviewProvider {
     static let symbols = Symbols()
     static let labelScores = LabelScores()
+    static let tabController = TabController()
+    
     static var previews: some View {
         Group {
-            CanvasView(labelScores: labelScores, symbols: symbols)
+            CanvasView(labelScores: labelScores)
+                .environmentObject(symbols)
+                .environmentObject(tabController)
         }
     }
 }
