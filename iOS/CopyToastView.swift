@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-//Manage toast state and timing, as well as
-@MainActor
-@Observable class ToastManager {
+//Manage toast state and timing
+@Observable @MainActor
+class ToastManager {
     var currentToast: Toast?
     private var task: Task<Void, Never>?
     
@@ -25,29 +25,22 @@ import SwiftUI
         // Dismiss current toast if exists
         if currentToast != nil {
             currentToast = nil
-            
-            // Small delay to allow dismissal animation
-            Task {
-                try? await Task.sleep(for: .milliseconds(10))
-                showNewToast(text, duration: duration)
-            }
-        } else {
-            showNewToast(text, duration: duration)
         }
+        
+        // Show new toast
+        showNewToast(text, duration: duration)
     }
     
     private func showNewToast(_ text: String, duration: Double) {
         withAnimation {
             currentToast = Toast(text: text)
         }
-        
+        // Suspend the toast for duration before dismissing on main thread
         task = Task {
             try? await Task.sleep(for: .seconds(duration))
             guard !Task.isCancelled else { return }
             await MainActor.run {
-                withAnimation {
-                    currentToast = nil
-                }
+                currentToast = nil
             }
         }
     }
@@ -57,17 +50,14 @@ struct ToastModifier: ViewModifier {
     var toastManager: ToastManager
     
     func body(content: Content) -> some View {
-        ZStack {
+        ZStack (alignment: .top) {
             content
             
             if let toast = toastManager.currentToast {
-                VStack {
-                    CopyToastView(whatsCopied: toast.text)
-                        .transition(.move(edge: .top).combined(with: .opacity))
-                        .id(toast.id)  // Force view replacement on id change
-                    Spacer()
-                }
-                .padding(.vertical, 10)
+                CopyToastView(whatsCopied: toast.text)
+                    .transition(.move(edge: .top).combined(with: .opacity))
+                    .id(toast.id)  // Force view replacement on id change
+                    .padding(.vertical, 10)
             }
         }
     }
