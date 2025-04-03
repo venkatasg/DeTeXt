@@ -13,11 +13,13 @@ struct PKCanvas: UIViewRepresentable {
     class Coordinator: NSObject, PKCanvasViewDelegate {
         var pkCanvas: PKCanvas
         @ObservedObject var labelScores: LabelScores
+        
+        private let mlProcessingInk = PKInk(.pen, color: .white)
 
         let model: deTeX = {
             do {
                 let config = MLModelConfiguration()
-                config.computeUnits = .cpuAndNeuralEngine
+                config.computeUnits = .all
                 return try deTeX(configuration: config)
             }
             catch {
@@ -32,13 +34,6 @@ struct PKCanvas: UIViewRepresentable {
             self.pkCanvas = pkCanvas
             self.labelScores  = labelScores
         }
-        
-//        #if os(iOS)
-//        func pencilInteractionDidTap(_ interaction: UIPencilInteraction) {
-//            // Clear the drawing when double tapped on pencil
-//            self.labelScores.ClearScores()
-//        }
-//        #endif
 
         func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
             // if canvasView is empty escape gracefully
@@ -59,22 +54,30 @@ struct PKCanvas: UIViewRepresentable {
             // Find the scaling factor for drawings and appropriate pointsize
             let scaleH = canvasView.drawing.bounds.size.width / canvasView.frame.width
             let scaleW = canvasView.drawing.bounds.size.height / canvasView.frame.height
-            let scale = scaleH >= scaleW ? scaleH: scaleW
+            let scale = max(scaleH, scaleW)
             let pointSize = CGSize(width: 2.5 + scale*5.5, height: 2.5+scale*5.5)
             
-            //create new drawing with default width of 10 and white strokes
-            var newDrawingStrokes = [PKStroke]()
-            for stroke in canvasView.drawing.strokes {
-                var newPoints = [PKStrokePoint]()
-                stroke.path.forEach { (point) in
-                    let newPoint = PKStrokePoint(location: point.location, timeOffset: point.timeOffset, size: pointSize, opacity: CGFloat(2), force: point.force, azimuth: CGFloat.zero, altitude: CGFloat.pi/2)
-                    newPoints.append(newPoint)
-                }
-                let newPath = PKStrokePath(controlPoints: newPoints, creationDate: Date())
-                newDrawingStrokes.append(PKStroke(ink: PKInk(.pen, color: UIColor.white), path: newPath))
-            }
-            let newDrawing = PKDrawing(strokes: newDrawingStrokes)
-            var image = newDrawing.image(from: newDrawing.bounds, scale: 5.0)
+            // Create new drawing using map to avoid explicit array allocation
+            let processedDrawing = PKDrawing(strokes: canvasView.drawing.strokes.map { stroke in
+                PKStroke(
+                    ink: self.mlProcessingInk,
+                    path: PKStrokePath(
+                        controlPoints: stroke.path.map { point in
+                            PKStrokePoint(
+                                location: point.location,
+                                timeOffset: point.timeOffset,
+                                size: pointSize,
+                                opacity: 2,
+                                force: point.force,
+                                azimuth: .zero,
+                                altitude: .pi/2
+                            )
+                        },
+                        creationDate: Date()
+                    )
+                )
+            })
+            var image = processedDrawing.image(from: processedDrawing.bounds, scale: 5.0)
             //flip color from black to white in dark mode
             if image.averageColor?.cgColor.components![0] == 0 {
                 image = invertColors(image: image)
@@ -90,7 +93,6 @@ struct PKCanvas: UIViewRepresentable {
             do {
                 let result = try model.prediction(drawing: pixelBuffer)
                 labelScores.updateScores(updatedScores: result.classLabelProbs)
-
             }
             catch {
                 print("Prediction error\n")
@@ -99,12 +101,7 @@ struct PKCanvas: UIViewRepresentable {
         }
     }
 
-//    @Binding var canvasView: PKCanvasView
     @ObservedObject var labelScores: LabelScores
-    
-//    #if os(iOS)
-//    let pencilInteraction = UIPencilInteraction()
-//    #endif
 
     func makeCoordinator() -> Coordinator {
         Coordinator(self, labelScores: labelScores)
@@ -118,17 +115,11 @@ struct PKCanvas: UIViewRepresentable {
         canvasView.becomeFirstResponder()
         canvasView.delegate = context.coordinator
         canvasView.drawingPolicy = .anyInput
-//        #if os(iOS)
-//        self.pencilInteraction.delegate = context.coordinator
-//        self.canvasView.addInteraction(self.pencilInteraction)
-//        #endif
         
         return canvasView
     }
 
     func updateUIView(_ canvasView: PKCanvasView, context: Context) {
-//        canvasView.tool = PKInkingTool(.pen, width: 15)
-        
         if self.labelScores.scores.isEmpty {
             canvasView.drawing = PKDrawing()
         }

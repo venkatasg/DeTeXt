@@ -8,9 +8,9 @@
 import SwiftUI
 import PencilKit
 
-@MainActor
+@Observable @MainActor
 class LabelScores: ObservableObject {
-    @Published var scores = [Dictionary<String, Double>.Element]()
+    var scores = [Dictionary<String, Double>.Element]()
     
     func clearScores() {
         self.scores = [Dictionary<String, Double>.Element]()

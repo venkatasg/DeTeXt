@@ -28,16 +28,7 @@ struct RowView: View {
                 .font(.hugeTitle)
                 .preferredColorScheme(colorScheme)
                 .onTapGesture(count: 2) {
-                    if let myChar = symbol.unicode {
-                        if let num = Int(myChar, radix: 16) {
-                            if let scalarValue = UnicodeScalar(num) {
-                                let myString = String(scalarValue)
-                                pasteboard.string = myString
-                                toastManager.show(myString)
-                                modelHaptics()
-                            }
-                        }
-                    }
+                    copyCharacter(toast: true)
                 }
         }
         .contentShape(Rectangle())
@@ -45,31 +36,13 @@ struct RowView: View {
             // Copy command string
             Button {
                 pasteboard.string = symbol.command
-                toastManager.show(symbol.command)
             } label: {
                 Label("Copy command", systemImage: "command.square.fill")
             }
             
             // Copy decoded unicode character
             Button {
-                if let myChar = symbol.unicode {
-                    if let num = Int(myChar, radix: 16) {
-                        if let scalarValue = UnicodeScalar(num) {
-                            let myString = String(scalarValue)
-                            pasteboard.string = myString
-                            toastManager.show(myString)
-                            modelHaptics()
-                        }
-                    }
-                    else {
-                        pasteboard.string = myChar
-                        toastManager.show(myChar)
-                        modelHaptics()
-                    }
-                }
-                else {
-                    toastManager.show("Copy character unavailable.")
-                }
+                copyCharacter()
             } label : {
                 Label("Copy character", systemImage: "character.phonetic")
             }
@@ -79,11 +52,7 @@ struct RowView: View {
             Button {
                 if let myChar = symbol.unicode {
                     pasteboard.string = "U+" + myChar
-                    toastManager.show("U+" + myChar)
                     modelHaptics()
-                }
-                else {
-                    toastManager.show("Copy codepoint unavailable.")
                 }
                 
             } label : {
@@ -94,6 +63,29 @@ struct RowView: View {
             SymbolPreviewView(symbol: symbol)
                 .frame(minWidth: 300)
         }
+    }
+    
+    private func copyCharacter(toast: Bool = false) {
+        if let myChar = symbol.unicode {
+            // Unicode needs to be encoded decoded here
+            if let num = Int(myChar, radix: 16) {
+                if let scalarValue = UnicodeScalar(num) {
+                    let myString = String(scalarValue)
+                    pasteboard.string = myString
+                    if toast {
+                        toastManager.show(myString)
+                    }
+                    modelHaptics()
+                }
+            }
+        }
+        // Fail gracefully
+//        else {
+//            if toast {
+//                toastManager.show("Copy unavailable.")
+//            }
+//            modelHaptics()
+//        }
     }
 }
 
