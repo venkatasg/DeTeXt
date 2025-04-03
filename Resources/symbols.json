@@ -61,7 +61,7 @@
 "textmode":true,
 "id":"latex2e-OT1-_textparagraph",
 "css_class":"symbolc214db8188c63158e5e29d6e6c697b8f",
-"unicode":null
+"unicode":"00B6"
 },
 {
 "command":"\\textbar",
@@ -616,7 +616,7 @@
 "textmode":true,
 "id":"latex2e-T1-_quotedblbase",
 "css_class":"symbol75b16b1657dc3039b24d71dfccbfcf46",
-"unicode":null
+"unicode":"201E"
 },
 {
 "command":"\\textquotedbl",
@@ -624,7 +624,7 @@
 "textmode":true,
 "id":"latex2e-T1-_textquotedbl",
 "css_class":"symbolb28d2176c24aff3b81873d964160c4ea",
-"unicode":null
+"unicode":"0022"
 },
 {
 "command":"\\guillemotright",
@@ -648,7 +648,7 @@
 "textmode":true,
 "id":"latex2e-T1-_quotesinglbase",
 "css_class":"symbol8a0834ef4a4dd79b1ebf68c8996a9d09",
-"unicode":null
+"unicode":"201A"
 },
 {
 "command":"\\textbabygamma",
@@ -2133,7 +2133,7 @@
 "textmode":true,
 "id":"textcomp-OT1-_textbaht",
 "css_class":"symbol761c6a83f012045116c02989a15e5efa",
-"unicode":null
+"unicode":"0E3F"
 },
 {
 "command":"\\textdollar",
@@ -2142,7 +2142,7 @@
 "textmode":true,
 "id":"textcomp-OT1-_textdollar",
 "css_class":"symbol29e475dd95ee30b4e78eb8957b747d85",
-"unicode":null
+"unicode":"0024"
 },
 {
 "command":"\\textguarani",
@@ -2151,7 +2151,7 @@
 "textmode":true,
 "id":"textcomp-OT1-_textguarani",
 "css_class":"symbol31d6343ea3157d12a7362d526adafa0f",
-"unicode":null
+"unicode":"20B2"
 },
 {
 "command":"\\textwon",
@@ -2160,7 +2160,7 @@
 "textmode":true,
 "id":"textcomp-OT1-_textwon",
 "css_class":"symbolacf68293d4d87fb480cadac4cab0ec85",
-"unicode":null
+"unicode":"20Q9"
 },
 {
 "command":"\\textcent",
@@ -2205,7 +2205,7 @@
 "textmode":true,
 "id":"textcomp-OT1-_textcentoldstyle",
 "css_class":"symbol6bef88c24e6c898da11462ac133575fd",
-"unicode":null
+"unicode":"00A2"
 },
 {
 "command":"\\textdong",
@@ -2214,7 +2214,7 @@
 "textmode":true,
 "id":"textcomp-OT1-_textdong",
 "css_class":"symbolae6977a3eb1499a6f01529cc732229e2",
-"unicode":null
+"unicode":"20AB"
 },
 {
 "command":"\\textnaira",
@@ -2223,7 +2223,7 @@
 "textmode":true,
 "id":"textcomp-OT1-_textnaira",
 "css_class":"symbol3315b1066c8830e0d2ca3798281a4d80",
-"unicode":null
+"unicode":"20A6"
 },
 {
 "command":"\\textcolonmonetary",
@@ -2232,7 +2232,7 @@
 "textmode":true,
 "id":"textcomp-OT1-_textcolonmonetary",
 "css_class":"symbolf7ba101317400a1f187c80d43028fdc7",
-"unicode":null
+"unicode":"FFE0"
 },
 {
 "command":"\\texteuro",
@@ -2250,7 +2250,7 @@
 "textmode":true,
 "id":"textcomp-OT1-_textpeso",
 "css_class":"symbol51f3d091cd1de5ea45b1f9c77e6ab882",
-"unicode":null
+"unicode":"20B1"
 },
 {
 "command":"\\textcurrency",
@@ -2268,7 +2268,7 @@
 "textmode":true,
 "id":"textcomp-OT1-_textflorin",
 "css_class":"symbol7fe51450f5cb62c02db324b9b088af3b",
-"unicode":null
+"unicode":"0192"
 },
 {
 "command":"\\textsterling",
@@ -2493,7 +2493,7 @@
 "textmode":true,
 "id":"textcomp-OT1-_textparagraph",
 "css_class":"symbolb6d4dd73df027b231fc632d0ae3a273d",
-"unicode":null
+"unicode":"00B6"
 },
 {
 "command":"\\textblank",
@@ -7157,7 +7157,7 @@
 "textmode":false,
 "id":"latex2e-OT1-_sqrt{}",
 "css_class":"symbolaa6c0be24e6d08dd22defd208b73a814",
-"unicode":null
+"unicode":"221A"
 },
 {
 "command":"\\angle",

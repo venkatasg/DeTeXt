@@ -82,17 +82,17 @@ struct CopyToastView: View {
                 .font(.system(.body, design: .monospaced))
         }
         .padding(.vertical, 10)
-                .padding(.horizontal, 16)
-                .background(
+        .padding(.horizontal, 16)
+        .background(
+                    Capsule()
+                        .fill(Color(UIColor.systemBackground))
+                        .overlay(
                             Capsule()
-                                .fill(Color(UIColor.systemBackground))
-                                .overlay(
-                                    Capsule()
-                                        .stroke(Color.secondary.opacity(0.2), lineWidth: 1)
-                                )
+                                .stroke(Color.secondary.opacity(0.2), lineWidth: 1)
                         )
-                .shadow(color: Color.primary.opacity(0.1), radius: 3, x: 0, y: 2)
-                .shadow(color: Color.primary.opacity(0.1), radius: 1, x: 0, y: 1)
+                )
+        .shadow(color: Color.primary.opacity(0.1), radius: 3, x: 0, y: 2)
+        .shadow(color: Color.primary.opacity(0.1), radius: 1, x: 0, y: 1)
     }
 }
 
