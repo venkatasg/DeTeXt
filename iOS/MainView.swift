@@ -15,7 +15,8 @@ enum Tab {
 }
 
 // Tabcontroller controls active TabView
-class TabController: ObservableObject {
+@Observable
+class TabController {
     var activeTab = Tab.draw
     
     func open(_ tab: Tab) {
@@ -29,11 +30,11 @@ struct MainView: View {
     
     @ObservedObject var labelScores: LabelScores
     
-    @EnvironmentObject private var symbols: Symbols
-    
+    let symbols: Symbols
+        
     var body: some View {
         TabView(selection: $tabController.activeTab) {
-            CanvasView(labelScores: labelScores)
+            CanvasView(labelScores: labelScores, symbols: symbols)
                 .tag(Tab.draw)
                 .tabItem {
                     Image(systemName: "scribble")
@@ -41,10 +42,9 @@ struct MainView: View {
                         .accessibility(hint: Text("Search the entire list of 1098 LaTeX symbols by drawing on a canvas."))
                     Text("Draw")
                 }
-                .environmentObject(symbols)
-                .environmentObject(tabController)
+                .environment(tabController)
             
-            SearchView()
+            SearchView(symbols: symbols)
                 .tag(Tab.search)
                 .tabItem {
                     Image(systemName: "magnifyingglass")
@@ -52,8 +52,7 @@ struct MainView: View {
                         .accessibility(hint: Text("Search the entire list of 1098 LaTeX symbols by name."))
                     Text("Search")
                 }
-                .environmentObject(symbols)
-                .environmentObject(tabController)
+                .environment(tabController)
         }
         .onAppear() {
             let appearance = UITabBarAppearance()
@@ -64,13 +63,11 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     
-    static let symbols = Symbols()
     static let labelScores = LabelScores()
-    
+    static let symbols = Symbols()
     static var previews: some View {
         Group {
-            MainView(labelScores: labelScores)
-                .environmentObject(symbols)
+            MainView(labelScores: labelScores, symbols: symbols)
         }
     }
 }

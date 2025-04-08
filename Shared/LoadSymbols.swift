@@ -17,8 +17,7 @@ class Symbol : Codable, Identifiable {
     let package: String?
 }
 
-
-class Symbols: ObservableObject {
+class Symbols {
     
     let AllSymbols: [Symbol]
     

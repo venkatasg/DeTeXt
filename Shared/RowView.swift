@@ -43,7 +43,7 @@ struct RowView: View {
             
             // Copy decoded unicode character
             Button {
-                copyCharacter(haptics: false)
+                copyCharacter()
             } label : {
                 Label("Copy character", systemImage: "character.phonetic")
             }
@@ -66,7 +66,7 @@ struct RowView: View {
         }
     }
     
-    private func copyCharacter(haptics: Bool = true) {
+    private func copyCharacter(haptics: Bool = false) {
         if let myChar = symbol.unicode {
             // Unicode needs to be encoded decoded here
             if let num = Int(myChar, radix: 16) {

@@ -12,11 +12,12 @@ struct CanvasView: View {
     
     @ObservedObject var labelScores: LabelScores
     
+    let symbols: Symbols
+    
     @State var showAboutView = false
     @State private var toastManager = ToastManager()
     
-    @EnvironmentObject private var tabController: TabController
-    @EnvironmentObject private var symbols: Symbols
+    @Environment(TabController.self) var tabController
     
     #if targetEnvironment(macCatalyst)
     let rowHeight:CGFloat = 100
@@ -102,15 +103,14 @@ struct CanvasView: View {
 }
 
 struct CanvasView_Previews: PreviewProvider {
-    static let symbols = Symbols()
     static let labelScores = LabelScores()
     static let tabController = TabController()
+    static let symbols = Symbols()
     
     static var previews: some View {
         Group {
-            CanvasView(labelScores: labelScores)
-                .environmentObject(symbols)
-                .environmentObject(tabController)
+            CanvasView(labelScores: labelScores, symbols: symbols)
+                .environment(tabController)
         }
     }
 }

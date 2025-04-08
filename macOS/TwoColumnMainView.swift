@@ -9,29 +9,25 @@ import SwiftUI
 
 struct TwoColumnMainView: View {
     
-    @EnvironmentObject private var symbols: Symbols
     var labelScores: LabelScores
+    let symbols: Symbols
     
     var body: some View {
         HStack {
-            CanvasView(labelScores: labelScores)
-                .environmentObject(symbols)
+            CanvasView(labelScores: labelScores, symbols: symbols)
             Divider()
-            SearchView()
-                .environmentObject(symbols)
+            SearchView(symbols: symbols)
         }
     }
 }
 
 struct TwoColumnMainView_Previews: PreviewProvider {
     
-    static let symbols = Symbols()
     static let labelScores = LabelScores()
-    
+    static let symbols = Symbols()
     static var previews: some View {
         Group {
-            TwoColumnMainView(labelScores: labelScores)
-                .environmentObject(symbols)
+            TwoColumnMainView(labelScores: labelScores, symbols: symbols)
         }
     }
 }

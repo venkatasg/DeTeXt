@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SearchView: View {
     
+    let symbols: Symbols
+    
     @State private var searchText = ""
     @State private var showAboutView = false
     @State private var isPresented = false
@@ -20,8 +22,7 @@ struct SearchView: View {
     let rowHeight:CGFloat = 70
     #endif
     
-    @EnvironmentObject private var tabController: TabController
-    @EnvironmentObject private var symbols: Symbols
+    @Environment(TabController.self) var tabController
         
     var body: some View {
         NavigationStack {
@@ -67,11 +68,13 @@ struct SearchView: View {
 }
 
 struct SearchView_Previews: PreviewProvider {
+    static let tabController = TabController()
     static let symbols = Symbols()
+    
     static var previews: some View {
         Group {
-            SearchView()
-                .environmentObject(symbols)
+            SearchView(symbols: symbols)
+                .environment(tabController)
         }
     }
 }

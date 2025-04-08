@@ -24,14 +24,13 @@ class LabelScores: ObservableObject {
 @main
 struct DeTeXtApp: App {
     
-    let symbols = Symbols()
     @StateObject var labelScores: LabelScores = LabelScores()
-
+    let symbols = Symbols()
+    
     var body: some Scene {
         #if targetEnvironment(macCatalyst)
         WindowGroup {
-            TwoColumnMainView(labelScores: labelScores)
-                .environmentObject(symbols)
+            TwoColumnMainView(labelScores: labelScores, symbols: symbols)
         }
         .commands {   
             CommandGroup(replacing: .help, addition: {
@@ -55,8 +54,7 @@ struct DeTeXtApp: App {
         }
         #else
         WindowGroup {
-            MainView(labelScores: labelScores)
-                .environmentObject(symbols)
+            MainView(labelScores: labelScores, symbols: symbols)
         }
         .defaultSize(CGSize(width: 500, height: 800))
         .commands {
