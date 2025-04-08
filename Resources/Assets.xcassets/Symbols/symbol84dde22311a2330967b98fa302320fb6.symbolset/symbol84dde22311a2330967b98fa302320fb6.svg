@@ -23,7 +23,9 @@
                 <rect id="right-margin" fill="#00AEEF" fill-rule="nonzero" opacity="0.4" x="1230.18" y="405.79" width="12.4512" height="119.336"></rect>
             </g>
             <g id="Regular-M" transform="translate(1326.898400, 1016.971200)" fill="#000000" fill-rule="nonzero">
-                <rect id="Rectangle" x="7.12326334" y="8.41139309" width="68.6640011" height="9.1549796"></rect>
+            	<g id="g0-10-link" transform="translate(6.140276, 6.591136)">
+                	<path d="M7.12326334,8.41139309 H75.78726444 V17.56637269 H7.12326334 Z" id="g0-10"></path>
+                </g>
             </g>
         </g>
     </g>

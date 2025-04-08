@@ -28,7 +28,7 @@ struct RowView: View {
                 .font(.hugeTitle)
                 .preferredColorScheme(colorScheme)
                 .onTapGesture(count: 2) {
-                    copyCharacter(toast: true)
+                    copyCharacter(haptics: true)
                 }
         }
         .contentShape(Rectangle())
@@ -36,13 +36,14 @@ struct RowView: View {
             // Copy command string
             Button {
                 pasteboard.string = symbol.command
+                toastManager.show(symbol.command)
             } label: {
                 Label("Copy command", systemImage: "command.square.fill")
             }
             
             // Copy decoded unicode character
             Button {
-                copyCharacter()
+                copyCharacter(haptics: false)
             } label : {
                 Label("Copy character", systemImage: "character.phonetic")
             }
@@ -52,7 +53,7 @@ struct RowView: View {
             Button {
                 if let myChar = symbol.unicode {
                     pasteboard.string = "U+" + myChar
-                    modelHaptics()
+                    toastManager.show("U+" + myChar)
                 }
                 
             } label : {
@@ -65,17 +66,17 @@ struct RowView: View {
         }
     }
     
-    private func copyCharacter(toast: Bool = false) {
+    private func copyCharacter(haptics: Bool = true) {
         if let myChar = symbol.unicode {
             // Unicode needs to be encoded decoded here
             if let num = Int(myChar, radix: 16) {
                 if let scalarValue = UnicodeScalar(num) {
                     let myString = String(scalarValue)
                     pasteboard.string = myString
-                    if toast {
-                        toastManager.show(myString)
+                    toastManager.show(myString)
+                    if haptics {
+                        modelHaptics()
                     }
-                    modelHaptics()
                 }
             }
         }

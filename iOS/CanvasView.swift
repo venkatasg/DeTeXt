@@ -35,7 +35,7 @@ struct CanvasView: View {
                         .overlay(
                             RoundedRectangle(cornerRadius: 10, style: .continuous)
                                 .stroke(Color.accentColor, lineWidth: 3)
-                            )
+                        )
                         .padding(.init(top: 10, leading: 10, bottom: 20, trailing: 10))
                     }
                     .overlay( Group {

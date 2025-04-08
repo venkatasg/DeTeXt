@@ -5,7 +5,7 @@
 "textmode":true,
 "id":"latex2e-OT1-_textasciicircum",
 "css_class":"symbol0fc0a6460b919255cae7741740fcfcdb",
-"unicode":null
+"unicode":"005E"
 },
 {
 "command":"\\textless",
@@ -21,7 +21,7 @@
 "textmode":true,
 "id":"latex2e-OT1-_textasciitilde",
 "css_class":"symbol46c29390c9cf916a34a9748ecb44b59e",
-"unicode":null
+"unicode":"007E"
 },
 {
 "command":"\\textordfeminine",
@@ -37,7 +37,7 @@
 "textmode":true,
 "id":"latex2e-OT1-_textasteriskcentered",
 "css_class":"symbol64973858a2e540a38ac594805ae83cd8",
-"unicode":null
+"unicode":"2217"
 },
 {
 "command":"\\textordmasculine",
@@ -213,7 +213,7 @@
 "textmode":true,
 "id":"latex2e-OT1-_textemdash",
 "css_class":"symbol252fc73b23b4646bc5fdffdedb3c14db",
-"unicode":null
+"unicode":"2014"
 },
 {
 "command":"\\texttrademark",
@@ -229,7 +229,7 @@
 "textmode":true,
 "id":"latex2e-OT1-_textendash",
 "css_class":"symbolc30ad0b8f26bc5b11fdc902b7be16098",
-"unicode":null
+"unicode":"2013"
 },
 {
 "command":"\\textunderscore",
@@ -237,7 +237,7 @@
 "textmode":true,
 "id":"latex2e-OT1-_textunderscore",
 "css_class":"symbol72cd47228efe61c9dd57738c6bf0fd75",
-"unicode":null
+"unicode":"005F"
 },
 {
 "command":"\\textexclamdown",
@@ -1476,7 +1476,7 @@
 "textmode":true,
 "id":"tipa-OT1-_textltilde",
 "css_class":"symbol1fda464390be8225d6a6fe82af8566dd",
-"unicode":null
+"unicode":"007E"
 },
 {
 "command":"\\textthorn",
@@ -2448,7 +2448,7 @@
 "textmode":true,
 "id":"textcomp-OT1-_textasteriskcentered",
 "css_class":"symbolbef70434364039c61ca01b4dcccb5541",
-"unicode":null
+"unicode":"2217"
 },
 {
 "command":"\\textordfeminine",
@@ -2664,7 +2664,7 @@
 "textmode":true,
 "id":"textcomp-OT1-_textinterrobang",
 "css_class":"symbol89787eaa659697da8a9c101263be931c",
-"unicode":null
+"unicode":"203D"
 },
 {
 "command":"\\textsection",
@@ -2673,7 +2673,7 @@
 "textmode":true,
 "id":"textcomp-OT1-_textsection",
 "css_class":"symbolb226d73120f0039b74b3b632fa99108c",
-"unicode":null
+"unicode":"00A7"
 },
 {
 "command":"\\textinterrobangdown",
@@ -2682,7 +2682,7 @@
 "textmode":true,
 "id":"textcomp-OT1-_textinterrobangdown",
 "css_class":"symbol12a08c5c83a223ec5a669a331ab606a0",
-"unicode":null
+"unicode":"2E18"
 },
 {
 "command":"\\textthreequartersemdash",
@@ -2691,7 +2691,7 @@
 "textmode":true,
 "id":"textcomp-OT1-_textthreequartersemdash",
 "css_class":"symbolae35578d7755f768f7bbdbf1db304024",
-"unicode":null
+"unicode":"2E3B"
 },
 {
 "command":"\\textmusicalnote",
@@ -2709,7 +2709,7 @@
 "textmode":true,
 "id":"textcomp-OT1-_texttildelow",
 "css_class":"symbolbe209098b1f9783ac77462c3018bcdc8",
-"unicode":null
+"unicode":"02F7"
 },
 {
 "command":"\\textnumero",
@@ -2793,7 +2793,7 @@
 "textmode":false,
 "id":"latex2e-OT1-_mathunderscore",
 "css_class":"symbol84dde22311a2330967b98fa302320fb6",
-"unicode":null
+"unicode":"005F"
 },
 {
 "command":"\\amalg",
