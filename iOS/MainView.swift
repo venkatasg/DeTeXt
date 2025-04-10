@@ -28,13 +28,12 @@ struct MainView: View {
     
     @State private var tabController = TabController()
     
-    @ObservedObject var labelScores: LabelScores
-    
+    var labelScores: LabelScores
     let symbols: Symbols
         
     var body: some View {
         TabView(selection: $tabController.activeTab) {
-            CanvasView(labelScores: labelScores, symbols: symbols)
+            CanvasView(symbols: symbols, labelScores: labelScores)
                 .tag(Tab.draw)
                 .tabItem {
                     Image(systemName: "scribble")

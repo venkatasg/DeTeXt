@@ -14,7 +14,7 @@ struct TwoColumnMainView: View {
     
     var body: some View {
         HStack {
-            CanvasView(labelScores: labelScores, symbols: symbols)
+            CanvasView(symbols: symbols, labelScores: labelScores)
             Divider()
             SearchView(symbols: symbols)
         }

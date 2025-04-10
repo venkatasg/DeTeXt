@@ -12,7 +12,7 @@ import CoreML
 struct PKCanvas: UIViewRepresentable {
     class Coordinator: NSObject, PKCanvasViewDelegate {
         var pkCanvas: PKCanvas
-        @ObservedObject var labelScores: LabelScores
+        var labelScores: LabelScores
         
         private let mlProcessingInk = PKInk(.pen, color: .white)
 
@@ -101,7 +101,7 @@ struct PKCanvas: UIViewRepresentable {
         }
     }
 
-    @ObservedObject var labelScores: LabelScores
+    var labelScores: LabelScores
 
     func makeCoordinator() -> Coordinator {
         Coordinator(self, labelScores: labelScores)

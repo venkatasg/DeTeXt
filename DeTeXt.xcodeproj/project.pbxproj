@@ -20,6 +20,7 @@
 		825E2CBD2526D0A1008866F5 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825E2CBC2526D0A1008866F5 /* AboutView.swift */; };
 		825E2CFA2526DC83008866F5 /* RowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825E2CF92526DC83008866F5 /* RowView.swift */; };
 		827D30F02529097A0047D92D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827D30EF2529097A0047D92D /* MainView.swift */; };
+		828280FD2DA08C5400EDA3D0 /* TipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828280FC2DA08C5000EDA3D0 /* TipsView.swift */; };
 		82893B35252BC6B100B9C9DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82893B34252BC6B100B9C9DA /* Assets.xcassets */; };
 		829568E5250BC95200508BB0 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829568E4250BC95200508BB0 /* SearchView.swift */; };
 		82A26B8125E09FD00082C3AA /* TwoColumnMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AC1FD925C314A3000B3EBE /* TwoColumnMainView.swift */; };
@@ -77,6 +78,7 @@
 		825E2CBC2526D0A1008866F5 /* AboutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		825E2CF92526DC83008866F5 /* RowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowView.swift; sourceTree = "<group>"; };
 		827D30EF2529097A0047D92D /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		828280FC2DA08C5000EDA3D0 /* TipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsView.swift; sourceTree = "<group>"; };
 		82893B34252BC6B100B9C9DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		829568E4250BC95200508BB0 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		82A26B4E25E09E290082C3AA /* DeTeXt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeTeXt.entitlements; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 		821EE82924FAB50E0058877D /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				828280FC2DA08C5000EDA3D0 /* TipsView.swift */,
 				827D30EF2529097A0047D92D /* MainView.swift */,
 				821EE82124FAB50C0058877D /* CanvasView.swift */,
 				829568E4250BC95200508BB0 /* SearchView.swift */,
@@ -196,7 +199,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1520;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1630;
 				TargetAttributes = {
 					821EE82624FAB50E0058877D = {
 						CreatedOnToolsVersion = 12.0;
@@ -244,6 +247,7 @@
 				827D30F02529097A0047D92D /* MainView.swift in Sources */,
 				823C6D702A9C1D5100FF17F4 /* SymbolPreviewView.swift in Sources */,
 				82A26B8125E09FD00082C3AA /* TwoColumnMainView.swift in Sources */,
+				828280FD2DA08C5400EDA3D0 /* TipsView.swift in Sources */,
 				82B3D01F251060EA00F27316 /* PKCanvas.swift in Sources */,
 				821EE83524FAB50E0058877D /* CanvasView.swift in Sources */,
 				829568E5250BC95200508BB0 /* SearchView.swift in Sources */,
@@ -298,6 +302,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = Z97T34PPN3;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -363,6 +368,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = Z97T34PPN3;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -396,7 +402,6 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 25;
-				DEVELOPMENT_TEAM = Z97T34PPN3;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
@@ -432,7 +437,6 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 25;
-				DEVELOPMENT_TEAM = Z97T34PPN3;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";

@@ -20,9 +20,10 @@ struct SearchView: View {
     let rowHeight:CGFloat = 100
     #else
     let rowHeight:CGFloat = 70
+    @Environment(TabController.self) var tabController
     #endif
     
-    @Environment(TabController.self) var tabController
+    
         
     var body: some View {
         NavigationStack {
@@ -61,7 +62,8 @@ struct SearchView: View {
                     }
                 }
                 .navigationTitle("Search")
-                .sheet(isPresented: $showAboutView, onDismiss: { tabController.open(.search) }) { AboutView() }
+                .sheet(isPresented: $showAboutView, onDismiss: { tabController.open(.search)
+                }) { AboutView() }
             #endif
         }
     }

@@ -9,7 +9,7 @@ import SwiftUI
 import PencilKit
 
 @Observable @MainActor
-class LabelScores: ObservableObject {
+class LabelScores {
     var scores = [Dictionary<String, Double>.Element]()
     
     func clearScores() {
@@ -24,7 +24,7 @@ class LabelScores: ObservableObject {
 @main
 struct DeTeXtApp: App {
     
-    @StateObject var labelScores: LabelScores = LabelScores()
+    @State var labelScores: LabelScores = LabelScores()
     let symbols = Symbols()
     
     var body: some Scene {

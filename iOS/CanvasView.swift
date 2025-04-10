@@ -10,19 +10,17 @@ import PencilKit
 
 struct CanvasView: View {
     
-    @ObservedObject var labelScores: LabelScores
-    
     let symbols: Symbols
     
+    var labelScores: LabelScores
     @State var showAboutView = false
     @State private var toastManager = ToastManager()
-    
-    @Environment(TabController.self) var tabController
     
     #if targetEnvironment(macCatalyst)
     let rowHeight:CGFloat = 100
     #else
     let rowHeight:CGFloat = 70
+    @Environment(TabController.self) var tabController
     #endif
     
     var body: some View {
@@ -109,7 +107,7 @@ struct CanvasView_Previews: PreviewProvider {
     
     static var previews: some View {
         Group {
-            CanvasView(labelScores: labelScores, symbols: symbols)
+            CanvasView(symbols: symbols, labelScores: labelScores)
                 .environment(tabController)
         }
     }
