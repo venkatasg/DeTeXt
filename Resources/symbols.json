@@ -77,7 +77,7 @@
 "textmode":true,
 "id":"latex2e-OT1-_textperiodcentered",
 "css_class":"symbole4e88ea4682d726ae4c749c6457205c0",
-"unicode":null
+"unicode":"00B7"
 },
 {
 "command":"\\textbraceleft",
@@ -85,7 +85,7 @@
 "textmode":true,
 "id":"latex2e-OT1-_textbraceleft",
 "css_class":"symbol798e10a957d0d1d75913f2f7bda9e6d5",
-"unicode":null
+"unicode":"007B"
 },
 {
 "command":"\\textquestiondown",
@@ -93,7 +93,7 @@
 "textmode":true,
 "id":"latex2e-OT1-_textquestiondown",
 "css_class":"symbol0f41f17831f0eb7ac30608de826f877f",
-"unicode":null
+"unicode":"00BF"
 },
 {
 "command":"\\textbraceright",
@@ -101,7 +101,7 @@
 "textmode":true,
 "id":"latex2e-OT1-_textbraceright",
 "css_class":"symbol30fd8caa1f20cc51f6d7d5979e05d9dc",
-"unicode":null
+"unicode":"007D"
 },
 {
 "command":"\\textquotedblleft",
@@ -109,7 +109,7 @@
 "textmode":true,
 "id":"latex2e-OT1-_textquotedblleft",
 "css_class":"symbol670c6c1722d70a38e4261b4978d3a794",
-"unicode":null
+"unicode":"201C"
 },
 {
 "command":"\\textbullet",
@@ -125,7 +125,7 @@
 "textmode":true,
 "id":"latex2e-OT1-_textquotedblright",
 "css_class":"symbolce3b3bc38c394b611afc200de22fdcd3",
-"unicode":null
+"unicode":"201D"
 },
 {
 "command":"\\textcopyright",
@@ -141,7 +141,7 @@
 "textmode":true,
 "id":"latex2e-OT1-_textquoteleft",
 "css_class":"symboled0def791ded3f5c2b388a631d0ab628",
-"unicode":null
+"unicode":"2018"
 },
 {
 "command":"\\textdagger",
@@ -157,7 +157,7 @@
 "textmode":true,
 "id":"latex2e-OT1-_textquoteright",
 "css_class":"symbol2fa722ea43257db07e38ac1f4f123b57",
-"unicode":null
+"unicode":"2019"
 },
 {
 "command":"\\textdaggerdbl",
@@ -181,7 +181,7 @@
 "textmode":true,
 "id":"latex2e-OT1-_textdollar",
 "css_class":"symbol4bf714ff5908aaf23b13c6c8b3fd2ee7",
-"unicode":null
+"unicode":"0024"
 },
 {
 "command":"\\textsection",
@@ -197,7 +197,7 @@
 "textmode":true,
 "id":"latex2e-OT1-_textellipsis",
 "css_class":"symbol00b6edd814a2631348a237471d174849",
-"unicode":null
+"unicode":"2026"
 },
 {
 "command":"\\textsterling",
@@ -245,7 +245,7 @@
 "textmode":true,
 "id":"latex2e-OT1-_textexclamdown",
 "css_class":"symbol04b27af4764eb9de551d0244a9d39107",
-"unicode":null
+"unicode":"00A1"
 },
 {
 "command":"\\textvisiblespace",
@@ -325,7 +325,7 @@
 "textmode":true,
 "id":"latex2e-OT1-_dots",
 "css_class":"symbol0e6c632c5c20acf7040502c8177156be",
-"unicode":null
+"unicode":"2026"
 },
 {
 "command":"\\}",
@@ -2511,7 +2511,7 @@
 "textmode":true,
 "id":"textcomp-OT1-_textperiodcentered",
 "css_class":"symbolacf673d657749d451b3672b06564cae3",
-"unicode":null
+"unicode":"00B7"
 },
 {
 "command":"\\textbrokenbar",
@@ -2761,7 +2761,7 @@
 "textmode":false,
 "id":"latex2e-OT1-_mathparagraph",
 "css_class":"symbol66b26d3f73a7e33429ba636da4b457cd",
-"unicode":null
+"unicode":"00B6"
 },
 {
 "command":"\\mathsterling",
@@ -2777,7 +2777,7 @@
 "textmode":false,
 "id":"latex2e-OT1-_mathellipsis",
 "css_class":"symbol4a94605162fa7fad60961d39f6653d5d",
-"unicode":null
+"unicode":"2026"
 },
 {
 "command":"\\mathsection",
@@ -2785,7 +2785,7 @@
 "textmode":false,
 "id":"latex2e-OT1-_mathsection",
 "css_class":"symbolffc95c55a2b33a26a89708457d88cc62",
-"unicode":null
+"unicode":"00A7"
 },
 {
 "command":"\\mathunderscore",
@@ -3636,7 +3636,7 @@
 "textmode":false,
 "id":"latex2e-OT1-_not_approx",
 "css_class":"symbol3f1fa5142e77a2d3da46384310ef0ee3",
-"unicode":null
+"unicode":"2249"
 },
 {
 "command":"\\equiv",
@@ -3652,7 +3652,7 @@
 "textmode":false,
 "id":"latex2e-OT1-_not_equiv",
 "css_class":"symbol247d3c9b54f0604f935cbb991dbb81bb",
-"unicode":null
+"unicode":"2262"
 },
 {
 "command":"\\perp",
@@ -3788,7 +3788,7 @@
 "textmode":false,
 "id":"latex2e-OT1-_not_sim",
 "css_class":"symbol4016d4b953dd8136a2b573c814362ab3",
-"unicode":null
+"unicode":"2241"
 },
 {
 "command":"\\doteq",
@@ -3820,7 +3820,7 @@
 "textmode":false,
 "id":"latex2e-OT1-_not_simeq",
 "css_class":"symbol9b1ca5eb62759001db3898b95a97c8b1",
-"unicode":null
+"unicode":"2244"
 },
 {
 "command":"\\approxeq",
@@ -4054,7 +4054,7 @@
 "textmode":false,
 "id":"amssymb-OT1-_shortmid",
 "css_class":"symbolf32563c3c94d1540289d60d1a62e6fd3",
-"unicode":null
+"unicode":"2223"
 },
 {
 "command":"\\vDash",
@@ -8435,7 +8435,7 @@
 "textmode":false,
 "id":"mathrsfs-OT1-_mathscr{A}",
 "css_class":"symbol3bdf09a6291e0b5676f89d9d2734d51f",
-"unicode":null
+"unicode":"1D49C"
 },
 {
 "command":"\\mathscr{B}",
@@ -8444,7 +8444,7 @@
 "textmode":false,
 "id":"mathrsfs-OT1-_mathscr{B}",
 "css_class":"symbol529e74b217278666c3d056840ff0cfca",
-"unicode":null
+"unicode":"212C"
 },
 {
 "command":"\\mathscr{C}",
@@ -8453,7 +8453,7 @@
 "textmode":false,
 "id":"mathrsfs-OT1-_mathscr{C}",
 "css_class":"symbola7dc32995826f406e6ba112f8eb7acb4",
-"unicode":null
+"unicode":"1D49E"
 },
 {
 "command":"\\mathscr{D}",
@@ -8462,7 +8462,7 @@
 "textmode":false,
 "id":"mathrsfs-OT1-_mathscr{D}",
 "css_class":"symbol7ca4de28efa23d4998f8769141cfa061",
-"unicode":null
+"unicode":"1D49F"
 },
 {
 "command":"\\mathscr{E}",
@@ -8471,7 +8471,7 @@
 "textmode":false,
 "id":"mathrsfs-OT1-_mathscr{E}",
 "css_class":"symbolf775d1ff0689302cf1ebe179580b5721",
-"unicode":null
+"unicode":"2130"
 },
 {
 "command":"\\mathscr{F}",
@@ -8480,7 +8480,7 @@
 "textmode":false,
 "id":"mathrsfs-OT1-_mathscr{F}",
 "css_class":"symbol3f04ff64f022450291e09bd7bcf3f34e",
-"unicode":null
+"unicode":"2131"
 },
 {
 "command":"\\mathscr{G}",
@@ -8489,7 +8489,7 @@
 "textmode":false,
 "id":"mathrsfs-OT1-_mathscr{G}",
 "css_class":"symbolca4dec61b5da5f65bb3ea02b2bbb939f",
-"unicode":null
+"unicode":"1D4A2"
 },
 {
 "command":"\\mathscr{H}",
@@ -8498,7 +8498,7 @@
 "textmode":false,
 "id":"mathrsfs-OT1-_mathscr{H}",
 "css_class":"symbol3f38cb24020295421e85f2d69dbfc6cc",
-"unicode":null
+"unicode":"210B"
 },
 {
 "command":"\\mathscr{I}",
@@ -8507,7 +8507,7 @@
 "textmode":false,
 "id":"mathrsfs-OT1-_mathscr{I}",
 "css_class":"symbole58d58d9a90c635e97906409c7075ada",
-"unicode":null
+"unicode":"2110"
 },
 {
 "command":"\\mathscr{J}",
@@ -8516,7 +8516,7 @@
 "textmode":false,
 "id":"mathrsfs-OT1-_mathscr{J}",
 "css_class":"symbolf51d5199982244b9cec373f2ab0d50a6",
-"unicode":null
+"unicode":"1D4A5"
 },
 {
 "command":"\\mathscr{K}",
@@ -8525,7 +8525,7 @@
 "textmode":false,
 "id":"mathrsfs-OT1-_mathscr{K}",
 "css_class":"symbol3c3f728796343d1bf0b5c2f4a1771694",
-"unicode":null
+"unicode":"1D4A6"
 },
 {
 "command":"\\mathscr{L}",
@@ -8534,7 +8534,7 @@
 "textmode":false,
 "id":"mathrsfs-OT1-_mathscr{L}",
 "css_class":"symbol0ca2ce7c0a1010ffe12f48ccbbfaa8db",
-"unicode":null
+"unicode":"2112"
 },
 {
 "command":"\\mathscr{M}",
@@ -8543,7 +8543,7 @@
 "textmode":false,
 "id":"mathrsfs-OT1-_mathscr{M}",
 "css_class":"symbol0004260b3ca14a32e69686b1906464ad",
-"unicode":null
+"unicode":"2133"
 },
 {
 "command":"\\mathscr{N}",
@@ -8552,7 +8552,7 @@
 "textmode":false,
 "id":"mathrsfs-OT1-_mathscr{N}",
 "css_class":"symbol2edb32d7bcfdcafea418bf8a1ee4b3b7",
-"unicode":null
+"unicode":"1D4A9"
 },
 {
 "command":"\\mathscr{O}",
@@ -8561,7 +8561,7 @@
 "textmode":false,
 "id":"mathrsfs-OT1-_mathscr{O}",
 "css_class":"symbol49d597dccf17309aa140037283bb2d40",
-"unicode":null
+"unicode":"1D4AA"
 },
 {
 "command":"\\mathscr{P}",
@@ -8570,7 +8570,7 @@
 "textmode":false,
 "id":"mathrsfs-OT1-_mathscr{P}",
 "css_class":"symbol151eef5c5ca47b519f42f9f92eafb829",
-"unicode":null
+"unicode":"1D4AB"
 },
 {
 "command":"\\mathscr{Q}",
@@ -8579,7 +8579,7 @@
 "textmode":false,
 "id":"mathrsfs-OT1-_mathscr{Q}",
 "css_class":"symbol773f2fd9bb139029ee7f2d7bdf7bb78f",
-"unicode":null
+"unicode":"1D4AC"
 },
 {
 "command":"\\mathscr{R}",
@@ -8588,7 +8588,7 @@
 "textmode":false,
 "id":"mathrsfs-OT1-_mathscr{R}",
 "css_class":"symbol082936c3c3667aa82f0e674482435dfa",
-"unicode":null
+"unicode":"211B"
 },
 {
 "command":"\\mathscr{S}",
@@ -8597,7 +8597,7 @@
 "textmode":false,
 "id":"mathrsfs-OT1-_mathscr{S}",
 "css_class":"symbolae2638395cce78822cd022efcf66422d",
-"unicode":null
+"unicode":"1D4AE"
 },
 {
 "command":"\\mathscr{T}",
@@ -8606,7 +8606,7 @@
 "textmode":false,
 "id":"mathrsfs-OT1-_mathscr{T}",
 "css_class":"symbol38810f0e9809c9d92c5ec97f9f9f5fe8",
-"unicode":null
+"unicode":"1D4AF"
 },
 {
 "command":"\\mathscr{U}",
@@ -8615,7 +8615,7 @@
 "textmode":false,
 "id":"mathrsfs-OT1-_mathscr{U}",
 "css_class":"symbol2fdbede0e7a76afa3abc63e14fe5ece8",
-"unicode":null
+"unicode":"1D4B0"
 },
 {
 "command":"\\mathscr{V}",
@@ -8624,7 +8624,7 @@
 "textmode":false,
 "id":"mathrsfs-OT1-_mathscr{V}",
 "css_class":"symbola9d49c704a07f24c0c7479990c49503f",
-"unicode":null
+"unicode":"1D4B1"
 },
 {
 "command":"\\mathscr{W}",
@@ -8633,7 +8633,7 @@
 "textmode":false,
 "id":"mathrsfs-OT1-_mathscr{W}",
 "css_class":"symbol041bc4390cb88af38d26c3c8b70ba543",
-"unicode":null
+"unicode":"1D4B2"
 },
 {
 "command":"\\mathscr{X}",
@@ -8642,7 +8642,7 @@
 "textmode":false,
 "id":"mathrsfs-OT1-_mathscr{X}",
 "css_class":"symbol7728513e4e4533f5e388fa0fb9c1cc16",
-"unicode":null
+"unicode":"1D4B3"
 },
 {
 "command":"\\mathscr{Y}",
@@ -8651,7 +8651,7 @@
 "textmode":false,
 "id":"mathrsfs-OT1-_mathscr{Y}",
 "css_class":"symbol89a3faeb949d49ee511cf657fe84e913",
-"unicode":null
+"unicode":"1D4B4"
 },
 {
 "command":"\\mathscr{Z}",
@@ -8660,7 +8660,7 @@
 "textmode":false,
 "id":"mathrsfs-OT1-_mathscr{Z}",
 "css_class":"symbola5396754f147267c60830823ffc1666b",
-"unicode":null
+"unicode":"1D4B5"
 },
 {
 "command":"\\celsius",
@@ -8669,7 +8669,7 @@
 "textmode":true,
 "id":"gensymb-OT1-_celsius",
 "css_class":"symbolbd1e9c5b86c67be05ecca0af180704ac",
-"unicode":null
+"unicode":"2103"
 },
 {
 "command":"\\degree",
@@ -8687,7 +8687,7 @@
 "textmode":true,
 "id":"gensymb-OT1-_ohm",
 "css_class":"symbol7f8b853f683020571cfe48c3f5a77b33",
-"unicode":null
+"unicode":"2126"
 },
 {
 "command":"\\conjunction",
