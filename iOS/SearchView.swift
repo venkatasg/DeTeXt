@@ -15,45 +15,30 @@ struct SearchView: View {
     @State private var showAboutView = false
     @State private var isPresented = false
     @State private var toastManager = ToastManager()
-    
-    #if targetEnvironment(macCatalyst)
-    let rowHeight:CGFloat = 100
-    #else
-    let rowHeight:CGFloat = 70
+
     @Environment(TabController.self) var tabController
-    #endif
-    
-    
         
     var body: some View {
         NavigationStack {
             List(symbols.AllSymbols.filter({searchText.isEmpty ? true : ($0.command.lowercased().contains(searchText.lowercased()) || $0.package?.lowercased().contains(searchText.lowercased()) ?? false  )})) { symbol in
                 RowView(symbol: symbol, toastManager: toastManager)
                     .onDrag { NSItemProvider(object: symbol.command as NSString) }
-                    .frame(minHeight: self.rowHeight)
                 }
                 .listStyle(InsetListStyle())
                 .toast(using: toastManager)
-                #if targetEnvironment(macCatalyst)
-                .searchable(
-                    text: $searchText,
-                    isPresented: $isPresented,
-                    prompt: "Search by command or package"
-                )
-                #else
                 .searchable(
                     text: $searchText,
                     isPresented: $isPresented,
                     placement: .navigationBarDrawer(displayMode: .always),
                     prompt: "Search by command or package"
                 )
-                #endif
                 .autocorrectionDisabled(true)
                 .textInputAutocapitalization(.never)
             
             #if targetEnvironment(macCatalyst)
                 .navigationTitle("")
             #else
+                .navigationTitle("Search")
                 .toolbar{
                     Button(action: {self.showAboutView.toggle()}) {
                         Image(systemName: "questionmark.circle")
@@ -61,7 +46,6 @@ struct SearchView: View {
                             .accessibility(label: Text("About"))
                     }
                 }
-                .navigationTitle("Search")
                 .sheet(isPresented: $showAboutView, onDismiss: { tabController.open(.search)
                 }) { AboutView() }
             #endif

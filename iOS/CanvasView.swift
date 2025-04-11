@@ -16,12 +16,7 @@ struct CanvasView: View {
     @State var showAboutView = false
     @State private var toastManager = ToastManager()
     
-    #if targetEnvironment(macCatalyst)
-    let rowHeight:CGFloat = 100
-    #else
-    let rowHeight:CGFloat = 70
     @Environment(TabController.self) var tabController
-    #endif
     
     var body: some View {
         NavigationStack {
@@ -49,7 +44,6 @@ struct CanvasView: View {
                                         #if targetEnvironment(macCatalyst)
                                             Text("Clear")
                                                 .font(.title)
-                                                .foregroundColor(.red)
                                         #else
                                             Image(systemName: "clear.fill")
                                                 .font(.title)
@@ -69,7 +63,6 @@ struct CanvasView: View {
                     List {
                         ForEach(labelScores.scores, id: \.key) { key, value in
                             RowView(symbol: symbols.AllSymbols.first(where: {$0.id==key})!, toastManager: toastManager)
-                                .frame(minHeight:self.rowHeight)
                                 .onDrag { NSItemProvider(object: symbols.AllSymbols.first(where: {$0.id==key})!.command as NSString) }
                             }
                         }

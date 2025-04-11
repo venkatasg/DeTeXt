@@ -30,9 +30,10 @@ struct DeTeXtApp: App {
     var body: some Scene {
         #if targetEnvironment(macCatalyst)
         WindowGroup {
-            TwoColumnMainView(labelScores: labelScores, symbols: symbols)
+            MainView(labelScores: labelScores, symbols: symbols)
         }
-        .commands {   
+        .defaultSize(CGSize(width: 800, height: 1000))
+        .commands {
             CommandGroup(replacing: .help, addition: {
                 Link("Contact Support...",
                      destination: URL(string: "mailto:venkat@venkatasg.net")!)
@@ -56,7 +57,6 @@ struct DeTeXtApp: App {
         WindowGroup {
             MainView(labelScores: labelScores, symbols: symbols)
         }
-        .defaultSize(CGSize(width: 500, height: 800))
         .commands {
             CommandGroup(after: CommandGroupPlacement.undoRedo) {
                 Button("Clear Canvas") {
