@@ -23,7 +23,6 @@
 		828280FD2DA08C5400EDA3D0 /* TipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828280FC2DA08C5000EDA3D0 /* TipsView.swift */; };
 		82893B35252BC6B100B9C9DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82893B34252BC6B100B9C9DA /* Assets.xcassets */; };
 		829568E5250BC95200508BB0 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829568E4250BC95200508BB0 /* SearchView.swift */; };
-		82A26B8125E09FD00082C3AA /* TwoColumnMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AC1FD925C314A3000B3EBE /* TwoColumnMainView.swift */; };
 		82B3D01F251060EA00F27316 /* PKCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B3D01E251060EA00F27316 /* PKCanvas.swift */; };
 		82DF4EF7251995270043C516 /* utilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DF4EF6251995270043C516 /* utilityFunctions.swift */; };
 		82E4AAA42A956CE600A80140 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 82E4AAA32A956CE600A80140 /* Credits.rtf */; };
@@ -82,7 +81,6 @@
 		82893B34252BC6B100B9C9DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		829568E4250BC95200508BB0 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		82A26B4E25E09E290082C3AA /* DeTeXt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeTeXt.entitlements; sourceTree = "<group>"; };
-		82AC1FD925C314A3000B3EBE /* TwoColumnMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoColumnMainView.swift; sourceTree = "<group>"; };
 		82B3D01E251060EA00F27316 /* PKCanvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKCanvas.swift; sourceTree = "<group>"; };
 		82DF4EF6251995270043C516 /* utilityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utilityFunctions.swift; sourceTree = "<group>"; };
 		82E4AAA32A956CE600A80140 /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
@@ -161,7 +159,6 @@
 		82A26B4325E09E290082C3AA /* macOS */ = {
 			isa = PBXGroup;
 			children = (
-				82AC1FD925C314A3000B3EBE /* TwoColumnMainView.swift */,
 				82A26B4E25E09E290082C3AA /* DeTeXt.entitlements */,
 				82E4AAA32A956CE600A80140 /* Credits.rtf */,
 			);
@@ -246,7 +243,6 @@
 				8232B3822ABA97550056E736 /* CopyToastView.swift in Sources */,
 				827D30F02529097A0047D92D /* MainView.swift in Sources */,
 				823C6D702A9C1D5100FF17F4 /* SymbolPreviewView.swift in Sources */,
-				82A26B8125E09FD00082C3AA /* TwoColumnMainView.swift in Sources */,
 				828280FD2DA08C5400EDA3D0 /* TipsView.swift in Sources */,
 				82B3D01F251060EA00F27316 /* PKCanvas.swift in Sources */,
 				821EE83524FAB50E0058877D /* CanvasView.swift in Sources */,
@@ -401,7 +397,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 34;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
@@ -436,7 +432,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 34;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
