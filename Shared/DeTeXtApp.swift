@@ -32,7 +32,7 @@ struct DeTeXtApp: App {
         WindowGroup {
             MainView(labelScores: labelScores, symbols: symbols)
         }
-        .defaultSize(CGSize(width: 500, height: 600))
+        .defaultSize(CGSize(width: 500, height: 750))
         .windowResizability(.contentSize)
         .commands {
             CommandGroup(replacing: .help, addition: {

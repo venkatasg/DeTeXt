@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct RowView: View {
-    
-    @Environment(\.colorScheme) var colorScheme
-    
+        
     let symbol: Symbol
     let pasteboard = UIPasteboard.general
     let toastManager: ToastManager
@@ -26,7 +24,6 @@ struct RowView: View {
             Spacer()
             Image("\(symbol.css_class)", label: Text(symbol.command))
                 .font(.hugeTitle)
-                .preferredColorScheme(colorScheme)
                 .onTapGesture(count: 2) {
                     copyCharacter(haptics: true)
                 }
@@ -92,13 +89,4 @@ struct RowView: View {
 
 extension Font {
     static let hugeTitle = Font.custom("San Francisco", size: 40, relativeTo: .largeTitle)
-}
-
-extension Image {
-    func asThumbnail(colorScheme: ColorScheme) -> some View {
-        font(.largeTitle)
-            .aspectRatio(contentMode: .fit)
-            .frame(width:40, alignment: .center)
-            .foregroundColor((colorScheme == .light ? Color.black : Color.white))
-    }
 }

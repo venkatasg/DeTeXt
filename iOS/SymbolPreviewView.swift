@@ -9,14 +9,12 @@ import SwiftUI
 
 struct SymbolPreviewView: View {
     
-    @Environment(\.colorScheme) var colorScheme
     let symbol: Symbol
     
     var body: some View {
         VStack  {
             Image("\(symbol.css_class)", label: Text(symbol.command))
                 .font(.system(size: 200))
-                .preferredColorScheme(colorScheme)
                 .padding(.init(top: 10, leading: 0, bottom: 5, trailing: 0))
             
             Divider()
@@ -26,7 +24,6 @@ struct SymbolPreviewView: View {
                 .padding(.init(top: 5, leading: 10, bottom: 0, trailing: 10))
             
             // Display mode if present
-            // ZStack{
             if (symbol.mathmode && !symbol.textmode) {
                 Text("mathmode")
             }
@@ -37,8 +34,6 @@ struct SymbolPreviewView: View {
                 Text("mathmode, textmode")
             }
             else {}
-            // }
-            // .padding(.init(top: 0, leading: 10, bottom: 0, trailing: 10))
             
             // Display package if present
             if let package = symbol.package {
