@@ -15,12 +15,14 @@ struct SearchView: View {
     @State private var showAboutView = false
     @State private var isPresented = false
     @State private var toastManager = ToastManager()
-
-    @Environment(TabController.self) var tabController
         
     var body: some View {
+        let filteredSymbols = symbols.AllSymbols.filter({
+            searchText.isEmpty ? true : ($0.command.lowercased().contains(searchText.lowercased()) || $0.package?.lowercased().contains(searchText.lowercased()) ?? false)
+        })
+
         NavigationStack {
-            List(symbols.AllSymbols.filter({searchText.isEmpty ? true : ($0.command.lowercased().contains(searchText.lowercased()) || $0.package?.lowercased().contains(searchText.lowercased()) ?? false  )})) { symbol in
+            List(filteredSymbols) { symbol in
                 RowView(symbol: symbol, toastManager: toastManager)
                     .onDrag { NSItemProvider(object: symbol.command as NSString) }
                 }
@@ -46,21 +48,26 @@ struct SearchView: View {
                             .accessibility(label: Text("About"))
                     }
                 }
-                .sheet(isPresented: $showAboutView, onDismiss: { tabController.open(.search)
-                }) { AboutView() }
+                .sheet(isPresented: $showAboutView) { AboutView() }
             #endif
         }
+        .searchable(
+            text: $searchText,
+            isPresented: $isPresented,
+            placement: .toolbar,
+            prompt: "Search by command or package"
+        )
     }
 }
 
 struct SearchView_Previews: PreviewProvider {
-    static let tabController = TabController()
+//    static let tabController = TabController()
     static let symbols = Symbols()
     
     static var previews: some View {
         Group {
             SearchView(symbols: symbols)
-                .environment(tabController)
+//                .environment(tabController)
         }
     }
 }

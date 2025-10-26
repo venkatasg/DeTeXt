@@ -11,7 +11,7 @@ import SwiftUI
 @Observable @MainActor
 class ToastManager {
     var currentToast: Toast?
-    private var task: Task<Void, Never>?
+    private var sleepTask: Task<Void, Never>?
     
     struct Toast: Equatable {
         let id = UUID()
@@ -20,7 +20,7 @@ class ToastManager {
     
     func show(_ text: String, duration: Double = 2.0) {
         // Cancel any existing task
-        task?.cancel()
+        sleepTask?.cancel()
         
         // Dismiss current toast if exists
         if currentToast != nil {
@@ -36,7 +36,7 @@ class ToastManager {
             currentToast = Toast(text: text)
         }
         // Suspend the toast for duration before dismissing on main thread
-        task = Task {
+        sleepTask = Task {
             try? await Task.sleep(for: .seconds(duration))
             guard !Task.isCancelled else { return }
             await MainActor.run {
@@ -83,14 +83,7 @@ struct CopyToastView: View {
         }
         .padding(.vertical, 10)
         .padding(.horizontal, 16)
-        .background(
-                    Capsule()
-                        .fill(Color(UIColor.systemBackground))
-                        .overlay(
-                            Capsule()
-                                .stroke(Color.secondary.opacity(0.2), lineWidth: 1)
-                        )
-                )
+        .glassEffect(in: .rect(cornerRadius: 15.0))
         .shadow(color: Color.primary.opacity(0.1), radius: 3, x: 0, y: 2)
         .shadow(color: Color.primary.opacity(0.1), radius: 1, x: 0, y: 1)
     }

@@ -16,7 +16,7 @@ struct CanvasView: View {
     @State var showAboutView = false
     @State private var toastManager = ToastManager()
     
-    @Environment(TabController.self) var tabController
+//    @Environment(TabController.self) var tabController
     
     var body: some View {
         NavigationStack {
@@ -25,11 +25,14 @@ struct CanvasView: View {
                     PKCanvas(labelScores: labelScores)
                         .frame(minWidth: 150, idealWidth: 300, maxWidth: 600, minHeight: 100, idealHeight: 200, maxHeight: 400, alignment: .center)
                         .aspectRatio(1.5, contentMode: .fit)
-                        .cornerRadius(5)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10, style: .continuous)
-                                .stroke(Color.accentColor, lineWidth: 3)
-                        )
+//                        .cornerRadius(5)
+                        .overlay {
+                            RoundedRectangle(
+                                cornerRadius: 20,
+                                style: .continuous
+                            )
+                            .stroke(Color.accentColor, lineWidth: 3)
+                        }
                         .padding(.init(top: 10, leading: 10, bottom: 20, trailing: 10))
                     }
                     .overlay( Group {
@@ -87,7 +90,7 @@ struct CanvasView: View {
                 }
             }
             .navigationTitle("Draw")
-            .sheet(isPresented: $showAboutView, onDismiss: { tabController.open(.draw) }) { AboutView() }
+            .sheet(isPresented: $showAboutView) { AboutView() }
             #endif
         }
     }
@@ -95,13 +98,13 @@ struct CanvasView: View {
 
 struct CanvasView_Previews: PreviewProvider {
     static let labelScores = LabelScores()
-    static let tabController = TabController()
+//    static let tabController = TabController()
     static let symbols = Symbols()
     
     static var previews: some View {
         Group {
             CanvasView(symbols: symbols, labelScores: labelScores)
-                .environment(tabController)
+//                .environment(tabController)
         }
     }
 }
