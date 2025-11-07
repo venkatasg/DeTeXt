@@ -10,22 +10,22 @@ import UIKit
 
 struct MainView: View {
     
-    @SceneStorage("selectedTab") private var selectedTabIndex = 0
     var labelScores: LabelScores
     let symbols: Symbols
+    
+    // variables for search functionality
+    @State private var searchText = ""
+    
         
     var body: some View {
-        TabView(selection: $selectedTabIndex) {
-            Tab("Draw", systemImage: "scribble", value: 0){
-                CanvasView(symbols: symbols, labelScores: labelScores)
-            }
-
-            Tab("Search", systemImage: "magnifyingglass", value: 1) {
-                SearchView(symbols: symbols)
-            }
-
+        NavigationStack {
+            CanvasView(symbols: symbols, labelScores: labelScores, searchText: $searchText)
+                .searchable(
+                    text: $searchText,
+                    placement: .toolbar,
+                    prompt: "Search by command or package"
+                )
         }
-        .tabBarMinimizeBehavior(.never)
     }
 }
 
