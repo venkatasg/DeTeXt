@@ -32,11 +32,9 @@ struct CanvasView: View {
                         }
                     }
                     .sheet(isPresented: $showAboutView) { AboutView() }
-                    .navigationTitle("DeTeXt")
             }
             else {
                 SearchPopView(symbols: symbols, toastManager: toastManager, searchText: $searchText)
-//                    .navigationTitle("Search")
             }
         
     }
@@ -77,7 +75,7 @@ struct DrawView: View {
                                         Text("Clear")
                                             .font(.title)
                                     #else
-                                        Image(systemName: "clear.fill")
+                                        Image(systemName: "xmark.circle.fill")
                                             .font(.title)
                                             .foregroundColor(.red)
                                     #endif
@@ -98,7 +96,7 @@ struct DrawView: View {
                             .onDrag { NSItemProvider(object: symbols.AllSymbols.first(where: {$0.id==key})!.command as NSString) }
                         }
                     }
-                    .listStyle(InsetListStyle())
+                .listStyle(.plain)
                     .frame(maxHeight:.infinity)
                     .toast(using: toastManager)
                 
@@ -121,14 +119,15 @@ struct SearchPopView: View {
         let filteredSymbols = symbols.AllSymbols.filter({
             searchText.isEmpty ? true : ($0.command.lowercased().contains(searchText.lowercased()) || $0.package?.lowercased().contains(searchText.lowercased()) ?? false)
         })
+        
         List(filteredSymbols) { symbol in
             RowView(symbol: symbol, toastManager: toastManager)
                 .onDrag { NSItemProvider(object: symbol.command as NSString) }
-            }
-            .listStyle(InsetListStyle())
-            .toast(using: toastManager)
-            .autocorrectionDisabled(true)
-            .textInputAutocapitalization(.never)
+        }
+        .listStyle(.plain)
+        .scrollEdgeEffectStyle(.soft, for: .top)
+        .toast(using: toastManager)
+        .autocorrectionDisabled(true)
+        .textInputAutocapitalization(.never)
     }
 }
-

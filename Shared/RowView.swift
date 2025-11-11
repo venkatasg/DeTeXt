@@ -77,13 +77,6 @@ struct RowView: View {
                 }
             }
         }
-        // Fail gracefully
-//        else {
-//            if toast {
-//                toastManager.show("Copy unavailable.")
-//            }
-//            modelHaptics()
-//        }
     }
 }
 
