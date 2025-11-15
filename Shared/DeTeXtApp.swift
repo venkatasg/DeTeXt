@@ -34,6 +34,10 @@ struct DeTeXtApp: App {
         }
         .defaultSize(CGSize(width: 500, height: 750))
         .windowResizability(.contentSize)
+        #else
+        WindowGroup {
+            MainView(labelScores: labelScores, symbols: symbols)
+        }
         .commands {
             CommandGroup(replacing: .help, addition: {
                 Link("Contact Support...",
@@ -47,18 +51,6 @@ struct DeTeXtApp: App {
                      destination: URL(string: "https://github.com/venkatasg/DeTeXt")!)
             })
     
-            CommandGroup(after: CommandGroupPlacement.undoRedo) {
-                Button("Clear Canvas") {
-                    self.labelScores.clearScores()
-                }
-                .keyboardShortcut("r", modifiers: [.command])
-            }
-        }
-        #else
-        WindowGroup {
-            MainView(labelScores: labelScores, symbols: symbols)
-        }
-        .commands {
             CommandGroup(after: CommandGroupPlacement.undoRedo) {
                 Button("Clear Canvas") {
                     self.labelScores.clearScores()
