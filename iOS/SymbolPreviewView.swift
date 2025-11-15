@@ -18,12 +18,11 @@ struct SymbolPreviewView: View {
             VStack  {
                 Image("\(symbol.css_class)", label: Text(symbol.command))
                     .font(.system(size: 200))
-                    .frame(minWidth: 300)
+                    .frame(maxWidth: .infinity)
                     .padding(.init(top: 10, leading: 0, bottom: 5, trailing: 0))
                     .background(
                             in: .rect(
-                                corners: .concentric(minimum: 24),
-                                isUniform: true
+                                topLeadingCorner: .concentric(minimum: 24), topTrailingCorner: .concentric(minimum: 24), bottomLeadingCorner: 0, bottomTrailingCorner: 0
                             )
                         )
                             
