@@ -28,27 +28,25 @@ struct DeTeXtApp: App {
     let symbols = Symbols()
     
     var body: some Scene {
-        #if targetEnvironment(macCatalyst)
         WindowGroup {
             MainView(labelScores: labelScores, symbols: symbols)
         }
         .defaultSize(CGSize(width: 500, height: 750))
         .windowResizability(.contentSize)
-        #else
-        WindowGroup {
-            MainView(labelScores: labelScores, symbols: symbols)
-        }
         .commands {
             CommandGroup(replacing: .help, addition: {
-                Link("Contact Support...",
-                     destination: URL(string: "mailto:venkat@venkatasg.net")!)
+                Link(destination: URL(string: "https://venkatasg.net/apps/detext#support")!) {
+                    Label("Contact Support", systemImage: "envelope")
+                }
                 
                 Divider()
 
-                Link("Release Notes",
-                     destination: URL(string: "https://venkatasg.net/apps/detext#release-notes")!)
-                Link("GitHub Repository",
-                     destination: URL(string: "https://github.com/venkatasg/DeTeXt")!)
+                Link(destination: URL(string: "https://venkatasg.net/apps/detext#release-notes")!) {
+                    Label("Release Notes", systemImage: "list.bullet.clipboard")
+                }
+                Link(destination: URL(string: "https://github.com/venkatasg/DeTeXt")!) {
+                    Label("GitHub Repository",systemImage: "cloud")
+                }
             })
     
             CommandGroup(after: CommandGroupPlacement.undoRedo) {
@@ -58,7 +56,5 @@ struct DeTeXtApp: App {
                 .keyboardShortcut("r", modifiers: [.command])
             }
         }
-        #endif
     }
 }
-
