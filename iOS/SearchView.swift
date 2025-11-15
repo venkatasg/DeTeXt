@@ -13,7 +13,6 @@ struct SearchView: View {
     
     @State private var searchText = ""
     @State private var showAboutView = false
-    @State private var isPresented = false
     @State private var toastManager = ToastManager()
         
     var body: some View {
@@ -28,12 +27,6 @@ struct SearchView: View {
                 }
                 .listStyle(InsetListStyle())
                 .toast(using: toastManager)
-                .searchable(
-                    text: $searchText,
-                    isPresented: $isPresented,
-                    placement: .navigationBarDrawer(displayMode: .always),
-                    prompt: "Search by command or package"
-                )
                 .autocorrectionDisabled(true)
                 .textInputAutocapitalization(.never)
             
@@ -53,7 +46,6 @@ struct SearchView: View {
         }
         .searchable(
             text: $searchText,
-            isPresented: $isPresented,
             placement: .toolbar,
             prompt: "Search by command or package"
         )
@@ -61,13 +53,12 @@ struct SearchView: View {
 }
 
 struct SearchView_Previews: PreviewProvider {
-//    static let tabController = TabController()
+
     static let symbols = Symbols()
     
     static var previews: some View {
         Group {
             SearchView(symbols: symbols)
-//                .environment(tabController)
         }
     }
 }
