@@ -15,6 +15,7 @@ struct CanvasView: View {
     var labelScores: LabelScores
     @State var showAboutView = false
     @State private var toastManager = ToastManager()
+    
         
     var body: some View {
         NavigationStack {

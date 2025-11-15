@@ -14,6 +14,7 @@ struct SearchView: View {
     @State private var searchText = ""
     @State private var showAboutView = false
     @State private var toastManager = ToastManager()
+    @Binding var presentSearch: Bool
         
     var body: some View {
         let filteredSymbols = symbols.AllSymbols.filter({
@@ -46,6 +47,7 @@ struct SearchView: View {
         }
         .searchable(
             text: $searchText,
+            isPresented: $presentSearch,
             placement: .toolbar,
             prompt: "Search by command or package"
         )
@@ -58,7 +60,7 @@ struct SearchView_Previews: PreviewProvider {
     
     static var previews: some View {
         Group {
-            SearchView(symbols: symbols)
+            SearchView(symbols: symbols, presentSearch: .constant(true))
         }
     }
 }

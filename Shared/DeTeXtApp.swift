@@ -26,10 +26,17 @@ struct DeTeXtApp: App {
     
     @State var labelScores: LabelScores = LabelScores()
     let symbols = Symbols()
+    @State private var selectedTabIndex = 0
+    @State private var presentSearch = true
     
     var body: some Scene {
         WindowGroup {
-            MainView(labelScores: labelScores, symbols: symbols)
+            MainView(
+                selectedTabIndex: $selectedTabIndex,
+                presentSearch: $presentSearch,
+                labelScores: labelScores,
+                symbols: symbols
+            )
         }
         .defaultSize(CGSize(width: 500, height: 750))
         .windowResizability(.contentSize)
@@ -54,6 +61,12 @@ struct DeTeXtApp: App {
                     self.labelScores.clearScores()
                 }
                 .keyboardShortcut("r", modifiers: [.command])
+                
+                Button("Find Symbol") {
+                    self.selectedTabIndex = 1
+                    self.presentSearch = true
+                }
+                .keyboardShortcut("f", modifiers: [.command])
             }
         }
     }

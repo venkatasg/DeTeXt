@@ -9,7 +9,9 @@ import SwiftUI
 
 struct MainView: View {
     
-    @SceneStorage("selectedTab") private var selectedTabIndex = 0
+    @Binding var selectedTabIndex: Int
+    @Binding var presentSearch: Bool
+    
     var labelScores: LabelScores
     let symbols: Symbols
         
@@ -20,7 +22,7 @@ struct MainView: View {
             }
 
             Tab("Search", systemImage: "magnifyingglass", value: 1) {
-                SearchView(symbols: symbols)
+                SearchView(symbols: symbols, presentSearch: $presentSearch)
             }
 
         }
@@ -34,7 +36,12 @@ struct MainView_Previews: PreviewProvider {
     static let symbols = Symbols()
     static var previews: some View {
         Group {
-            MainView(labelScores: labelScores, symbols: symbols)
+            MainView(
+                selectedTabIndex: .constant(0),
+                presentSearch: .constant(false),
+                labelScores: labelScores,
+                symbols: symbols
+            )
         }
     }
 }
