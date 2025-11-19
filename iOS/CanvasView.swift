@@ -23,6 +23,7 @@ struct CanvasView: View {
                 ZStack(alignment: .topTrailing) {
                     PKCanvas(labelScores: labelScores)
                         .aspectRatio(1.5, contentMode: .fit)
+                        .cornerRadius(20)
                         .overlay(
                             RoundedRectangle(cornerRadius: 20, style: .continuous)
                                 .stroke(Color.accentColor, lineWidth: 3)
@@ -30,16 +31,11 @@ struct CanvasView: View {
                         .padding(10)
                     
                     if !labelScores.scores.isEmpty {
-                        Button(role: .destructive, action: labelScores.clearScores) {
-#if targetEnvironment(macCatalyst)
-                            Text("Clear")
-                                .font(.title)
-#else
+                        Button(action: labelScores.clearScores) {
                             Image(systemName: "xmark.circle.fill")
                                 .font(.title)
-                                .foregroundColor(.red)
-#endif
                         }
+                        .tint(.red)
                         .padding(15)
                     }
                 }

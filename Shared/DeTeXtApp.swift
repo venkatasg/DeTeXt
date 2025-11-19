@@ -26,8 +26,8 @@ struct DeTeXtApp: App {
     
     @State var labelScores: LabelScores = LabelScores()
     let symbols = Symbols()
-    @State private var selectedTabIndex = 0
-    @State private var presentSearch = true
+    @State var selectedTabIndex = 0
+    @State var presentSearch = false
     
     var body: some Scene {
         WindowGroup {
