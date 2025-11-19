@@ -26,7 +26,9 @@ struct MainView: View {
             }
 
         }
+        #if !os(visionOS)
         .tabBarMinimizeBehavior(.never)
+        #endif
     }
 }
 

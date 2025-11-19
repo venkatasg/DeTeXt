@@ -83,7 +83,9 @@ struct CopyToastView: View {
         }
         .padding(.vertical, 10)
         .padding(.horizontal, 16)
+        #if !os(visionOS)
         .glassEffect(in: .rect(cornerRadius: 15.0))
+        #endif
         .shadow(color: Color.primary.opacity(0.1), radius: 3, x: 0, y: 2)
         .shadow(color: Color.primary.opacity(0.1), radius: 1, x: 0, y: 1)
     }

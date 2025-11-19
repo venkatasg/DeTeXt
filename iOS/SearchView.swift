@@ -30,10 +30,7 @@ struct SearchView: View {
                 .toast(using: toastManager)
                 .autocorrectionDisabled(true)
                 .textInputAutocapitalization(.never)
-            
-            #if targetEnvironment(macCatalyst)
-                .navigationTitle("")
-            #else
+                #if !targetEnvironment(macCatalyst)
                 .navigationTitle("Search")
                 .toolbar{
                     Button(action: {self.showAboutView.toggle()}) {
@@ -43,12 +40,12 @@ struct SearchView: View {
                     }
                 }
                 .sheet(isPresented: $showAboutView) { AboutView() }
-            #endif
+                #endif
         }
         .searchable(
             text: $searchText,
             isPresented: $presentSearch,
-            placement: .toolbar,
+            placement: .navigationBarDrawer(displayMode: .always),
             prompt: "Search by command or package"
         )
     }
@@ -60,7 +57,7 @@ struct SearchView_Previews: PreviewProvider {
     
     static var previews: some View {
         Group {
-            SearchView(symbols: symbols, presentSearch: .constant(true))
+            SearchView(symbols: symbols, presentSearch: .constant(false))
         }
     }
 }

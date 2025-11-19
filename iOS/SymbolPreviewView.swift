@@ -20,11 +20,13 @@ struct SymbolPreviewView: View {
                     .font(.system(size: 200))
                     .frame(maxWidth: .infinity)
                     .padding(.init(top: 10, leading: 0, bottom: 5, trailing: 0))
+                    #if !os(visionOS)
                     .background(
                             in: .rect(
                                 topLeadingCorner: .concentric(minimum: 24), topTrailingCorner: .concentric(minimum: 24), bottomLeadingCorner: 0, bottomTrailingCorner: 0
                             )
                         )
+                    #endif
                             
                 Text("\(symbol.command)")
                     .font(.system(.title, design: .monospaced, weight: .semibold))
@@ -58,8 +60,8 @@ struct SymbolPreviewView: View {
                 Spacer()
             }
         }
-        .containerShape(
-                    .rect(cornerRadius: 24)
-                )
+        #if !os(visionOS)
+        .containerShape(.rect(cornerRadius: 24))
+        #endif
     }
 }

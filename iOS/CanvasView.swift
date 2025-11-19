@@ -65,11 +65,11 @@ struct CanvasView: View {
                         }
                     }
                     .listStyle(InsetListStyle())
+                    .frame(maxHeight:.infinity)
+                    .toast(using: toastManager)
                 }
             }
-            #if targetEnvironment(macCatalyst)
-            .navigationTitle("")
-            #else
+            #if !targetEnvironment(macCatalyst)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: { self.showAboutView.toggle() }) {
