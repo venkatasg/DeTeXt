@@ -10,11 +10,10 @@ import SwiftUI
 struct SearchView: View {
     
     let symbols: Symbols
-    
-    @State private var searchText = ""
-    @State private var showAboutView = false
-    @State private var toastManager = ToastManager()
     @Binding var presentSearch: Bool
+    @Binding var showAboutView: Bool
+    @State private var searchText = ""
+    @State private var toastManager = ToastManager()
         
     var body: some View {
         let filteredSymbols = symbols.AllSymbols.filter({
@@ -35,11 +34,10 @@ struct SearchView: View {
                 .toolbar{
                     Button(action: {self.showAboutView.toggle()}) {
                         Image(systemName: "questionmark.circle")
-                            .font(.title3)
+//                            .font(.title3)
                             .accessibility(label: Text("About"))
                     }
                 }
-                .sheet(isPresented: $showAboutView) { AboutView() }
                 #endif
         }
         .searchable(
@@ -51,13 +49,10 @@ struct SearchView: View {
     }
 }
 
-struct SearchView_Previews: PreviewProvider {
-
-    static let symbols = Symbols()
-    
-    static var previews: some View {
-        Group {
-            SearchView(symbols: symbols, presentSearch: .constant(false))
-        }
+#Preview {
+    @Previewable @State var presentSearch = false
+    @Previewable @State var showAboutView = false
+    SearchView(
+        symbols: Symbols(), presentSearch: $presentSearch, showAboutView: $showAboutView
+        )
     }
-}

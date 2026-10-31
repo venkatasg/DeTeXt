@@ -14,36 +14,34 @@ struct MainView: View {
     
     var labelScores: LabelScores
     let symbols: Symbols
-        
+    @State private var showAboutView = false
+
     var body: some View {
         TabView(selection: $selectedTabIndex) {
             Tab("Draw", systemImage: "scribble", value: 0){
-                CanvasView(symbols: symbols, labelScores: labelScores)
+                CanvasView(symbols: symbols, labelScores: labelScores, showAboutView: $showAboutView)
             }
 
             Tab("Search", systemImage: "magnifyingglass", value: 1) {
-                SearchView(symbols: symbols, presentSearch: $presentSearch)
+                SearchView(symbols: symbols, presentSearch: $presentSearch, showAboutView: $showAboutView)
             }
 
         }
-        #if !os(visionOS)
         .tabBarMinimizeBehavior(.never)
+        #if !targetEnvironment(macCatalyst)
+        .sheet(isPresented: $showAboutView) { AboutView() }
         #endif
     }
 }
 
-struct MainView_Previews: PreviewProvider {
+#Preview {
+    @Previewable @State var presentSearch = false
+    @Previewable @State var selectedTabIndex = 0
     
-    static let labelScores = LabelScores()
-    static let symbols = Symbols()
-    static var previews: some View {
-        Group {
-            MainView(
-                selectedTabIndex: .constant(0),
-                presentSearch: .constant(false),
-                labelScores: labelScores,
-                symbols: symbols
-            )
-        }
-    }
+    MainView(
+        selectedTabIndex: $selectedTabIndex,
+        presentSearch: $presentSearch,
+        labelScores: LabelScores(),
+        symbols: Symbols()
+    )
 }

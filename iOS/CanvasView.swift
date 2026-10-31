@@ -13,7 +13,7 @@ struct CanvasView: View {
     let symbols: Symbols
     
     var labelScores: LabelScores
-    @State var showAboutView = false
+    @Binding var showAboutView: Bool
     @State private var toastManager = ToastManager()
     
         
@@ -29,15 +29,18 @@ struct CanvasView: View {
                                 .stroke(Color.accentColor, lineWidth: 3)
                         )
                         .padding(10)
-                    
-                    if !labelScores.scores.isEmpty {
-                        Button(action: labelScores.clearScores) {
-                            Image(systemName: "xmark.circle.fill")
-                                .font(.title)
+                        .overlay(alignment: .topTrailing) {
+                            // Scores are only populated once something has been drawn
+                            if !labelScores.scores.isEmpty {
+                                Button(action: labelScores.clearScores) {
+                                    Image(systemName: "xmark.circle.fill")
+                                        .font(.title)
+                                }
+                                .tint(.red)
+                                .padding(15)
+                                .padding(5)
+                            }
                         }
-                        .tint(.red)
-                        .padding(15)
-                    }
                 }
                 
                 Divider()
@@ -70,25 +73,17 @@ struct CanvasView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: { self.showAboutView.toggle() }) {
                         Image(systemName: "questionmark.circle")
-                            .font(.title3)
                             .accessibility(label: Text("About"))
                     }
                 }
             }
             .navigationTitle("Draw")
-            .sheet(isPresented: $showAboutView) { AboutView() }
             #endif
         }
     }
 }
 
-struct CanvasView_Previews: PreviewProvider {
-    static let labelScores = LabelScores()
-    static let symbols = Symbols()
-    
-    static var previews: some View {
-        Group {
-            CanvasView(symbols: symbols, labelScores: labelScores)
-        }
-    }
+#Preview {
+    @Previewable @State var showAboutView = false
+    CanvasView(symbols: Symbols(), labelScores: LabelScores(), showAboutView: $showAboutView)
 }
