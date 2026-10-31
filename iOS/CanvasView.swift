@@ -52,14 +52,11 @@ struct CanvasView: View {
                 } else {
                     List {
                         ForEach(labelScores.scores, id: \.key) { key, value in
-                            RowView(
-                                symbol: symbols.AllSymbols.first(where: { $0.id == key })!,
-                                toastManager: toastManager
-                            )
-                            .onDrag {
-                                NSItemProvider(
-                                    object: symbols.AllSymbols.first(where: { $0.id == key })!.command as NSString
-                                )
+                            if let symbol = symbols.find(withID: key) {
+                                RowView(symbol: symbol, toastManager: toastManager)
+                                    .onDrag {
+                                        NSItemProvider(object: symbol.command as NSString)
+                                    }
                             }
                         }
                     }
