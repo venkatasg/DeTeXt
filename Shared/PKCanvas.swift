@@ -10,6 +10,30 @@ import PencilKit
 import CoreML
 
 struct PKCanvas: UIViewRepresentable {
+    var labelScores: LabelScores
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self, labelScores: labelScores)
+    }
+
+    func makeUIView(context: Context) -> PKCanvasView {
+        let canvasView = PKCanvasView()
+        canvasView.tool = PKInkingTool(.pen, width: 15)
+        canvasView.isOpaque = true
+        canvasView.isScrollEnabled = false
+        canvasView.becomeFirstResponder()
+        canvasView.delegate = context.coordinator
+        canvasView.drawingPolicy = .anyInput
+        
+        return canvasView
+    }
+
+    func updateUIView(_ canvasView: PKCanvasView, context: Context) {
+        if self.labelScores.scores.isEmpty {
+            canvasView.drawing = PKDrawing()
+        }
+    }
+    
     class Coordinator: NSObject, PKCanvasViewDelegate {
         var pkCanvas: PKCanvas
         var labelScores: LabelScores
@@ -42,15 +66,15 @@ struct PKCanvas: UIViewRepresentable {
             // haptic feedback
             modelHaptics()
             
-            let processedImage = processDrawing(canvasView)
+            let processedDrawing = processDrawing(canvasView)
             
             // Use Task to handle async work
             Task { @MainActor in
-                await predictImage(image: processedImage)
+                await predict(drawing: processedDrawing)
             }
         }
         
-        private func processDrawing(_ canvasView: PKCanvasView) -> UIImage {
+        private func processDrawing(_ canvasView: PKCanvasView) -> PKDrawing {
             // Find the scaling factor for drawings and appropriate pointsize
             let scaleH = canvasView.drawing.bounds.size.width / canvasView.frame.width
             let scaleW = canvasView.drawing.bounds.size.height / canvasView.frame.height
@@ -77,19 +101,12 @@ struct PKCanvas: UIViewRepresentable {
                     )
                 )
             })
-            var image = processedDrawing.image(from: processedDrawing.bounds, scale: 5.0)
-            //flip color from black to white in dark mode
-            if image.averageColor?.cgColor.components![0] == 0 {
-                image = invertColors(image: image)
-            }
-            // overlay image on a black background
-            let processedImage = overlayBlackBg(image: image)
-            return processedImage
+            return processedDrawing
         }
         
         // find the most likely class labels corresponding to the drawing
-        private func predictImage(image: UIImage) async {
-            guard let resizedImage = image.resize(newSize: trainedImageSize), let pixelBuffer = resizedImage.toCVPixelBuffer() else { return }
+        private func predict(drawing: PKDrawing) async {
+            guard let pixelBuffer = await drawing.modelInput(size: trainedImageSize) else { return }
             do {
                 let result = try model.prediction(drawing: pixelBuffer)
                 labelScores.updateScores(updatedScores: result.classLabelProbs)
@@ -101,28 +118,6 @@ struct PKCanvas: UIViewRepresentable {
         }
     }
 
-    var labelScores: LabelScores
-
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self, labelScores: labelScores)
-    }
-
-    func makeUIView(context: Context) -> PKCanvasView {
-        let canvasView = PKCanvasView()
-        canvasView.tool = PKInkingTool(.pen, width: 15)
-        canvasView.isOpaque = true
-        canvasView.isScrollEnabled = false
-        canvasView.becomeFirstResponder()
-        canvasView.delegate = context.coordinator
-        canvasView.drawingPolicy = .anyInput
-        
-        return canvasView
-    }
-
-    func updateUIView(_ canvasView: PKCanvasView, context: Context) {
-        if self.labelScores.scores.isEmpty {
-            canvasView.drawing = PKDrawing()
-        }
-    }
+    
     
 }
