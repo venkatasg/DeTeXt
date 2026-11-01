@@ -38,8 +38,6 @@ struct PKCanvas: UIViewRepresentable {
         var pkCanvas: PKCanvas
         var labelScores: LabelScores
         
-        private let mlProcessingInk = PKInk(.pen, color: .white)
-
         let model: deTeX = {
             do {
                 let config = MLModelConfiguration()
@@ -66,42 +64,12 @@ struct PKCanvas: UIViewRepresentable {
             // haptic feedback
             modelHaptics()
             
-            let processedDrawing = processDrawing(canvasView)
+            let processedDrawing = canvasView.drawing.normalizedForModel(canvasSize: canvasView.frame.size)
             
             // Use Task to handle async work
             Task { @MainActor in
                 await predict(drawing: processedDrawing)
             }
-        }
-        
-        private func processDrawing(_ canvasView: PKCanvasView) -> PKDrawing {
-            // Find the scaling factor for drawings and appropriate pointsize
-            let scaleH = canvasView.drawing.bounds.size.width / canvasView.frame.width
-            let scaleW = canvasView.drawing.bounds.size.height / canvasView.frame.height
-            let scale = max(scaleH, scaleW)
-            let pointSize = CGSize(width: 2.5 + scale*5.5, height: 2.5+scale*5.5)
-            
-            // Create new drawing using map to avoid explicit array allocation
-            let processedDrawing = PKDrawing(strokes: canvasView.drawing.strokes.map { stroke in
-                PKStroke(
-                    ink: self.mlProcessingInk,
-                    path: PKStrokePath(
-                        controlPoints: stroke.path.map { point in
-                            PKStrokePoint(
-                                location: point.location,
-                                timeOffset: point.timeOffset,
-                                size: pointSize,
-                                opacity: 2,
-                                force: point.force,
-                                azimuth: .zero,
-                                altitude: .pi/2
-                            )
-                        },
-                        creationDate: Date()
-                    )
-                )
-            })
-            return processedDrawing
         }
         
         // find the most likely class labels corresponding to the drawing

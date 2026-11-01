@@ -4,6 +4,38 @@ import UIKit
 import PencilKit
 
 extension PKDrawing {
+    private static let mlProcessingInk = PKInk(.pen, color: .white)
+
+    // Redraws every stroke with white ink and a uniform point size scaled to how much of the
+    // canvas the drawing covers, so thin and thick strokes look alike to the model
+    func normalizedForModel(canvasSize: CGSize) -> PKDrawing {
+        // Find the scaling factor for drawings and appropriate pointsize
+        let scaleH = bounds.size.width / canvasSize.width
+        let scaleW = bounds.size.height / canvasSize.height
+        let scale = max(scaleH, scaleW)
+        let pointSize = CGSize(width: 2.5 + scale*5.5, height: 2.5+scale*5.5)
+
+        return PKDrawing(strokes: strokes.map { stroke in
+            PKStroke(
+                ink: Self.mlProcessingInk,
+                path: PKStrokePath(
+                    controlPoints: stroke.path.map { point in
+                        PKStrokePoint(
+                            location: point.location,
+                            timeOffset: point.timeOffset,
+                            size: pointSize,
+                            opacity: 2,
+                            force: point.force,
+                            azimuth: .zero,
+                            altitude: .pi/2
+                        )
+                    },
+                    creationDate: Date()
+                )
+            )
+        })
+    }
+
     // Renders the drawing the way the model was trained: white strokes on black, centred in a
     // frame with the model's aspect ratio and 20% padding, drawn straight into the input buffer
     func modelInput(size: CGSize) async -> CVPixelBuffer? {
