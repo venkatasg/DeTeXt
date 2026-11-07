@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -26,6 +26,16 @@
 		82DF4EF7251995270043C516 /* utilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DF4EF6251995270043C516 /* utilityFunctions.swift */; };
 		82E4AAA42A956CE600A80140 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 82E4AAA32A956CE600A80140 /* Credits.rtf */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		82E205F130969498004B4C03 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 821EE81B24FAB50C0058877D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 821EE82624FAB50E0058877D;
+			remoteInfo = iOS;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		825E2CDC2526D2BE008866F5 /* Embed App Clips */ = {
@@ -81,11 +91,23 @@
 		82A26B4E25E09E290082C3AA /* DeTeXt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeTeXt.entitlements; sourceTree = "<group>"; };
 		82B3D01E251060EA00F27316 /* PKCanvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKCanvas.swift; sourceTree = "<group>"; };
 		82DF4EF6251995270043C516 /* utilityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utilityFunctions.swift; sourceTree = "<group>"; };
+		82E205E630969498004B4C03 /* DeTeXtTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeTeXtTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		82E4AAA32A956CE600A80140 /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		82E205E730969498004B4C03 /* DeTeXtTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = DeTeXtTests; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		821EE82424FAB50E0058877D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82E205E330969498004B4C03 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -102,6 +124,7 @@
 				827A5CB22516E02900E3D06B /* Resources */,
 				821EE82924FAB50E0058877D /* iOS */,
 				82A26B4325E09E290082C3AA /* macOS */,
+				82E205E730969498004B4C03 /* DeTeXtTests */,
 				821EE82824FAB50E0058877D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -124,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				821EE82724FAB50E0058877D /* DeTeXt.app */,
+				82E205E630969498004B4C03 /* DeTeXtTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -185,6 +209,29 @@
 			productReference = 821EE82724FAB50E0058877D /* DeTeXt.app */;
 			productType = "com.apple.product-type.application";
 		};
+		82E205E530969498004B4C03 /* DeTeXtTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 82E205EA30969498004B4C03 /* Build configuration list for PBXNativeTarget "DeTeXtTests" */;
+			buildPhases = (
+				82E205E230969498004B4C03 /* Sources */,
+				82E205E330969498004B4C03 /* Frameworks */,
+				82E205E430969498004B4C03 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				82E205F230969498004B4C03 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				82E205E730969498004B4C03 /* DeTeXtTests */,
+			);
+			name = DeTeXtTests;
+			packageProductDependencies = (
+			);
+			productName = DeTeXtTests;
+			productReference = 82E205E630969498004B4C03 /* DeTeXtTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -192,11 +239,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastSwiftUpdateCheck = 1520;
-				LastUpgradeCheck = 2600;
+				LastSwiftUpdateCheck = 2720;
+				LastUpgradeCheck = 2720;
 				TargetAttributes = {
 					821EE82624FAB50E0058877D = {
 						CreatedOnToolsVersion = 12.0;
+					};
+					82E205E530969498004B4C03 = {
+						CreatedOnToolsVersion = 27.2;
+						TestTargetID = 821EE82624FAB50E0058877D;
 					};
 				};
 			};
@@ -214,6 +265,7 @@
 			projectRoot = "";
 			targets = (
 				821EE82624FAB50E0058877D /* iOS */,
+				82E205E530969498004B4C03 /* DeTeXtTests */,
 			);
 		};
 /* End PBXProject section */
@@ -227,6 +279,13 @@
 				82893B35252BC6B100B9C9DA /* Assets.xcassets in Resources */,
 				821EE84E24FAB5660058877D /* symbols.json in Resources */,
 				82E4AAA42A956CE600A80140 /* Credits.rtf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82E205E430969498004B4C03 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,7 +313,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		82E205E230969498004B4C03 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		82E205F230969498004B4C03 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 821EE82624FAB50E0058877D /* iOS */;
+			targetProxy = 82E205F130969498004B4C03 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		821EE83924FAB50E0058877D /* Debug */ = {
@@ -456,6 +530,63 @@
 			};
 			name = Release;
 		};
+		82E205EB30969498004B4C03 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Venkat.DeTeXtTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,6";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DeTeXt.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DeTeXt";
+			};
+			name = Debug;
+		};
+		82E205EC30969498004B4C03 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Venkat.DeTeXtTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,6";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DeTeXt.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DeTeXt";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -473,6 +604,15 @@
 			buildConfigurations = (
 				821EE83C24FAB50E0058877D /* Debug */,
 				821EE83D24FAB50E0058877D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		82E205EA30969498004B4C03 /* Build configuration list for PBXNativeTarget "DeTeXtTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				82E205EB30969498004B4C03 /* Debug */,
+				82E205EC30969498004B4C03 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

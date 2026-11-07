@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "2600"
+   LastUpgradeVersion = "2720"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -29,12 +29,13 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
-            skipped = "NO">
+            skipped = "NO"
+            parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "820269332530C450000A009C"
-               BuildableName = "DeTeXtUITests.xctest"
-               BlueprintName = "DeTeXtUITests"
+               BlueprintIdentifier = "82E205E530969498004B4C03"
+               BuildableName = "DeTeXtTests.xctest"
+               BlueprintName = "DeTeXtTests"
                ReferencedContainer = "container:DeTeXt.xcodeproj">
             </BuildableReference>
          </TestableReference>
