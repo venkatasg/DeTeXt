@@ -24,16 +24,16 @@ struct AmbiguousSymbol: CustomTestStringConvertible, Sendable {
 
 extension AmbiguousSymbol {
     static let all: [AmbiguousSymbol] = [
-        AmbiguousSymbol(name: "alpha", expected: [#"\alpha"#, #"\upalpha"#], confusableWith: [#"\propto"#, #"\infty"#],
+        AmbiguousSymbol(name: "alpha", expected: [#"\alpha"#, #"\upalpha"#], confusableWith: [#"\propto"#, #"\infty"#, #"\varpropto"#],
                         strokes: [[(0.95, 0.15), (0.75, 0.55), (0.45, 0.85), (0.15, 0.75), (0.1, 0.4), (0.35, 0.2), (0.65, 0.5), (0.95, 0.9)]]),
-        AmbiguousSymbol(name: "varepsilon", expected: [#"\varepsilon"#], confusableWith: [#"\Sigma"#, #"\delta"#, #"\in"#],
+        AmbiguousSymbol(name: "varepsilon", expected: [#"\varepsilon"#], confusableWith: [#"\textepsilon"#, #"\Sigma"#,#"\mathcal{E}"#, #"\delta"#, #"\in"#],
                         // The middle point is repeated so the B-spline keeps the sharp inward cusp
                         strokes: [[(0.75, 0.15), (0.4, 0.1), (0.25, 0.3), (0.45, 0.48), (0.45, 0.48), (0.45, 0.48), (0.2, 0.6), (0.25, 0.85), (0.75, 0.85)]]),
-        AmbiguousSymbol(name: "Sigma / sum", expected: [#"\Sigma"#, #"\sum"#], confusableWith: [#"\zeta"#],
+        AmbiguousSymbol(name: "Sigma / sum", expected: [#"\Sigma"#, #"\sum"#], confusableWith: [#"\zeta"#, #"\Upsigma"#],
                         strokes: [[(0.85, 0.1), (0.15, 0.1), (0.55, 0.5)], [(0.55, 0.5), (0.15, 0.9), (0.85, 0.9)]]),
-        AmbiguousSymbol(name: "Pi / prod", expected: [#"\Pi"#, #"\prod"#], confusableWith: [#"\pi"#, #"\pitchfork"#],
+        AmbiguousSymbol(name: "Pi / prod", expected: [#"\Pi"#, #"\prod"#], confusableWith: [#"\pi"#, #"\uppi"#, #"\Uppi"#],
                         strokes: [[(0.1, 0.15), (0.9, 0.15)], [(0.3, 0.15), (0.3, 0.9)], [(0.7, 0.15), (0.7, 0.9)]]),
-        AmbiguousSymbol(name: "emptyset", expected: [#"\emptyset"#, #"\varnothing"#], confusableWith: [#"\o"#, #"\phi"#, #"\diameter"#],
+        AmbiguousSymbol(name: "emptyset", expected: [#"\emptyset"#, #"\varnothing"#], confusableWith: [#"\o"#, #"\phi"#, #"\diameter"#, #"\clock"#],
                         strokes: [[(0.5, 0.15), (0.2, 0.25), (0.15, 0.55), (0.3, 0.82), (0.6, 0.85), (0.85, 0.6), (0.8, 0.3), (0.5, 0.15)],
                                   [(0.85, 0.05), (0.15, 0.95)]]),
         AmbiguousSymbol(name: "infty", expected: [#"\infty"#], confusableWith: [#"\propto"#, #"\bowtie"#],
@@ -44,7 +44,7 @@ extension AmbiguousSymbol {
                         strokes: [[(0.2, 0.2), (0.8, 0.8)], [(0.8, 0.2), (0.2, 0.8)]]),
         AmbiguousSymbol(name: "rightarrow", expected: [#"\rightarrow"#], confusableWith: [#"\longrightarrow"#, #"\shortrightarrow"#],
                         strokes: [[(0.05, 0.5), (0.95, 0.5)], [(0.75, 0.35), (0.95, 0.5)], [(0.95, 0.5), (0.75, 0.65)]]),
-        AmbiguousSymbol(name: "leq", expected: [#"\leq"#], confusableWith: [#"\subseteq"#, #"\zeta"#],
+        AmbiguousSymbol(name: "leq", expected: [#"\leq"#], confusableWith: [#"\subseteq"#, #"\leqslant"#],
                         strokes: [[(0.8, 0.1), (0.2, 0.35), (0.8, 0.6)], [(0.2, 0.85), (0.8, 0.85)]]),
         AmbiguousSymbol(name: "neq", expected: [#"\neq"#], confusableWith: [#"\not\equiv"#, #"\ddagger"#],
                         strokes: [[(0.15, 0.38), (0.85, 0.38)], [(0.15, 0.62), (0.85, 0.62)], [(0.65, 0.15), (0.35, 0.85)]]),
