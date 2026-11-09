@@ -17,7 +17,7 @@ class LabelScores {
     }
     
     func updateScores(updatedScores : [String : Double]) {
-        self.scores = Array(updatedScores.sorted { $0.1 > $1.1 } [..<20])
+        self.scores = Array(updatedScores.sorted { $0.1 > $1.1 }.prefix(20))
     }
 }
 

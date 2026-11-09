@@ -10,97 +10,6 @@ import PencilKit
 import CoreML
 
 struct PKCanvas: UIViewRepresentable {
-    class Coordinator: NSObject, PKCanvasViewDelegate {
-        var pkCanvas: PKCanvas
-        var labelScores: LabelScores
-        
-        private let mlProcessingInk = PKInk(.pen, color: .white)
-
-        let model: deTeX = {
-            do {
-                let config = MLModelConfiguration()
-                config.computeUnits = .all
-                return try deTeX(configuration: config)
-            }
-            catch {
-                print(error)
-                fatalError("Couldn't create model")
-            }
-        }()
-        
-        private let trainedImageSize = CGSize(width: 300, height: 200)
-        
-        init(_ pkCanvas: PKCanvas, labelScores: LabelScores) {
-            self.pkCanvas = pkCanvas
-            self.labelScores  = labelScores
-        }
-
-        func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
-            // if canvasView is empty escape gracefully
-            guard !canvasView.drawing.bounds.isEmpty else { return }
-            
-            // haptic feedback
-            modelHaptics()
-            
-            let processedImage = processDrawing(canvasView)
-            
-            // Use Task to handle async work
-            Task { @MainActor in
-                await predictImage(image: processedImage)
-            }
-        }
-        
-        private func processDrawing(_ canvasView: PKCanvasView) -> UIImage {
-            // Find the scaling factor for drawings and appropriate pointsize
-            let scaleH = canvasView.drawing.bounds.size.width / canvasView.frame.width
-            let scaleW = canvasView.drawing.bounds.size.height / canvasView.frame.height
-            let scale = max(scaleH, scaleW)
-            let pointSize = CGSize(width: 2.5 + scale*5.5, height: 2.5+scale*5.5)
-            
-            // Create new drawing using map to avoid explicit array allocation
-            let processedDrawing = PKDrawing(strokes: canvasView.drawing.strokes.map { stroke in
-                PKStroke(
-                    ink: self.mlProcessingInk,
-                    path: PKStrokePath(
-                        controlPoints: stroke.path.map { point in
-                            PKStrokePoint(
-                                location: point.location,
-                                timeOffset: point.timeOffset,
-                                size: pointSize,
-                                opacity: 2,
-                                force: point.force,
-                                azimuth: .zero,
-                                altitude: .pi/2
-                            )
-                        },
-                        creationDate: Date()
-                    )
-                )
-            })
-            var image = processedDrawing.image(from: processedDrawing.bounds, scale: 5.0)
-            //flip color from black to white in dark mode
-            if image.averageColor?.cgColor.components![0] == 0 {
-                image = invertColors(image: image)
-            }
-            // overlay image on a black background
-            let processedImage = overlayBlackBg(image: image)
-            return processedImage
-        }
-        
-        // find the most likely class labels corresponding to the drawing
-        private func predictImage(image: UIImage) async {
-            guard let resizedImage = image.resize(newSize: trainedImageSize), let pixelBuffer = resizedImage.toCVPixelBuffer() else { return }
-            do {
-                let result = try model.prediction(drawing: pixelBuffer)
-                labelScores.updateScores(updatedScores: result.classLabelProbs)
-            }
-            catch {
-                print("Prediction error\n")
-            }
-                
-        }
-    }
-
     var labelScores: LabelScores
 
     func makeCoordinator() -> Coordinator {
@@ -124,5 +33,66 @@ struct PKCanvas: UIViewRepresentable {
             canvasView.drawing = PKDrawing()
         }
     }
+    
+    @MainActor
+    class Coordinator: NSObject, PKCanvasViewDelegate {
+        var pkCanvas: PKCanvas
+        var labelScores: LabelScores
+
+        // Starts loading the model in the background as soon as the canvas is created;
+        // predictions await this, so a stroke drawn before loading finishes just waits
+        private let model = Task {
+            let config = MLModelConfiguration()
+            config.computeUnits = .all
+            return try await deTeX.load(configuration: config)
+        }
+
+        // The prediction for the most recent drawing, kept so it can be cancelled when superseded
+        private var predictionTask: Task<Void, Never>?
+
+        private let trainedImageSize = CGSize(width: 300, height: 200)
+        
+        init(_ pkCanvas: PKCanvas, labelScores: LabelScores) {
+            self.pkCanvas = pkCanvas
+            self.labelScores  = labelScores
+        }
+
+        func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
+            // Only the latest drawing matters, so drop any prediction still running for an earlier one
+            predictionTask?.cancel()
+
+            // An empty canvas (cleared or fully erased) has nothing to predict
+            guard !canvasView.drawing.bounds.isEmpty else { return }
+
+            // haptic feedback
+            modelHaptics()
+
+            let processedDrawing = canvasView.drawing.normalizedForModel(canvasSize: canvasView.frame.size)
+
+            predictionTask = Task {
+                await predict(drawing: processedDrawing)
+            }
+        }
+
+        // find the most likely class labels corresponding to the drawing
+        private func predict(drawing: PKDrawing) async {
+            do {
+                let model = try await model.value
+                guard let pixelBuffer = await drawing.modelInput(size: trainedImageSize), !Task.isCancelled else { return }
+
+                // Runs off the main thread, so the UI stays responsive while the model works
+                let result = try await model.prediction(input: deTeXInput(drawing: pixelBuffer))
+
+                // A newer stroke or a clear may have superseded this drawing while the model ran
+                guard !Task.isCancelled else { return }
+                labelScores.updateScores(updatedScores: result.classLabelProbs)
+            }
+            catch {
+                print("Prediction error: \(error)")
+            }
+        }
+    }
+
+    
     
 }

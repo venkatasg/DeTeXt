@@ -16,9 +16,10 @@ struct SearchView: View {
     @State private var toastManager = ToastManager()
         
     var body: some View {
-        let filteredSymbols = symbols.AllSymbols.filter({
-            searchText.isEmpty ? true : ($0.command.lowercased().contains(searchText.lowercased()) || $0.package?.lowercased().contains(searchText.lowercased()) ?? false)
-        })
+        // localizedStandardContains is case- and diacritic-insensitive, so no lowercased copies are needed
+        let filteredSymbols = searchText.isEmpty ? symbols.AllSymbols : symbols.AllSymbols.filter {
+            $0.command.localizedStandardContains(searchText) || ($0.package?.localizedStandardContains(searchText) ?? false)
+        }
 
         NavigationStack {
             List(filteredSymbols) { symbol in

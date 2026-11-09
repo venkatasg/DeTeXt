@@ -20,12 +20,20 @@ class Symbol : Codable, Identifiable {
 class Symbols {
     
     let AllSymbols: [Symbol]
-    
+    // Index of symbols by id, built once so model labels resolve in constant time
+    private let symbolsByID: [String: Symbol]
+
     init() {
         self.AllSymbols = Bundle.main.decode("symbols.json").sorted { s1,s2 in
             return (s1.package ?? "", s1.command) < (s2.package ?? "", s2.command) }
+        self.symbolsByID = Dictionary(AllSymbols.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
     }
-    
+
+    // Returns the symbol for a model class label, or nil if it isn't in symbols.json
+    func find(withID id: String) -> Symbol? {
+        symbolsByID[id]
+    }
+
 }
 
 extension Bundle {
