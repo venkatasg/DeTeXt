@@ -40,13 +40,13 @@ struct SearchView: View {
                     }
                 }
                 #endif
+                .searchable(
+                    text: $searchText,
+                    isPresented: $presentSearch,
+                    placement: .navigationBarDrawer(displayMode: .always),
+                    prompt: "Search by command or package"
+                )
         }
-        .searchable(
-            text: $searchText,
-            isPresented: $presentSearch,
-            placement: .navigationBarDrawer(displayMode: .always),
-            prompt: "Search by command or package"
-        )
     }
 }
 
