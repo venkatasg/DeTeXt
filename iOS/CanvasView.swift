@@ -23,22 +23,34 @@ struct CanvasView: View {
                 ZStack(alignment: .topTrailing) {
                     PKCanvas(labelScores: labelScores)
                         .aspectRatio(1.5, contentMode: .fit)
-                        .cornerRadius(20)
+                        .cornerRadius(12)
                         .overlay(
-                            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                            RoundedRectangle(cornerRadius: 12, style: .continuous)
                                 .stroke(Color.accentColor, lineWidth: 3)
                         )
                         .padding(10)
                         .overlay(alignment: .topTrailing) {
                             // Scores are only populated once something has been drawn
                             if !labelScores.scores.isEmpty {
+                                #if targetEnvironment(macCatalyst)
+                                // A standard Mac button, which has a comfortable click target. The capsule's
+                                // ~11pt corner radius sits roughly concentric with the canvas's 20pt corner
+                                // at a 10pt inset
+                                Button("Clear", action: labelScores.clearScores)
+                                    .buttonStyle(.bordered)
+                                    .buttonBorderShape(.capsule)
+                                    .foregroundStyle(.red)
+                                    .padding(15)
+                                #else
                                 Button(action: labelScores.clearScores) {
                                     Image(systemName: "xmark.circle.fill")
                                         .font(.title)
+                                        .foregroundStyle(.red)
                                 }
-                                .tint(.red)
+                                // Plain style draws just the icon, without a bezel
+                                .buttonStyle(.plain)
                                 .padding(15)
-                                .padding(5)
+                                #endif
                             }
                         }
                 }
